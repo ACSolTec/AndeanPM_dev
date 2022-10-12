@@ -1,0 +1,129 @@
+﻿@page "/Operations/CachiLaguna"
+
+@inject IJSRuntime JSRuntime
+@inject IBannerService BannerService
+@inject IOperationsService OperationsService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/operations.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+@if (isShowing == true)
+{
+    <Andeanpm.Client.Components.Public.ModalWindow ParentMethodToCallOnClickBtnClose="() => isShowing = false" operations="op" position="position" />
+}
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div>
+            <div class="row m-0 p-0">
+            <div class="col-12 m-0 p-0">
+                    <img src="@banner.Url" class="banner banner-50">
+            </div>
+            </div>
+            <div class="container p-0">
+                <div class="col-12">
+                    <div class="col-12 p-4 pb-4">
+                        <div class="col-lg-12 paragraph-subtitle align-end p-0">
+                                <a href="/Operations/CerroRicoMine#top" class="a-remover yellow-hover">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Surface Deposits&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>|
+                                <a href="/Operations/CerroRicoDeposits" class="a-remover yellow-hover">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next >></a>
+                        </div>
+                        <div class="row m-0 mt-5 mb-5 pt-5-4k">
+                            <div class="col-lg-12 p-0">
+                                <div class="paragraph-subtitle">Project</div>
+                                <h1 class="paragraph-title pb-2 andean-gold-bar d-inline-block">CACHI LAGUNA</h1>
+                            </div>
+                        </div>
+                        <div class="row mt-5 pt-4">
+                            <div class="col-lg-12">
+                                <p class="paragraph-content text-justify mb-3">The property is located in the department of Potosí, south-west of the city of Potosí at a total distance of 413 km. Andean has rights with the owner to advise and monitor various activities, including exploration, at Cachi
+                                    Laguna.</p>
+                                <p class="paragraph-content text-justify mb-3">Geology and mineralization is located in the polymetallic belt of the Altiplano and the Western Cordillera of Bolivia, between 800 × 200 km. Ag-Pb-Zn-Cu-Au-etc belt.</p>
+                                <p class="paragraph-content text-justify mb-3">The most important characteristics include intermediate to high sulphidation epithermal mineralization associated with small and shallow subvolcanic plugs, flow domes, stratovolcanoes, lavas, pyroclastic rocks, ignimbritic
+                                    shields, and / or volcanic calderas of dacitic, riodacitic, rhyolitic and andesitic composition.
+                                </p>
+                                <p class="paragraph-content text-justify mb-3">Cachi Laguna is hosted in a 40 km2-sized volcanic dome located on top of a prominent stratovolcano within the extensive Pastos Grandes volcanic caldera of Pliocene age (5-7 ma). The volcano is an assemblage of lava flows
+                                    and breccias of dacitic and andesitic composition with the Cachi Laguna porphyry dome towards the west.
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class="row mt-lg-5 mt-5-4k">
+                            <div class="col-lg-4 p-2 eye-container d-none d-lg-block">
+                                <div class="eye"></div>
+                                <img class="image-regular" src="@op.FirstOrDefault(x => x.Id == 1).ImageLink" @onclick="() => ShowModal(op.FirstOrDefault(x => x.Id == 1).Id)">
+                            </div>
+                            <div class="col-lg-8 p-2 pt-0 pb-0">
+                                <div class="row m-0">
+                                    @foreach (var item in op.GetRange(1, 4))
+                                    {
+                                        <div class="col-lg-6 col-6 p-2 eye-container">
+                                            <div class="eye"></div>
+                                            <img class="image-regular operations-gallery-preview3 w-100" src="@item.ImageLink" @onclick="() => ShowModal(item.Id)">
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="col-2 d-none d-md-block"></div>
+                            <div class="col-12 col-md-8 p-2 eye-container d-lg-none d-block mt-5">
+                                <div class="eye"></div>
+                                <img class="image-regular" src="@op.FirstOrDefault(x => x.Id == 1).ImageLink" @onclick="() => ShowModal(op.FirstOrDefault(x => x.Id == 1).Id)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private List<ImageModal> imageModal { get; set; } = new();
+
+    private List<Operation> op { get; set; } = new();
+
+    private Banner banner { get; set; } = new();
+
+    private int position = 0;
+
+    private bool isShowing = false;
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        op = await OperationsService.Get("CachiLaguna");
+        banner = await BannerService.GetBanner("Cachi Laguna");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+    private void ShowModal(int pos)
+    {
+        this.position = pos;
+        isShowing = true;
+
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if (isMenu) return "pause";
+        return "";
+    }
+}

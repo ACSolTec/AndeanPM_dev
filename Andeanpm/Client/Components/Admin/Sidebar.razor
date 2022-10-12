@@ -1,0 +1,82 @@
+﻿@inject ILocalStorageService LocalStorage
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+
+<nav class="sidebar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+        <div class="sidebar-header">
+            <div class="sidebar-brand">
+                <a href ="javascript:void(0)">APM Admin</a>
+            </div>
+        </div>
+        <li>
+            <a href="/Admin" class="underline">Home</a>
+        </li>
+        <li>
+            <a href="/Admin/Banners" class="underline">
+                <i class="fa-solid fa-image"></i> Banners</a>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle underline" @onclick="(() => OnClickMenu(1))">
+                <i class="fa-solid fa-city"></i> Our Company <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu animated fadeInLeft @(IdMenu == 1 ? "show" : "")" role="menu">
+                <li><a href="/Admin/Statistics">Statistics</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="/Admin/OurPeople" class="underline">
+                <i class="fa-solid fa-people-group"></i> Our People
+            </a>
+        </li>
+        <li><a href="/Admin/Careers" class="underline"><i class="fa-brands fa-wpforms"></i> Careers</a></li>
+        <li>
+            <a href="/Admin/Operations" class="underline">
+                <i class="fa-solid fa-gears"></i> Operations
+            </a>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle underline" @onclick="(() => OnClickMenu(2))">
+                <i class="fa-solid fa-chart-line"></i> Investors<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu animated fadeInLeft  @(IdMenu == 2 ? "show" : "")" role="menu">
+                <li><a href="/Admin/InvestorReports/">Investor Reports</a></li>
+            </ul>
+        </li>
+        <li><a href="/Admin/News" class="underline">
+            <i class="fa-solid fa-newspaper"></i> News</a>
+        </li>
+        <li><a href="/Admin/Contact" class="underline">
+            <i class="fa-solid fa-address-book"></i> Contact</a>
+        </li>
+        <li><a href="/Admin/Subscribers" class="underline">
+            <i class="fa-solid fa-bell"></i> Subscribe</a>
+        </li>
+        <li><a href="/Admin/User" class="underline">
+            <i class="fa-solid fa-user-tie"></i> User</a>
+        </li>
+        <li><a href="javascript:void(0)" @onclick="SignOut" class="underline">
+            <i class="fa-solid fa-toggle-off"></i> SignOut</a>
+        </li>
+    </ul>
+</nav>
+
+@code {
+    private int IdMenu { get; set; } = 0;
+
+    private void OnClickMenu(int idMenu)
+    {
+        IdMenu = IdMenu == idMenu ? 0 : idMenu;
+    }
+
+    private async Task SignOut()
+    {
+
+        await LocalStorage.RemoveItemAsync("authToken");
+        await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        NavigationManager.NavigateTo("/Admin");
+
+        StateHasChanged();
+    }
+
+}

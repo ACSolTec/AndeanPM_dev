@@ -1,0 +1,308 @@
+﻿@page "/OurCompany"
+
+@inject IJSRuntime JSRuntime
+@inject IStatisticsService StatisticsService
+@inject IBannerService BannerService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/ourcompany.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div class="d-block row m-0">
+            <div class="perspective-100">
+                <img id="com-01" class="banner banner-fade z-index-m-2 paragraph-image-half" src="@banner.Url" />
+            </div>
+            <div class="px-5 py-3">
+            </div>
+            <div class="centered d-none d-lg-block">
+                <h1 class="paragraph-title align-end py-2">OUR COMPANY</h1>
+            </div>
+        </div>
+        <div class="row centered d-block d-lg-none">
+            <h1 class="paragraph-title align-end py-2">OUR COMPANY</h1>
+        </div>
+
+        <div class="container">
+            <div class="col-12">
+                <div class="col-12 pb-4">
+                    <!--SUBMENU-->
+                    <div class="row mt-1 mb-4 d-lg-block d-none">
+                        <div class="col-12 pt-0 paragraph-content d-flex d-xl-none">
+                            <p class="text-justify pointer">
+                                <a href="/OurCompany#top" class="a-remover yellow-hover @ActiveFragment("top")">Overview</a>
+                            </p>
+                            <span class="pl-4 pr-4">|</span>
+                            <p class="text-justify pointer">
+                                <a href="/OurCompany#CompanyPolicies" class="a-remover yellow-hover @ActiveFragment("CompanyPolicies")">Company Policies and Commitees</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row m-0">
+                        <div class="col-12">
+                            <div class="row d-flex justify-content-center my-5 pb-5 mt-5-4k">
+                                <div class="col-lg-8 col-12 d-flex flex-column justify-content-around pb-6">
+                                    <div class="paragraph-content line-height-30 bold">
+                                        Andean is a growth-oriented precious metals company with its flagship asset being San Bartolomé in Potosi, Bolivia.
+                                        <p class="my-4">
+                                        We believe in a knowledge and people based growth strategy with a primary focus in Latin America.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12 pb-2 d-none d-lg-block">
+                                    <img class="image-regular" src="@($"/assets/our-company/02.jpg")" />
+                                </div>
+                                <div class="col-lg-4 col-12 d-block d-lg-none">
+                                    <img class="image-regular" src="@($"/assets/our-company/02.jpg")" />
+                                </div>
+                            </div>
+
+                            <div class="row my-5 d-flex justify-content-center pb-5">
+                                <div class="col-lg-4 col-12 pb-2 d-none d-lg-block">
+                                    <img class="image-regular" src="@($"/assets/our-company/03.jpg")" />
+                                </div>
+                                <div class="col-lg-8 col-12 d-flex flex-column justify-content-around pb-5">
+                                    <div class="paragraph-content line-height-22 pt-3 bold">
+                                        Andean operates the only commercial silver oxide plant in Bolivia. The San Bartolomé mill is a carbon in leach oxide processing plant located adjacent to the historic Cerro Rico Silver mine. The San Bartolomé processing plant was commissioned in June
+                                        2008.
+                                        <p class="my-4">
+                                            Cerro Rico is known as one of the world's largest silver deposits and has been mined since the late 1500s for precious and base metals.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-12 pb-2 d-block d-lg-none">
+                                    <img class="image-regular" src="@($"/assets/our-company/03.jpg")" />
+                                </div>
+                            </div>
+
+                            <div class="row m-0 my-5 mt-5-4k @HeyFunction()" id="counters">
+                                <div class="col-lg-3 col-12 border-right-black my-5 my-lg-0">
+                                    <div class="font-abhaya font-size-24 font-size-md-20 bold text-center">CAPACITY OF</div>
+                                    <div class="d-flex justify-content-center">
+                                        <div class="paragraph-big-number bold letter-spacing-0-07 text-center gray-blue" id="animation0"></div>
+                                    </div>
+                                    <div class="font-angkor font-size-20 font-size-md-16 text-center">tons per day mill feed</div>
+                                </div>
+
+                                <div class="col-lg-3 col-12 border-right-black my-5 my-lg-0">
+                                    <div class="font-abhaya font-size-24 font-size-md-20 bold text-center">MORE THAN</div>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="paragraph-big-number bold text-center gray-blue letter-spacing-0-07" id="animation1"></div>
+                                        <div class="font-size-36 bold text-center gray-blue letter-spacing-0-07">+</div>
+                                        <div class="font-abhaya font-size-26 font-size-md-22 bold text-center gray-blue">YEARS</div>
+                                    </div>
+                                    <div class="font-angkor font-size-20 font-size-md-16 text-center lh-inherit" style="line-height: 25px;">continuous production
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3 col-12 border-right-black my-5 my-lg-0">
+                                    <div class="font-abhaya font-size-24 font-size-md-20 bold text-center">OVER</div>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="paragraph-big-number bold text-right gray-blue letter-spacing-0-07" id="animation2"></div>
+                                        <div class="font-abhaya font-size-26 font-size-md-22 bold text-center gray-blue">MILLION OUNCES
+                                        </div>
+                                    </div>
+                                    <div class="font-angkor font-size-20 font-size-md-16 text-center">produced to date</div>
+                                </div>
+
+                                <div class="col-lg-3 col-12 my-5 my-lg-0">
+                                    <div class="font-abhaya font-size-24 font-size-md-20 bold text-center invisible">C</div>
+                                    <div class="paragraph-big-number bold letter-spacing-0-07 text-center gray-blue" id="animation3"></div>
+                                    <div class="font-angkor font-size-20 font-size-md-16 text-center">employees</div>
+                                </div>
+                            </div>
+
+                            <div class="row my-5 mt-5 mb-5-4k pt-5-4k">
+                                <div class="col-12 mb-5">
+                                    <div class="font-abhaya font-size-24 font-size-md-20 bold text-center">ANNUAL DIRECT AND INDIRECT CONTRIBUTION OF</div>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <div class="font-angkor font-size-26 font-size-md-22 text-center gray-blue bold mr-2">US $
+                                        </div>
+                                        <div class="paragraph-big-number bold letter-spacing-0-07 text-center gray-blue" id="animation4"></div>
+                                        <div class="d-flex flex-column align-items-start lh-inherit" style="line-height: 25px;">
+                                            <div class="font-abhaya font-size-26 font-size-md-22 bold text-center gray-blue">MILLION</div>
+                                            <div class="font-angkor font-size-20 font-size-md-16 text-center d-lg-block d-none">to the local economy
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex d-lg-none justify-content-center align-items-center mb-5">
+                                        <div class="font-angkor font-size-20 font-size-md-16 text-center">to the local economy</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="CompanyPolicies" class="row mt-5">
+                                <div class="col-12 our-company-secret d-flex align-items-center">
+                                    <div class="d-flex justify-content-end align-items-center">
+                                        <div class="col-8 col-md-12 paragraph-title white bold ml-md-5">COMPANY POLICIES AND COMMITTEES
+                                        </div>
+                                        <div class="col-4 d-md-none"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-5 mt-5-4k">
+                                <div class="col-12 p-2 justify-content-center">
+                                    <div class="row">
+                                        <div class="col-md-12"></div>
+                                        <div class="col-12 col-md-6 border py-3">
+                                            <div class="d-flex justify-content-center font-size-14 font-assistant align-items-center">
+                                                <div class="d-flex w-50 justify-content-end pr-2">
+                                                    <img src="@($"/assets/our-company/s6.svg")" class="image-policies" />
+                                                </div>
+                                                <div class="d-flex w-50 justify-content-start pl-2" @onclick='(() => DownloadFileFromURL("committees", "Audit_Committee_Charter.pdf"))'>
+                                                    <a class="a-remover yellow-hover" style="cursor: pointer;">Audit</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 border py-3">
+                                                <Andeanpm.Client.Components.Public.Popover>
+                                            <div class="d-flex justify-content-center font-size-14 font-assistant align-items-center">
+                                                <div class="d-flex w-50 justify-content-end pr-2">
+                                                    <img src="@($"/assets/our-company/s8.svg")" class="image-policies" />
+                                                </div>
+                                                <div class="d-flex w-50 justify-content-start pl-2">
+                                                    <a class="a-remover yellow-hover" href="javascript:void(0)">Board</a>
+                                                </div>
+                                            </div>
+                                            </Andeanpm.Client.Components.Public.Popover>
+                                        </div>
+                                        <div class="col-12 col-md-6 border py-3">
+                                            <Andeanpm.Client.Components.Public.Popover>
+                                            <div class="d-flex justify-content-center font-size-14 font-assistant align-items-center">
+                                                <div class="d-flex w-50 justify-content-end pr-2"><img src="@($"/assets/our-company/s7.svg")" class="image-policies" /></div>
+                                                <div class="d-flex w-50 justify-content-start pl-2">
+                                                    <a class="a-remover yellow-hover" href="javascript:void(0)">Ethics</a>
+                                                    </div>
+                                            </div>
+                                            </Andeanpm.Client.Components.Public.Popover>
+                                        </div>
+                                        <div class="col-12 col-md-6 border py-3">
+                                            <div class="d-flex justify-content-center font-size-14 font-assistant align-items-center">
+                                                <div class="d-flex w-50 justify-content-end pr-2">
+                                                    <img src="@($"/assets/our-company/s3.svg")" class="image-policies" />
+                                                </div>
+                                                <div class="d-flex w-50 justify-content-start pl-2">
+                                                    <a class="a-remover yellow-hover" href="/Governance#top">Governance</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 border py-3">
+                                            <div class="d-flex justify-content-center font-size-14 font-assistant align-items-center">
+                                                <div class="d-flex w-50 justify-content-end pr-2"><img src="@($"/assets/our-company/s2.svg")" class="image-policies" /></div>
+                                                <div class="d-flex w-50 justify-content-start pl-2" @onclick='(() => DownloadFileFromURL("policies", "AndeanPM_Whistleblower_Policy.PDF"))'>
+                                                    <a class="a-remover yellow-hover" style="cursor: pointer;">Whistleblower</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 border py-3">
+                                            <div class="d-flex justify-content-center font-size-14 font-assistant align-items-center">
+                                                <div class="d-flex w-50 justify-content-end pr-2">
+                                                    <img src="@($"/assets/our-company/s5.svg")" class="image-policies" />
+                                                </div>
+                                                <div class="d-flex w-50 justify-content-start pl-2">
+                                                    <a class="a-remover yellow-hover" href="/Governance#healthSafetyDetail">Health</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 border py-3">
+                                            <div class="d-flex justify-content-center font-size-14 font-assistant align-items-center">
+                                                <div class="d-flex w-50 justify-content-end pr-2">
+                                                    <img src="@($"/assets/our-company/s4.svg")" class="image-policies" />
+                                                </div>
+                                                <div class="d-flex w-50 justify-content-start pl-2">
+                                                    <a class="a-remover yellow-hover" href="/Governance#peopleAndDiversityDetail">People</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 border py-3">
+                                            <Andeanpm.Client.Components.Public.Popover>
+                                            <div class="d-flex justify-content-center font-size-14 font-assistant align-items-center">
+                                                <div class="d-flex w-50 justify-content-end pr-2">
+                                                    <img src="@($"/assets/our-company/s9.svg")" class="image-policies" />
+                                                </div>
+                                                <div class="d-flex w-50 justify-content-start pl-2">
+                                                    <a class="a-remover yellow-hover" href="javascript:void(0)">Transparency</a>
+                                                </div>
+                                            </div>
+                                            </Andeanpm.Client.Components.Public.Popover>
+                                        </div>
+                                        <div class="col-md-3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+</div>
+
+@code
+{
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private List<Statistic> statistics = new();
+
+    private Banner banner { get; set; } = new();
+
+    private bool isHome = false;
+
+    private bool executed = false;
+
+    private string fragment = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+
+        statistics = await StatisticsService.GetStatistics();
+
+        banner = await BannerService.GetBanner("Our Company");
+    }
+
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        await JSRuntime.InvokeVoidAsync("CustomFunctions.getCounterClass", statistics);
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if(isMenu)  return "pause";
+        return "";
+    }
+
+    private string ActiveFragment(string id)
+    {
+        var uri = NavigationManager.Uri;
+
+        return fragment.Equals(id) ? "yellow" : "";
+    }
+
+    private string HeyFunction()
+    {
+        return "executed";
+    }
+
+    private async Task DownloadFileFromURL(string module, string fileName)
+    {
+        var url = $"assets/{module}/{fileName}";
+
+
+        await JSRuntime.InvokeVoidAsync("CustomFunctions.triggerFileDownload", $"{fileName}", $"{NavigationManager.BaseUri}{url}");
+    }
+}

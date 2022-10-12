@@ -1,0 +1,451 @@
+﻿.title {
+    font-family: Abhaya Libre;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+    /* or 100% */
+
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+.paragraph-text {
+    /* Overview text */
+
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 32px;
+    /* or 145% */
+
+    text-align: center;
+    color: #000000;
+}
+
+.image-graph {
+    height: 700px;
+}
+
+.directors {
+    background: #0033a1;
+    border-radius: 20px;
+    width: 739px;
+    height: 73px;
+    /* Secnondary_Quote */
+
+    font-family: Abhaya Libre;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+    /* or 100% */
+
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    /* White */
+
+    color: #ffffff;
+}
+
+.card-primary {
+    background: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+    /* or 129% */
+
+    text-align: center;
+    color: #000000;
+    width: 739px;
+    height: 73px;
+}
+
+.card-gold {
+    background: #ad8400;
+    border-radius: 20px;
+    /* Overview text */
+
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 32px;
+    /* or 145% */
+
+    text-align: center;
+    /* White */
+
+    color: #ffffff;
+}
+
+.card {
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 32px;
+    /* or 145% */
+    border-radius: 20px;
+    width: 739px;
+    height: 73px;
+    text-align: center;
+}
+
+.card-white {
+    background: #ffffff;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    /* black */
+    color: black;
+}
+
+.footer-graph {
+    /* Body Text SM */
+
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    /* or 157% */
+
+    text-align: center;
+    color: #000000;
+}
+
+.card-gray {
+    /* Gray 6 */
+    padding: 40px;
+    background: #f2f2f2;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.card-gray-txt {
+    padding: 40px;
+    background: #f2f2f2;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.title-card {
+    font-family: Abhaya Libre;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 42px;
+    /* or 100% */
+    text-align: center;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    /* Black */
+
+    color: #000000;
+}
+
+.card-content {
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 32px;
+    padding-left: 30px !important;
+    color: #777777;
+}
+
+.button-gold.button-gold-back {
+    margin-left: 0px !important;
+}
+
+
+
+
+.button-gold {
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 20px;
+    /* or 145% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    /* White */
+    margin-left: 15px !important;
+    color: #ffffff;
+    background: #ad8400;
+    box-shadow: 0px 5px 5px rgba(173,132,0, 0.40);
+}
+
+.button-gray {
+    background: #555249;
+    cursor: pointer;
+}
+
+.circle {
+    display: inline;
+    float: left;
+    color: #ad8400 !important;
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 19px;
+    text-align: right;
+}
+
+
+.content-li {
+    max-width: 90%;
+    width: 90%;
+    display: inline;
+    float: left;
+    margin-left: 10px;
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+    width: 97%;
+}
+
+.mt-6 {
+    margin-top: 6rem;
+}
+
+.mb-6 {
+    margin-bottom: 6rem;
+}
+
+.white-background {
+    background-color: white;
+}
+
+hr {
+    border: 0;
+    clear: both;
+    display: block;
+    width: 96%;
+    background-color: #8393a2;
+    height: 1px;
+}
+
+
+@media (min-width: 769px) {
+    .g-triangle {
+        width: 45% !important;
+    }
+
+    .g-square {
+        width: 60% !important;
+        height: fit-content !important;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 576px) {
+    .g-triangle {
+        width: 60% !important;
+    }
+
+    .g-square {
+        width: 60% !important;
+        height: fit-content !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .title-card {
+        font-size: 24px !important;
+        line-height: 28px !important;
+        text-align: center !important;
+    }
+
+    .card-content {
+        font-size: 16px !important;
+        line-height: 18px !important;
+        padding-left: 30px !important;
+    }
+
+    .button-gold {
+        font-size: 14px !important;
+        line-height: 14px !important;
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .text-center-md {
+        text-align: center !important;
+    }
+
+    .pt-6 {
+        padding-top: 3rem !important;
+    }
+
+    .pt-8 {
+        padding-top: 4rem !important;
+    }
+
+    .card-content {
+        font-size: 18px !important;
+        line-height: 32px !important;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
+
+    .title-card {
+        font-size: 36px !important;
+        line-height: 42px !important;
+        text-align: center !important;
+    }
+
+    .button-gold {
+        font-size: 18px !important;
+        line-height: 20px !important;
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .card-content {
+        font-size: 14px !important;
+        line-height: 16px !important;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
+
+    .title-card {
+        font-size: 28px !important;
+        line-height: 32px !important;
+        text-align: center !important;
+    }
+
+    .button-gold {
+        font-size: 14px !important;
+        line-height: 14px !important;
+        margin-left: 15px;
+    }
+}
+
+.row span.col-lg-12 {
+    display: flex;
+}
+
+a.content-li {
+    padding-left: .5rem !important;
+    padding-bottom: .5rem !important;
+    margin: 0px;
+}
+
+.content-li {
+    text-align: justify !important;
+    padding-bottom: .25rem !important;
+    padding-top: .25rem !important;
+    padding-left: .25rem !important;
+    padding-right: .5rem !important;
+    width: 95% !important;
+}
+
+a.circle.bold {
+    width: 1.5rem;
+    text-align: center;
+}
+
+.circle {
+    width: 5% !important;
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+.sdg {
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+    color: #000000 !important;
+}
+
+.g-triangle {
+    width: 100%;
+}
+
+.g-square {
+    width: 100%;
+}
+
+@media (min-width: 2048px) {
+    .card-gray {
+        height: inherit !important;
+        width: inherit !important;
+        font-size: 165% !important;
+        line-height: 30px !important;
+    }
+
+    .g-triangle {
+        width: 50% !important;
+    }
+
+    .g-square {
+        width: 60% !important;
+    }
+
+    .card-gray-txt {
+        height: inherit !important;
+        width: inherit !important;
+    }
+
+    .button-gold {
+        line-height: normal !important;
+        font-size: xx-large !important;
+    }
+
+    .title-card {
+        font-size: 250% !important;
+        line-height: normal !important;
+    }
+
+    .card-content {
+        font-size: 120% !important;
+        line-height: normal !important;
+    }
+
+    .arrow {
+        height: 30px !important;
+    }
+
+    .circle, .content-li {
+        font-size: 170% !important;
+        line-height: 160% !important;
+        padding-bottom: 0.5rem !important;
+        padding-top: .5rem !important;
+        padding-left: .5rem !important;
+        padding-right: .5rem !important;
+    }
+
+    a.circle.bold {
+        width: 3rem;
+        text-align: center;
+    }
+
+    .sdg {
+        font-size: x-large !important;
+        line-height: normal !important;
+    }
+
+    .footer-graph {
+        font-size: 175% !important;
+        line-height: 180% !important;
+    }
+}

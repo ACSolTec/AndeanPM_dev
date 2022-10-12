@@ -1,0 +1,50 @@
+﻿@inject IJSRuntime JSRuntime
+
+<link href="css/mobilespotprice.css" rel="stylesheet" />
+
+<div class="fixed-bottom p-0 z-index-10">
+    @if (!isClose && !isBigScreen)
+    {
+        <div>
+            <div class="btn-container">
+                <button type="button" class="close btn-exit" aria-label="Close" @onclick="() => Close(!isClose)">
+                    <img src="@($"/assets//navbar/close-arrow.svg")" />
+                </button>
+            </div>
+            <div class="iframe-container">
+                <iframe scrolling="no" allowtransparency="true" frameborder="0"
+                    src="https://s.tradingview.com/embed-widget/single-quote/?locale=en#%7B%22symbol%22%3A%22TSXV%3AAPM%22%2C%22width%22%3A%22210%22%2C%22colorTheme%22%3A%22dark%22%2C%22isTransparent%22%3Atrue%2C%22largeChartUrl%22%3A%22https%3A%2F%2Fwww.andeanpm.com%2FInvestors%23top%22%2C%22height%22%3A126%2C%22utm_source%22%3A%22www.tradingview.com%22%2C%22utm_medium%22%3A%22widget_new%22%2C%22utm_campaign%22%3A%22single-quote%22%7D"
+                    style="box-sizing: border-box;height: calc(95px);width: 100%;position: relative;top: -3px;"></iframe>
+            </div>
+        </div>
+    }
+    @if (isClose && !isBigScreen)
+    {
+        <div>
+            <div class="col-12 mb-4 d-flex justify-content-center">
+                <button type="button" class="close spot-icons" aria-label="Close" @onclick="() => Close(!isClose)">
+                    <img src="@($"/assets/navbar/stock-exchange-icon.svg")" />
+                </button>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+
+    private bool isClose = false;
+    private bool isBigScreen;
+
+    protected override async Task OnInitializedAsync()
+    {
+        int response = await JSRuntime.InvokeAsync<int>("CustomFunctions.getDimensions");
+        isBigScreen = response > 768 ? true : false;
+    }
+
+    private void Close(bool isClose)
+    {
+        this.isClose = isClose;
+    }
+
+
+}

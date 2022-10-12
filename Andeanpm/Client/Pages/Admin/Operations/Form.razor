@@ -1,0 +1,154 @@
+﻿@page "/Admin/Operation/Form/{Module}/{Id:int}"
+@using System.Net
+
+@inject IOperationsService OperationsService
+@inject IUploadImageService UploadImageService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/admin.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<AuthorizeView Roles="Admin">
+	<Authorized Context="Auth">
+		<div id="wrapper" class="@(isClosed ? "toggled" : "")">
+			<div class="overlay"></div>
+
+			<Andeanpm.Client.Components.Admin.Sidebar />
+
+			<div id="page-content-wrapper">
+				<button type="button" class="hamburger animated fadeInLeft @(isClosed ? "is-open" : "is-closed")" @onclick="OpenMenu" data-toggle="offcanvas">
+					<span class="hamb-top"></span>
+					<span class="hamb-middle"></span>
+					<span class="hamb-bottom"></span>
+				</button>
+				<div class="container">
+					<div class="row justify-content-end">
+						<div class="col-sm-12 col-lg-4">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="/Admin">Admin</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Operations</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-lg-12">
+							<div class="card">
+								<h5 class="card-header">@(Id == 0 ? "Create" : "Update") @Module's image</h5>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="alert alert-warning" role="alert">
+												Important!, At the moment uploading the picture, It'll be automatically saved and then you'll redirect to the previous page
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div class="form-group row">
+												<label for="inputEmail3" class="col-sm-2 col-form-label">Photo</label>
+												<div class="col-sm-10">
+													<img src="@(string.IsNullOrEmpty(operation.ImageLink) ? "assets/global/Foto.png" : operation.ImageLink)" class="admin-crud-form-thumbnail-image" style="width:200px;" />
+													<br />
+													<InputFile OnChange="UploadedImage" class="form-control mt-4" id="thumbnailImage" />
+													<span class="error">@reasonImageUploadFailed</span>
+												</div>
+											</div>
+											<div class="form-group row">
+												<div class="col-md-12 col-lg-6">
+													<button type="button" class="btn btn-outline-info" @onclick="Back"><i class="fa-solid fa-delete-left"></i> Cancel</button>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Authorized>
+	<NotAuthorized>
+		<Andeanpm.Client.Components.Admin.SignIn />
+	</NotAuthorized>
+</AuthorizeView>
+
+@code {
+	[Parameter] public string Module { get; set; } = string.Empty;
+
+	[Parameter] public int Id { get; set; } = 0;
+
+	private bool isClosed { get; set; } = true;
+
+	private Operation operation { get; set; } = new();
+
+	private bool attemptingToUploadImage { get; set; } = false;
+
+	private bool attemptToUploadFailed { get; set; } = false;
+
+	private string reasonImageUploadFailed { get; set; } = null;
+
+	protected override async Task OnInitializedAsync()
+	{
+		if (Id != 0) operation = await OperationsService.Get(Id);
+		operation.Module = Module;
+	}
+
+	public void Back()
+	{
+		NavigationManager.NavigateTo($"/Admin/Operations");
+	}
+
+	private void OpenMenu()
+	{
+		isClosed = !isClosed;
+	}
+
+	public async Task UploadedImage(InputFileChangeEventArgs e)
+	{
+		attemptingToUploadImage = true;
+
+		if (e.File.ContentType != "image/jpeg" && e.File.ContentType != "image/png")
+		{
+			reasonImageUploadFailed = "Please only upload JPEG, JPG, or PNG images.";
+			attemptToUploadFailed = true;
+		}
+		else if (e.File.Size >= 31457280) // 31457280 bytes = 30 megabytes
+		{
+			reasonImageUploadFailed = "Please only upload images that are smaller than 30 MegaBytes (MB).";
+			attemptToUploadFailed = true;
+		}
+		else
+		{
+			IBrowserFile uploadedImageFile = e.File;
+
+			byte[] imageAsByteArray = new byte[uploadedImageFile.Size];
+			// Fills the contents of the image byte array.
+			await uploadedImageFile.OpenReadStream(31457280).ReadAsync(imageAsByteArray);
+			string byteString = Convert.ToBase64String(imageAsByteArray);
+
+			UploadImage image = new UploadImage()
+				{
+					NewImageFileExtension = uploadedImageFile.Name.Substring(uploadedImageFile.Name.Length - 4),
+					NewImageBase64Content = byteString,
+					OldIamge = operation.ImageLink,
+					Folder = "operations"
+				};
+
+			var response = await UploadImageService.UploadedOperation(image, operation.Id);
+
+			if (response.StatusCode == HttpStatusCode.Created)
+			{
+				attemptingToUploadImage = false;
+				Back();
+			}
+			else
+			{
+			}
+		}
+		
+
+	}
+
+}

@@ -1,0 +1,125 @@
+﻿@page "/OurPeople"
+
+@inject IJSRuntime JSRuntime
+@inject IOurPeopleService OurPeopleService
+@inject IBannerService BannerService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/ourpeople.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div class="d-block row m-0">
+            <div class="perspective-100">
+                <img id="com-01" class="banner z-index-m-2 paragraph-image-half" src="@banner.Url" />
+            </div>
+            <div class="centered d-none d-lg-block">
+                <h1 class="paragraph-title align-end py-2  ">OUR PEOPLE</h1>
+            </div>
+        </div>
+        <div class="row centered d-block d-lg-none ">
+            <h1 class="paragraph-title align-end py-2">OUR PEOPLE</h1>
+        </div>
+        <div class="container p-0 mt-5 mt-5-4k">
+            <div class="row m-0">
+                <div class="col-12 col-lg-12">
+                    <div class="row m-0">
+                        <div id="Leadership" class="row mb-5">
+                            <div class="col-12 p-0 m-0 d-flex flex-row justify-content-center">
+                                <div class="paragraph-title andean-gold-bar text-center px-4">
+                                    LEADERSHIP TEAM
+                                </div>
+                            </div>
+                            @foreach (var item in People.Where(n => n.Team.Equals("Leadership")).OrderBy(c => c.Position))
+                            {
+                                <div class="col-12 col-lg-6 px-lg-5 py-3 mt-5">
+                                    <Teams Person="item" />
+                                </div>
+                            }
+                        </div>
+
+
+                        <div id="Bolivia" class="row mt-5 mb-2 mt-5-4k">
+                            <div class="col-12 m-0 d-flex flex-row justify-content-center p-2 mb-5">
+                                <div class="paragraph-title andean-gold-bar bold text-center px-4">
+                                BOLIVIA MANAGEMENT TEAM
+                                </div>
+                            </div>
+
+                        @foreach (var item in People.Where(n => n.Team.Equals("Bolivia Management")).OrderBy(c => c.Position))
+                        {
+                            <div class="col-12 col-lg-6 px-lg-5 py-3 mt-5">
+                                <Teams Person="item" />
+                            </div>
+                         }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 gray-background mt-5 mt-lg-4 mb-lg-4 my-5-4k">
+                <div class="container container-form py-5-4k py-5">
+                    <div class="col-12 p-0 m-0 d-flex flex-row justify-content-center">
+                          <div class="paragraph-title andean-gold-bar text-center px-4 mb-5">
+                            BOARD OF DIRECTORS
+                          </div>
+                    </div>
+                    
+                    <div class="row mt-4 pt-5-4k">
+                        @foreach (var item in People.Where(n => n.Team.Equals("Board of Directors")).OrderBy(c => c.Position))
+                        {
+                            <DirectorsBoards Person="item" />
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    private List<Person> People = new();
+
+    private Banner banner { get; set; } = new();
+
+    private bool success;
+
+    private bool submited = false;
+
+    private Application application = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        People = await OurPeopleService.GetPeople();
+
+        banner = await BannerService.GetBanner("Our People");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if(isMenu)  return "pause";
+        return "";
+    }
+}

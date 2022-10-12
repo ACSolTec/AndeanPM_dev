@@ -1,0 +1,129 @@
+﻿@page "/News"
+
+@inject IJSRuntime JSRuntime
+@inject INewsService NewsService
+@inject IBannerService BannerService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/news.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent" />
+    <div class="@ContentClass()">
+        <div class="d-block row m-0">
+            <div class="perspective-100">
+                <img id="com-01" class="banner  z-index-m-2 paragraph-image-half" src="@banner.Url" />
+            </div>
+            <div class="centered d-none d-lg-block">
+                <h1 class="paragraph-title align-end py-2">NEWS</h1>
+            </div>
+        </div>
+        <div class="row centered d-block d-lg-none">
+            <h1 class="paragraph-title align-end py-2">NEWS</h1>
+        </div>
+
+        <div class="container p-0 mt-5 mb-5 mt-5-4k mb-5-4k" style="min-height: 50vh;">
+            <div class="row m-0 pt-5">
+                <div class="col-12">
+                    @foreach (var item in Years)
+                    {
+                        <div class="col-12 m-0 p-0 pl-lg-2 pt-4">
+                            <div class="background-dark-gray px-3 py-2 w-fit white bold font-assistant font-size-20 d-none d-lg-block">@item</div>
+                            <div class="background-dark-gray px-3 py-2 w-fit white bold font-assistant font-size-20 d-block d-lg-none">@item</div>
+                            <div class="border-gray-full p-3 h-100">
+
+                                <div class="table-responsive table-sm table-our-people font-assistant">
+                                    <table class="table text-justify">
+                                        @foreach (var n in news.Where(x => item == x.Year).OrderByDescending(x => x.DateNews))
+                                        {
+                                            <tbody>
+                                                <tr class="center-content py-2">
+                                                    <th class="col-3 col-md-2 p-0 font-size-20 text-center ">
+                                                        <div class="col-12">
+                                                            @n.DateNews.ToString("MMM dd")
+                                                        </div>
+                                                    </th>
+                                                    <th class="col-8 p-0 font-size-14 pl-4 l-border">
+                                                        <a href="@($"/News/{n.PKNews}#top")" class="text-decoration-none a-remover yellow-hover">
+                                                            @n.Title
+                                                        </a>
+                                                    </th>
+                                                    <th class="col-2 p-0">
+                                                        <div class="col-12 text-center pr-0">
+                                                            @if(!string.IsNullOrEmpty(n.Content)){
+                                                            <a href="@($"/News/{n.PKNews}#top")">
+                                                                <img src="@($"/assets/news/view.svg")" alt="" srcset="" class="docs-icons pointer pr-2 pl-2">
+                                                            </a>
+                                                            }
+                                                            <img src="@($"/assets/news/pdf.svg")" alt="" srcset="" class="docs-icons pointer pr-2 pl-2"
+                                                            @onclick="( () => DownloadFileFromURL(n.PKNews, n.PDFURL))">
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        }
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <Andeanpm.Client.Components.Public.Footer isHome="@isHome" />
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private List<News> news = new();
+
+    private List<int> Years = new();
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    private Banner banner { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        banner = await BannerService.GetBanner("News");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+
+        news = await NewsService.GetNews();
+
+        var tmp = news.GroupBy(x => x.Year);
+
+        foreach (var i in tmp.Reverse())
+        {
+            Years.Add(i.FirstOrDefault().Year);
+        }
+    }
+
+    private async Task DownloadFileFromURL(string fileName, string fileURL)
+    {
+        await JSRuntime.InvokeVoidAsync("CustomFunctions.triggerFileDownload", $"{fileName}.pdf", $"{NavigationManager.BaseUri}{fileURL}");
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if (isMenu) return "pause";
+        return "";
+    }
+}

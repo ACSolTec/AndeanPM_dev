@@ -1,0 +1,36 @@
+﻿@inject ILocalStorageService localStorageService
+
+<div style="position: fixed; bottom:0px; z-index: 1000;" class="w-100 @show">
+	<div class="row m-0 footer d-flex justify-content-center align-items-center p-4 p-lg-0 main-text white" >
+		<div class="col-lg-9 p-0 d-flex justify-content-center">
+			<div class="">
+				<div class="pr-1 letter-spacing-0-05 fz-90">
+					This site uses cookies for analytics and to deliver personalized content. By continuing to browse our site, you agree that you have read and understand our Privacy Policy.
+				</div>
+
+				<a href="/CustomerCare#CookiesPolicy" class="text-decoration-none a-remover yellow">Learn more</a>
+			</div>
+		</div>
+		<div class="col-lg-2">
+			<div class="fill-button fill-button-up text-center accept fz-initial-4k h-auto" @onclick="( () => Accept())">
+				Accept
+			</div>
+		</div>
+	</div>
+</div>
+
+@code {
+	private string show { get; set; } = string.Empty;
+
+	protected override async Task OnInitializedAsync()
+	{
+		var hasCookies = await localStorageService.ContainKeyAsync("cookiesAccepted");
+		show = hasCookies ? "d-none" : string.Empty;
+	}
+
+	private async Task Accept()
+	{
+		await localStorageService.SetItemAsync("cookiesAccepted", "Yes");
+		show = "d-none";
+	}
+}

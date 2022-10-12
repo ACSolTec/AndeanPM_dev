@@ -1,0 +1,41 @@
+﻿ul.list {
+    list-style: none;
+    list-style-type: inherit;
+    margin-left: 0;
+    padding-left: 0;
+    margin-left: 1rem;
+}
+
+    ul.list li::marker {
+        color: gray;
+    }
+
+.card-gray {
+    width: 420px;
+    height: 220px;
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: justify;
+    padding: 45px;
+}
+
+@media (min-width: 2048px) {
+    .card-gray {
+        font-size: 175% !important;
+    }
+
+    ::deep .apexcharts-datalabels text,
+    ::deep .apexcharts-yaxis-title text,
+    ::deep .apexcharts-legend-text,
+    ::deep .apexcharts-xaxis-texts-g text,
+    ::deep .apexcharts-yaxis-texts-g text {
+        font-size: 150% !important;
+    }
+
+    ::deep .apexcharts-yaxis-title {
+        display: none !important;
+    }
+}

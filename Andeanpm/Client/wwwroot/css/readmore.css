@@ -1,0 +1,49 @@
+﻿.read-more {
+    font-family: 'Abhaya Libre';
+    font-style: normal;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: justify;
+    color: #8393a2;
+    cursor: pointer;
+}
+
+    .read-more:hover, .read-more:focus {
+        color: #AD8400;
+    }
+
+.profile-photo {
+    width: 65% !important;
+    object-fit: cover;
+}
+
+@media (max-width: 992px) and (min-width: 768px) {
+    .profile-photo {
+        width: 40% !important;
+        object-fit: cover;
+    }
+}
+
+@media (min-width: 2048px) {
+    .read-more {
+        font-size: 170% !important;
+        line-height: 180% !important;
+    }
+
+    .profile-photo {
+        width: 65% !important;
+        object-fit: cover;
+    }
+
+    .fz-inherit-4k {
+        font-size: inherit !important;
+    }
+
+    .fz-32px-4k {
+        font-size: 32px !important;
+    }
+
+    .fz-40px-4k {
+        font-size: 40px !important;
+    }
+}

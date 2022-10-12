@@ -1,0 +1,117 @@
+﻿.comp::ng-deep .arrow {
+    display: none !important;
+}
+
+
+.our-company-background-1 {
+    background-color: #637E9E;
+}
+
+.our-company-420 {
+    width: 400px;
+    height: 400px;
+    object-fit: scale-down;
+    position: absolute;
+    top: -120px;
+}
+
+.our-company-gray-banner-container {
+    height: 150px;
+    background-color: #E6E6E6;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.our-company-secret {
+    width: 100%;
+    height: 150px;
+    background-image: url("/assets/our-company/04.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.esg-overview-panel {
+    background: #FFFFFF;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+@media (min-width: 768px) {
+    /*	.esg-overview-panel {
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+    min-height: 200px;
+    max-width: 200px;
+    max-height: 200px;
+  }*/
+    .border-bottom-md-black {
+        border-bottom: 1px solid black;
+    }
+
+    .mr-lg-4 {
+        margin-right: 1.5rem !important;
+    }
+
+    .ml-lg-4 {
+        margin-left: 1.5rem !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .esg-overview-panel {
+        width: 200px;
+        height: 200px;
+        min-width: 200px;
+        min-height: 200px;
+        max-width: 200px;
+        max-height: 200px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .my-md-4 {
+        margin-bottom: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .mr-sm-2 {
+        margin-right: .5rem !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .border-right-black {
+        border-right: 0px;
+    }
+}
+
+.esg-overview-panel:hover, .esg-overview-panel:focus {
+    background: rgb(245, 245, 245)
+}
+
+@media (min-width: 2048px) {
+    .our-company-secret {
+        width: 100%;
+        height: 270px;
+    }
+
+    .esg-overview-panel {
+        width: 400px !important;
+        height: 400px !important;
+        min-width: 400px !important;
+        min-height: 400px !important;
+        max-width: 400px !important;
+        max-height: 400px !important;
+    }
+}

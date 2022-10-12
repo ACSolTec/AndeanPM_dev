@@ -1,0 +1,145 @@
+﻿@page "/Operations/SanPablo"
+
+@inject IJSRuntime JSRuntime
+@inject IBannerService BannerService
+@inject IOperationsService OperationsService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/operations.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+@if (isShowing == true)
+{
+        <Andeanpm.Client.Components.Public.ModalWindow ParentMethodToCallOnClickBtnClose="() => isShowing = false" operations="op" position="position" />
+}
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div>
+            <div class="row m-0 p-0">
+                <div class="col-12 m-0 p-0 perspective-100">
+                    <img src="@banner.Url" class="banner banner-50">
+                </div>
+            </div>
+            <div class="container p-0">
+                <div class="col-12">
+                    <div class="col-12 p-4 pb-4">
+                        <div class="col-lg-12 paragraph-subtitle align-end p-0">
+                            <a href="/Exploration#top" class="a-remover yellow-hover">Exploration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>|
+                            <a href="/Operations/RioBlanco" class="a-remover yellow-hover">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Next >></a>
+                        </div>
+                        <div class="row m-0 mt-5 mb-5 pt-5-4k">
+                            <div class="col-lg-12 p-0">
+                                <div class="paragraph-subtitle">Project</div>
+                                <h1 class="paragraph-title pb-2 andean-gold-bar d-inline-block">SAN PABLO</h1>
+                            </div>
+                        </div>
+                        <div class="row my-0 my-lg-5 py-0 py-lg-4">
+                            <div class="col-lg-8">
+                                <p class="paragraph-content text-justify mb-3">The project is located 138km southwest of Potosi.
+                                </p>
+                                <p class="paragraph-content text-justify mb-3">San Pablo Project is located into the prolific Orogenic Gold Belt. Geologically, the project will test a large gold mineralization system. Its stratigraphy is into the Silurian Cancañiri Formation, an important host rock
+                                    in mines like Kori Kollo-Kori Chaca (Inti Raymi Company), San Bernardino (2.3 million Auoz), and other auriferous projects. The ore mineralization is present in different ways: some zones with formal quartz veins, and
+                                    other zones with disseminated ore.
+                                </p>
+                                <p class="paragraph-content text-justify mb-3">The San Pablo Project area is a total of 650Has.
+                                </p>
+                                <p class="paragraph-content text-justify mb-3">Surface sampling results in three different gold anomalies, San Pablo, Willacollito and Willacollito East, which contain ore mineralization in different ways, depending on the sector where there are:
+                                </p>
+                                <p class="paragraph-content text-justify mb-3">San Pablo: with formal quartz-arsenopyrite-bismuthine veins, E-S strike, with gold grades in surface that reach 15.95 g/t. A previous drilling Company drilled 1,182m in this zone, distributed in three different holes: SPD-1,
+                                        SPD-2 and SPD-3. At depth, the structures and grade suggest continuity for, at least, 160m (SPD-1). The gold grades in the core sampling reached 60 g/t (SPD-1, D1-160).
+                                </p>
+                                    <p class="paragraph-content text-justify mb-3">
+                                        Willacollito: contains stockwork and quartz-arsenopyrite-bismuthine veinlets and gold grades in surface that reach 11.23 g/t. Disseminated ore into the rock generates gold anomalies with 40m width not explored before
+                                </p>
+                                <p class="paragraph-content text-justify mb-3">
+                                        The exploration commenced in February of 2022.
+                                </p>
+                            </div>
+                            <div class="col-lg-4 p-2">
+                                <div class="row m-0">
+                                    @foreach (var item in op.GetRange(0, 4))
+                                    {
+                                        <div class="col-lg-6 col-6 p-2 eye-container">
+                                            <div class="eye"></div>
+                                            <img class="image-regular operations-gallery-preview w-100" src="@item.ImageLink" @onclick="() => ShowModal(item.Id)">
+                                        </div>
+                                    }
+                                    <div class="col-md-4 col-lg-12 p-2 eye-container d-lg-block d-none d-md-none">
+                                        <div class="eye"></div>
+                                        <img class="image-regular" src="@op.Find( x=> x.Id == 38).ImageLink" @onclick="() =>  ShowModal(op.Find( x=> x.Id == 38).Id)">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-5 py-4 pt-5-4k">
+                            <div class="col-md-4 col-12 p-2 eye-container d-block d-lg-none">
+                                <div class="eye"></div>
+                                <img class="image-regular" src="@op.Find( x=> x.Id == 38).ImageLink" @onclick="() =>  ShowModal(op.Find( x=> x.Id == 38).Id)">
+                            </div>
+                            @foreach (var item in op.GetRange(5, 3))
+                            {
+                                <div class="col-md-4 p-2 eye-container">
+                                    <div class="eye"></div>
+                                    <img class="image-regular" src="@item.ImageLink" @onclick="() => ShowModal(item.Id)">
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private List<Operation> op { get; set; } = new();
+
+    private Banner banner { get; set; } = new();
+
+    private int position = 0;
+
+    private bool isShowing = false;
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    private string currentPage = string.Empty;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        op = await OperationsService.Get("SanPablo");
+        banner = await BannerService.GetBanner("San Pablo");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+    private void ShowModal(int pos)
+    {
+        this.position = pos;
+        isShowing = true;
+
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if (isMenu) return "pause";
+        return "";
+    }
+}

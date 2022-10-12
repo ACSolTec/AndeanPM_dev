@@ -1,0 +1,214 @@
+﻿.label-a {
+    /*margin-left: 10px;*/
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+    color: #000000;
+}
+
+.head-list {
+    list-style-type: square;
+    display: list-item;
+}
+
+    .head-list::marker {
+        color: #2D9CDB;
+    }
+
+
+.card {
+    background: #79acc6;
+    position: relative;
+}
+
+.important-class {
+    width: 280px;
+    height: 99px;
+    /* Secnondary_Quote */
+
+    font-family: Abhaya Libre;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+    /* or 100% */
+
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #ffffff !important;
+}
+
+.sub-text {
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 32px;
+    /* or 145% */
+
+    text-align: center;
+    color: #ffffff !important;
+}
+
+.mt-6 {
+    margin-top: 3rem !important;
+}
+
+.fix-img {
+    height: 50px !important;
+    width: 50px !important;
+    object-fit: scale-down;
+}
+
+.text {
+    /* Body Text SM */
+
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    /* or 157% */
+
+    text-align: center;
+}
+
+.main-menu {
+    font-family: Abhaya Libre;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 30px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+hr {
+    border: 0;
+    clear: both;
+    display: block;
+    width: 96%;
+    height: 1px;
+    background: #c4c4c4;
+    border: 5px;
+    height: 1px;
+}
+
+.card-small {
+    width: 340px;
+    height: 530px;
+    padding: 40px;
+    background: #ffffff;
+    box-shadow: 6px 6px 22px rgba(0, 0, 0, 0.25);
+}
+
+.title {
+    font-family: Abhaya Libre;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+    /* or 100% */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+.height-500 {
+    height: 500px !important;
+}
+
+.circle {
+    max-width: 5%;
+    display: inline;
+    float: left;
+}
+
+.content-li {
+    max-width: 93%;
+    display: inline;
+    float: left;
+    margin-left: 10px;
+    font-family: Assistant;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.height-250 {
+    height: 250px;
+}
+
+.img-sobreponer {
+    width: 500px;
+    height: 500px;
+}
+
+.img-res-with {
+    max-width: 50% !important;
+}
+
+@media (max-width: 768px) {
+    .img-res-with {
+        max-width: 80% !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .img-res-with {
+        max-width: 80% !important;
+    }
+}
+
+@media (min-width: 2048px) {
+    .fix-img {
+        height: 100px !important;
+        width: 100px !important;
+        object-fit: contain !important;
+    }
+
+    .triangle {
+        width: 8px;
+        height: 8px;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 8px solid #AD8400;
+    }
+
+    .label-a {
+        font-size: 210% !important;
+    }
+
+    .list li {
+        font-size: 100% !important;
+    }
+
+    .important-class {
+        width: 150% !important;
+        height: 200px !important;
+        font-size: 330% !important;
+        line-height: 70px !important;
+    }
+
+    .img-res-with {
+        max-width: 80% !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .responsive-nowrap {
+        white-space: nowrap;
+        margin-right: 80px;
+    }
+}

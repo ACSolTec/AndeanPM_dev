@@ -1,0 +1,347 @@
+﻿@property --counter1int {
+    syntax: '<integer>';
+    initial-value: 0;
+    inherits: false;
+}
+
+.invalid{
+    border-color: red;
+}
+
+@keyframes counter-1 {
+    from {
+        --counter1int: 0;
+    }
+
+    to {
+        --counter1int: 5;
+    }
+}
+
+.about-us-counter-1 {
+    animation: counter-1 2s;
+    counter-set: --counter1int var(--counter1int);
+    animation-fill-mode: forwards;
+}
+
+    .about-us-counter-1::after {
+        content: counter(--counter1int);
+    }
+
+@property --counter2int {
+    syntax: '<integer>';
+    initial-value: 0;
+    inherits: false;
+}
+
+@keyframes counter-2 {
+    from {
+        --counter2int: 0;
+    }
+
+    to {
+        --counter2int: 12;
+    }
+}
+
+.about-us-counter-2 {
+    animation: counter-2 1s;
+    counter-set: --counter2int var(--counter2int);
+    animation-fill-mode: forwards;
+}
+
+    .about-us-counter-2::after {
+        content: counter(--counter2int);
+    }
+
+
+
+@property --counter3int {
+    syntax: '<integer>';
+    initial-value: 0;
+    inherits: false;
+}
+
+@keyframes counter-3 {
+    from {
+        --counter3int: 0;
+    }
+
+    to {
+        --counter3int: 65;
+    }
+}
+
+.about-us-counter-3 {
+    animation: counter-3 2s;
+    counter-set: --counter3int var(--counter3int);
+    animation-fill-mode: forwards;
+}
+
+    .about-us-counter-3::after {
+        content: counter(--counter3int);
+    }
+
+
+.about-us-image-426 {
+    width: 426px;
+    height: 294px;
+    object-fit: cover;
+}
+
+.about-us-side-rectangle {
+    background: #FFFFFF;
+    box-shadow: 6px 6px 22px rgba(0, 0, 0, 0.25);
+}
+
+.about-us-square {
+    align-self: flex-start;
+    margin-top: 5px;
+    width: 10px;
+    height: 10px;
+    background: #AD8400;
+    box-shadow: 0px 4px 16px rgba(173, 132, 0, 0.5);
+}
+
+.our-people-rectangle {
+    width: 20px;
+    height: 50px;
+    background-color: #8393A2;
+}
+
+.our-people-evp-people {
+    height: 48px;
+    border-right: 10px solid #AD8400;
+    background-color: #8393A2;
+}
+
+/*.table-our-people {
+  border: unset;
+}
+
+.table-our-people > table  {
+  border: unset;
+}
+
+.table-our-people > table > tbody {
+  border: unset;
+}
+
+.table-our-people > table > tbody > tr {
+  border: unset;
+}*/
+
+.table-our-people > table > tbody > tr:nth-child(odd) {
+    background: white;
+    font-weight: bold;
+}
+
+.table-our-people > table > tbody > tr:nth-child(even) {
+    background: #E5E5E5;
+}
+
+.our-people-bolivia-border {
+    border-right: 1px solid #8393A2;
+}
+
+.our-people-career-description {
+    width: 350px;
+}
+
+.our-people-blue-square {
+    width: 10px;
+    height: 10px;
+    background: #0033A1;
+    box-shadow: 0px 4px 16px rgba(0, 82, 180, 0.5);
+}
+
+input[type="date"]:before {
+    content: attr(placeholder) !important;
+    margin-right: 0.5em;
+}
+
+input[type="date"]:focus:before,
+input[type="date"]:valid:before {
+    content: "";
+}
+
+.l-column {
+    padding-right: 3rem;
+    padding-left: 4rem;
+}
+
+.r-column {
+    padding-right: 4rem;
+    padding-left: 3rem;
+}
+
+@media (max-width: 992px) {
+    .l-column {
+        padding-right: 4rem;
+        padding-left: 4rem;
+    }
+
+    .r-column {
+        padding-right: 4rem;
+        padding-left: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .px-sm-3 {
+        padding-left: .75rem !important;
+        padding-right: .75rem !important;
+    }
+
+    .px-sm-0 {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    .md-justify-center {
+        text-align: center !important;
+    }
+
+    .l-column {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    .r-column {
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+}
+
+::ng-deep input.dp-picker-input {
+    border: 0px;
+    margin-left: .5rem;
+}
+
+.except.ng-untouched {
+    border: 1px solid #8393A2;
+}
+
+@media (min-width: 2048px) {
+    .about-us-square {
+        margin-top: .75rem;
+    }
+
+    .about-us-square {
+        width: 25px;
+        height: 25px;
+    }
+
+    .our-people-career-description {
+        width: 500px;
+    }
+
+    .container-form {
+        max-width: 100% !important;
+    }
+
+    ::ng-deep input.dp-picker-input::placeholder {
+        font-size: normal;
+    }
+
+    ::ng-deep .dp-material.dp-popup {
+        min-width: 500px !important;
+    }
+
+    ::ng-deep .dp-material {
+        width: 100%;
+    }
+
+    ::ng-deep .dp-calendar-nav-left:before, ::ng-deep .dp-calendar-nav-right:before {
+        height: 12px !important;
+        width: 12px !important;
+    }
+
+    ::ng-deep .dp-current-location-btn {
+        height: 20px !important;
+        width: 20px !important;
+    }
+
+    ::ng-deep .dp-calendar-nav-right, ::ng-deep .dp-calendar-nav-left {
+        width: 20px !important;
+    }
+
+    ::ng-deep .dp-nav-header {
+        font-size: 90% !important;
+    }
+
+    ::ng-deep .dp-material .dp-calendar-nav-container {
+        height: 40px !important;
+    }
+
+    ::ng-deep .dp-material .dp-calendar-weekday {
+        width: 70px !important;
+        font-size: 140% !important;
+    }
+
+    ::ng-deep .dp-calendar-day {
+        height: 70px !important;
+        width: 70px !important;
+    }
+
+    ::ng-deep input.dp-picker-input {
+        font-size: inherit !important;
+        width: 80% !important;
+        height: 95% !important;
+    }
+}
+
+.gray-background {
+    padding: 15px !important;
+    background-color: #f2f2f2;
+}
+
+.read-more {
+    font-family: 'Abhaya Libre';
+    font-style: normal;
+    font-size: 14px !important;
+    line-height: 22px;
+    text-align: justify;
+    color: #8393a2;
+    cursor: pointer;
+}
+
+    .read-more:hover, .read-more:focus {
+        color: #AD8400;
+    }
+
+.profile-photo {
+    width: 65% !important;
+    object-fit: cover;
+}
+
+@media (max-width: 992px) and (min-width: 768px) {
+    .profile-photo {
+        width: 40% !important;
+        object-fit: cover;
+    }
+}
+
+@media (min-width: 2048px) {
+    .read-more {
+        font-size: 170% !important;
+        line-height: 180% !important;
+    }
+
+    .profile-photo {
+        width: 65% !important;
+        object-fit: cover;
+    }
+
+    .fz-inherit-4k {
+        font-size: inherit !important;
+    }
+
+    .fz-32px-4k {
+        font-size: 32px !important;
+    }
+
+    .fz-40px-4k {
+        font-size: 40px !important;
+    }
+}

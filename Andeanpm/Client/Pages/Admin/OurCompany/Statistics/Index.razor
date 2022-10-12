@@ -1,0 +1,102 @@
+﻿@page "/Admin/Statistics"
+
+@inject IStatisticsService StatisticsService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/admin.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<AuthorizeView Roles="Admin">
+	<Authorized Context="Auth">
+		<div id="wrapper" class="@(isClosed ? "toggled" : "")">
+			<div class="overlay"></div>
+
+			<Andeanpm.Client.Components.Admin.Sidebar />
+
+			<div id="page-content-wrapper">
+				<button type="button" class="hamburger animated fadeInLeft @(isClosed ? "is-open" : "is-closed")" @onclick="OpenMenu" data-toggle="offcanvas">
+					<span class="hamb-top"></span>
+					<span class="hamb-middle"></span>
+					<span class="hamb-bottom"></span>
+				</button>
+				<div class="container">
+					<div class="row justify-content-end">
+						<div class="col-sm-12 col-lg-4">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="/Admin">Admin</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Statistics</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-lg-12">
+							<div class="card">
+								<h5 class="card-header"></h5>
+								<div class="card-body">
+									@if (statistics.Count > 0)
+									{
+										<div class="table-responsive-sm">
+											<table class="table table-striped">
+												<thead>
+													<tr>
+														<th scope="col">#</th>
+														<th scope="col">Value</th>
+														<th scope="col">Actions</th>
+													</tr>
+												</thead>
+												<tbody>
+													@foreach (var item in statistics)
+													{
+														<tr>
+															<th scope="row">@item.Id</th>
+															<td>@item.Maximum</td>
+															<td><button type="button" class="btn btn-outline-primary" @onclick="(() => Edit(item.Id))"><i class="fa-solid fa-pen-to-square"></i> Update</button></td>
+														</tr>
+													}
+												</tbody>
+											</table>
+										</div>
+									}else
+									{
+										<span>
+											Loading products...
+										</span>
+									}
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</Authorized>
+	<NotAuthorized>
+		<Andeanpm.Client.Components.Admin.SignIn />
+	</NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+	private bool isClosed { get; set; } = true;
+
+	private List<Statistic> statistics = new();
+
+	protected override async Task OnInitializedAsync()
+	{
+		statistics = await StatisticsService.GetStatistics();
+	}
+
+	private void OpenMenu()
+	{
+		isClosed = !isClosed;
+	}
+
+	private void Edit(int id)
+	{
+		NavigationManager.NavigateTo($"/Admin/Statistics/Update/{id}");
+	}
+
+}

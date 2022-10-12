@@ -1,0 +1,377 @@
+﻿@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@inject IStatisticsService StatisticsService
+@inherits FragmentNavigationBase
+
+<link href="css/home.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<div class="container-fluid p-0" @onmousewheel="(e => MouseWheel(e))">
+
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+
+    <div class="container-scroll d-md-none d-none @ScrollClass()" >
+        <div class="text left"></div>
+        <div class="scroll">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+        <div class="text right"></div>
+    </div>
+
+    <div class="@ContentClass()">
+        <div id="main01" class="row m-0 @GetClass(1)">
+            <div class="d-none d-lg-block col-12 p-0">
+                <div class="banner-message-container flex-column main1">
+                    <div class="main-title fang-font main-title-4k white txtshadow text-center">
+                        ANDEAN PRECIOUS METALS
+                    </div>
+                    <div class="w-lg-25 paragraph-content font-size-20 lh-slide1 letter-spacing-0-1 my-3 txtshadow text-center">
+                        A Modern Latin America Focused<br/>Producer & Growth Company.
+                    </div>
+                </div>
+                <video loop="true" autoplay="autoplay" muted="muted" class="main-banner fade-in" style="filter: brightness(0.5);">
+                    <source src="/assets/index/AndeanpmHome.m4v" type="video/mp4" />
+                </video>
+            </div>
+            <!--index-first-banner-->
+            <div class="d-block d-lg-none col-12 p-0">
+                <div>
+                    <div class="banner-message-container main1 flex-column" >
+                        <div class="col-10 d-flex flex-column align-items-center pt-2" style="position:absolute; z-index:0; padding: 20px; background: #383842; opacity: 0.0; mix-blend-mode: multiply;">
+                            <div class="main-title white txtshadow text-center invisible">
+                                ANDEAN PRECIOUS METALS
+                            </div>
+                            <div class="paragraph-content font-size-14 my-3 text-center invisible">
+                                A Modern Latin America Focused Producer & Growth Company.
+                            </div>
+                        </div>
+                        <div class="col-10 d-flex flex-column align-items-center justify-content-center pt-2">
+                            <div class="d-flex flex-column align-items-center pt-2 align-items-center justify-content-center" style="z-index: 1;">
+                                <div class="main-title white text-center">
+                                    ANDEAN PRECIOUS METALS
+                                </div>
+                                <div class="paragraph-content font-size-14 my-3 text-center">
+                                    A Modern Latin America Focused Producer & Growth Company.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="main-banner index-first-banner d-flex d-lg-none" style="filter: brightness(0.5);" src="/assets/index/01.jpg" />
+                </div>
+            </div>
+        </div>
+        <div id="main02" class="row m-0 p-0 height110vh @GetClass(2)" style="background-color: white;">
+            <div class="col-12 p-0 sm-fix-height py-4">
+                <div class="banner-message-container black-body py-5">
+                    <div>
+                        <div class="row m-0 my-5 my-sm-2 my-md-5">
+                            <div class="col-lg-3 col-12 border-right-black my-5 my-lg-0 my-sm-2 my-md-4">
+                                <div class="font-abhaya font-size-24 font-size-md-20 bold text-center">CAPACITY OF</div>
+                                <div class="d-flex justify-content-center">
+                                    <div class="paragraph-big-number bold letter-spacing-0-07 text-center gray-blue counter-md-1" id="animation0"></div>
+                                </div>
+                                <div class="font-angkor font-size-20 font-size-md-16 text-center" style="line-height: 25px;">tons per day mill feed</div>
+                            </div>
+
+                            <div class="col-lg-3 col-12 border-right-black my-5 my-lg-0 my-sm-2 my-md-4">
+                                <div class="font-abhaya font-size-24 font-size-md-20 bold text-center">MORE THAN</div>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <div class="paragraph-big-number bold text-center gray-blue letter-spacing-0-07 counter-md-2" id="animation1"></div>
+                                    <div class="font-size-36 bold text-center gray-blue letter-spacing-0-07">+</div>
+                                    <div class="font-abhaya font-size-26 font-size-md-22 bold text-center gray-blue">YEARS</div>
+                                </div>
+                                <div class="font-angkor font-size-20 font-size-md-16 text-center lh-inherit" style="line-height: 25px;">continuous production</div>
+                            </div>
+
+                            <div class="col-lg-3 col-12 border-right-black my-5 my-lg-0 my-sm-2 my-md-4">
+                                <div class="font-abhaya font-size-24 font-size-md-20 bold text-center">OVER</div>
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <div class="paragraph-big-number bold text-center gray-blue letter-spacing-0-07 counter-md-3" id="animation2"></div>
+                                    <div class="font-abhaya font-size-26 font-size-md-22 bold text-center gray-blue" style="line-height: 32px;">MILLION OUNCES</div>
+                                </div>
+                                <div class="font-angkor font-size-20 font-size-md-16 text-center">produced to date</div>
+                            </div>
+
+                            <div class="col-lg-3 col-12 my-5 my-lg-0 my-sm-2 my-md-4">
+                                <div class="d-none d- d-lg-block font-abhaya font-size-24 font-size-md-20 bold text-center invisible">C</div>
+                                <div class="paragraph-big-number bold letter-spacing-0-07 text-center gray-blue counter-md-4" id="animation3"></div>
+                                <div class="font-angkor font-size-20 font-size-md-16 text-center">employees</div>
+                            </div>
+
+                        </div>
+                        <div class="row m-0 my-5 my-sm-2 my-md-4">
+                            <div class="col-12 mb-5">
+                                <div class="font-abhaya font-size-24 font-size-md-20 bold text-center">ANNUAL DIRECT AND INDIRECT CONTRIBUTION OF</div>
+                                <div class="d-flex justify-content-center align-items-center">
+                                    <div class="font-angkor font-size-26 font-size-md-22 text-center gray-blue bold mr-2">US $</div>
+                                    <div class="paragraph-big-number bold letter-spacing-0-07 text-center gray-blue counter-md-5" id="animation4"></div>
+                                    <div class="d-flex flex-column align-items-start lh-inherit" style="line-height: 25px;">
+                                        <div class="font-abhaya font-size-26 font-size-md-22 bold text-center gray-blue">MILLION</div>
+                                        <div class="font-angkor font-size-20 font-size-md-16 text-center d-lg-block d-none">to the local economy</div>
+                                    </div>
+                                </div>
+                                <div class="d-flex  d-lg-none justify-content-center align-items-center mb-5">
+                                    <div class="font-angkor font-size-20 font-size-md-16 text-center">to the local economy</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="main03" class="row m-0 p-0 height100vh main3Background @GetClass(3)" style="background-color: white;">
+            <div class="col-lg-12 p-0 d-flex flex-row justify-content-center p-4 p-lg-0 min-40-vh-md ">
+                <div class="d-flex flex-column justify-content-center w-md-75 lg-w-company white">
+                    <div class="main-title main-title-4k pb-3 text-center">OUR COMPANY</div>
+                    <div class="font-assistant font-size-16 line-height-28 mt-4 text-center mb-4">
+                        <div>
+                            Building on historical foundations with a focus on <span class="font-size-16 f-110-4k bold">responsibility.</span>
+                        </div>
+                        <div class="my-3 xl-lh-3">
+                            The Company's mission is to be a leading intermediary precious metals producer through <br class="d-lg-none d-xl-block d-block"><span class="font-size-16 f-110-4k bold">responsible</span>, <span class="font-size-16 f-110-4k bold">safe</span> and profitable mining,
+                            adopting strict codes to ensure <span class="font-size-16 f-110-4k bold">sustainable <br class="d-lg-none d-xl-block d-block"> value</span> for all stakeholders.
+                        </div>
+                    </div>
+                    @if (showiFrame)
+                    {
+                    <iframe  id="vrify-iframe" class="d-none d-lg-block" width="100%" height="100%" frameborder="0" allowfullscreen="true" allow="fullscreen" src="https://vrify.com/embed/decks/10896-corporate-presentation-jan22"></iframe>
+                    }
+                    <iframe id="vrify-iframe" class="d-block d-lg-none" width="100%" height="100%" frameborder="0" allowfullscreen="true" allow="fullscreen" src="https://vrify.com/embed/decks/10896-corporate-presentation-jan22"></iframe>
+                </div>
+            </div>
+        </div>
+        <div id="main04" class="row m-0 p-0 height100vh @GetClass(4)" style="background-color: white;">
+            <div  class="col-12 p-0">
+                <div class="banner-message-container ">
+                    <div class="main-title main-title-4k white txtshadow banner-pointer" @onclick="@(e => GoTo("OurPeople#top"))">OUR PEOPLE</div>
+                </div>
+                <img class="banner d-flex d-sm-none" src="@($"/assets/index/03_res.jpg")">
+                <img class="banner d-none d-sm-flex" src="@($"/assets/index/03.jpg")">
+            </div>
+        </div>
+
+        <div id="main05" class="row m-0 p-0 height100vh @GetClass(5)" style="background-color: white;">
+            <div  class="col-12 p-0">
+                <div class="banner-message-container">
+                    <div class="main-title main-title-4k white txtshadow banner-pointer" @onclick="@(e => GoTo("SanBartolome#top"))">OPERATIONS</div>
+                </div>
+                <img class="banner d-flex d-sm-none" src="@($"/assets/index/04_res.jpg")">
+                <img class="banner d-none d-sm-flex" src="@($"/assets/index/04.jpg")">
+            </div>
+        </div>
+
+        <div id="main06" class="row m-0 p-0 height100vh @GetClass(6)" style="background-color: white;">
+            <div class="col-12 p-0">
+                <div class="banner-message-container">
+                    <div class="main-title main-title-4k white txtshadow banner-pointer" @onclick="@(e => GoTo("Exploration#top"))">EXPLORATION</div>
+                </div>
+                <img class="banner d-flex d-sm-none" src="@($"/assets/index/05_res.jpg")">
+                <img class="banner d-none d-sm-flex" src="@($"/assets/index/05.jpg")">
+            </div>
+        </div>
+
+        <div id="main07" class="row m-0 p-0 height100vh @GetClass(7)" style="background-color: white;">
+            <div class="col-12 p-0">
+                <div class="banner-message-container">
+                    <div class="main-title main-title-4k white txtshadow banner-pointer" @onclick="@(e => GoTo("SustainabilityFramework#top"))">RESPONSIBILITY</div>
+                </div>
+                <img class="banner d-flex d-sm-none" src="@($"/assets/index/06_res.jpg")">
+                <img class="banner d-none d-sm-flex" src="@($"/assets/index/06.jpg")">
+            </div>
+        </div>
+        <div id="main08" class="row m-0 @GetClass(8)">
+            <div class="col-12 p-0">
+                <div class="banner-message-container">
+                    <div class="main08 banner-pointer" @onclick="@(e => GoTo("Investors#top"))">
+                    <div class="main-title main-title-4k white txtshadow ">INVESTORS</div>
+                    </div>
+                </div>
+                <img class="banner final-img d-flex d-sm-none" src="@($"/assets/index/07_res.jpg")" >
+                <img class="banner final-img d-none d-sm-flex" src="@($"/assets/index/07.jpg")" >
+            </div>
+            <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+        </div>
+        <div class="d-none d-lg-flex row m-0">
+            <div class="col-12">
+                <div class="index @CalculateColor()">
+                    <a @onclick="() => Transition(1)"><div class="index-radius"><i class="fas fa-circle index-on-hover @GetIndexClass(1)"></i></div></a>
+                    <a @onclick="() => Transition(2)"><div class="index-radius"><i class="fas fa-circle index-on-hover @GetIndexClass(2)"></i></div></a>
+                    <a @onclick="() => Transition(3)"><div class="index-radius"><i class="fas fa-circle index-on-hover @GetIndexClass(3)"></i></div></a>
+                    <a @onclick="() => Transition(4)"><div class="index-radius"><i class="fas fa-circle index-on-hover @GetIndexClass(4)"></i></div></a>
+                    <a @onclick="() => Transition(5)"><div class="index-radius"><i class="fas fa-circle index-on-hover @GetIndexClass(5)"></i></div></a>
+                    <a @onclick="() => Transition(6)"><div class="index-radius"><i class="fas fa-circle index-on-hover @GetIndexClass(6)"></i></div></a>
+                    <a @onclick="() => Transition(7)"><div class="index-radius"><i class="fas fa-circle index-on-hover @GetIndexClass(7)"></i></div></a>
+                    <a @onclick="() => Transition(8)"><div class="index-radius"><i class="fas fa-circle index-on-hover @GetIndexClass(8)"></i></div></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public bool showVideo { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> ShowVideoChanged { get; set; }
+
+    private List<Statistic> statistics = new();
+
+    private bool isTransition;
+
+    private int beforeBlock;
+
+    private int block;
+
+    private int TOTAL_BLOCKS;
+
+    private bool isBigScreen;
+
+    private bool isHome = true;
+
+    public int Timer { get; set; } = 1;
+
+    public bool showiFrame;
+
+    protected override async Task OnInitializedAsync()
+    {
+        beforeBlock = 1;
+        block = 1;
+        TOTAL_BLOCKS = 8;
+        int response = await JSRuntime.InvokeAsync<int>("CustomFunctions.getDimensions");
+        statistics = await StatisticsService.GetStatistics();
+        isBigScreen = response > 768 ? true : false;
+        if(isBigScreen)
+        {
+
+        }
+        else
+        {
+            await GetCounterClass();
+        }
+        while (Timer > 0)
+        {
+            Timer--;
+            showVideo = true;
+            await Task.Delay(300);
+        }
+        await ShowVideoChanged.InvokeAsync(showVideo);
+    }
+
+    private async Task MouseWheel(WheelEventArgs e)
+    {
+        if(isBigScreen && !isMenu){
+            if (e.DeltaY < 0) await Transition(GetPreviousBlock());
+            if (e.DeltaY > 0) await Transition(GetNextBlock());
+        }
+    }
+
+    private async Task Transition(int to){
+        if (to == -1) return;
+
+        if (to == 2) await GetCounterClass();
+
+        if (!isTransition) {
+            isTransition = true;
+            new System.Threading.Timer((_) => {
+                isTransition = false;
+            }, null, 0, 2000);
+            Change(to);
+        }
+    }
+
+    private async Task GetCounterClass()
+    {
+        await JSRuntime.InvokeVoidAsync("CustomFunctions.getCounterClass", statistics);
+    }
+
+    private void Change(int to){
+        beforeBlock = block;
+        block = to;
+    }
+
+    private int GetPreviousBlock(){
+        var result = block - 1;
+        if (result < 1) return -1;
+        return result;
+    }
+
+    private int GetNextBlock(){
+        var result = block + 1;
+        if (result > TOTAL_BLOCKS) return -1;
+        return result;
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ScrollClass()
+    {
+        var c = "";
+        if(block >= TOTAL_BLOCKS){
+            return "d-lg-none";
+        }
+        if(beforeBlock == TOTAL_BLOCKS && block == TOTAL_BLOCKS-1){
+            c += "slide-in";
+        }
+        if(block == 2 ){
+            c += "gold ";
+        }
+        c += "d-lg-block";
+        return c;
+    }
+
+    private string ContentClass()
+    {
+        if(isMenu)  return "pause";
+        return "";
+    }
+
+    private string GetClass(int block){
+        if (isBigScreen) {
+            if (this.block == block) {
+                if( block == 3)
+                    showiFrame = true;
+
+                if ((block == 1 && beforeBlock == TOTAL_BLOCKS))
+                    return "d-flex main-showing-forward position-absolute";
+
+                if (block < beforeBlock || (block == TOTAL_BLOCKS && beforeBlock == 1))
+                    return "d-flex main-showing-backward position-absolute";
+
+                if (block > beforeBlock) 
+                    return "d-flex main-showing-forward position-absolute";
+
+            }
+            if (beforeBlock == block) 
+                return "d-flex main-show-behind position-absolute";
+
+            return "z-index-m-2 position-absolute";
+        }
+        return "";
+    }
+
+    private void GoTo(string url)
+    {
+        NavigationManager.NavigateTo(url);
+    }
+
+    private string CalculateColor() {
+        if (block == 3 || block == 5 || block == 7) return "inverted";
+        return "";
+    }
+
+    private string GetIndexClass(int block){
+        if (this.block == block) return "index-selected";
+        return string.Empty;
+    }
+}

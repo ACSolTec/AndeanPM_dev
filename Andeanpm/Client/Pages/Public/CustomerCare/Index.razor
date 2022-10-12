@@ -1,0 +1,233 @@
+﻿@page "/CustomerCare"
+
+@inject IJSRuntime JSRuntime
+@inject IBannerService BannerService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/customcare.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div class="d-block row m-0">
+			<div class="perspective-100">
+				<img id="com-01" class="banner z-index-m-2 paragraph-image-half" src="@banner.Url" />
+			</div>
+
+			<div class="container p-0">
+				<div class="row m-0 pt-5">
+					<div class="col-12">
+						<div class="row m-0">
+							<div class="col-12 p-0">
+								<div class="row mb-5 pt-3" id="Privacy">
+			  						<div class="col-12">
+			  							<div class="paragraph-title text-right">PRIVACY POLICY</div>
+			  							<div style="border: 1px solid #8393A2; width:100%;"></div>
+			  						</div>
+			  						<div class="col-12 bold font-size-14 text-justify font-assistant line-height-22 mt-5">This privacy policy (“Policy”) describes how Andean Precious Metals, Corp. and its affiliates (collectively “we”, “us” or “our”) collects, discloses, protects and uses the personally identifiable information (“Personal Information”)  that  you  (“User”,  “you”  or  “your”)  may  provide  through  its  website 
+										<a href="/" class="yellow-hover text-decoration-none">www.andeanpm.com</a> (“Website”) and electronic messages, as well as the types of information we may collect from you or that you may provide when you visit the Website and how we protect and use it.
+									</div>
+									<div class="col-12 bold font-size-14 text-justify font-assistant line-height-22 my-5">
+										By visiting our Website, you are accepting the terms of this Policy. We reserve the right to discontinue or amend any section of this Policy at any time and will notify you of any material changes for treatment of Personal Information. Any updated version of this Policy will be effective immediately upon the posting on our Website.
+									</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">
+										  I. COLLECTION OF INFORMATION
+										  </div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22">
+										  Keeping  your  information  private  and  secure  is  very  important  to  us.  Therefore,  we  take  great  effort  in protecting  your  Personal  Information  and  want  you  to  feel  secure  when  you  use  our  Website.  For  the purposes of this Policy the terms Personal Information, contact information and Non-personal Information are defined below:
+									</div>
+			  						<div class="col-12 p-0 font-size-14 font-assistant line-height-22 my-5">
+		     							<table class="table">
+											<tbody>
+												<tr>
+													<td class="bold">Personal  Information</td>
+													<td>shall  mean  information  by  which  someone  could  identify  you  as  a  specific, identifiable individual that is not the person’s contact information.</td>
+												</tr>
+												<tr>
+													<td class="bold">Contact  Information</td>
+													<td>shall  mean  information  that  would  enable  an  individual  to  be  contacted  which includes name, telephone number, address, and email.</td>
+												</tr>
+												<tr>
+													<td class="bold">Non-Personal Information</td>
+													<td>shall mean the information related to your visits to our Website which include domain  name,  browser  type,  referring/exit  pages,  number  of  visits  to  our  Webpage,  and  the  Internet Protocol Address of the originator.</td>
+												</tr>
+											</tbody>
+										</table>
+		     						</div>	
+
+									<div class="col-12 font-size-14 text-justify font-assistant line-height-22 my-2">
+										In general, you can visit our Website without telling us who you are or revealing any Personal Information. Nevertheless, if you want to access some of our Website's features, contact us through our web forms or send emails with comments, requests for further information, and requests to subscribe to receive updates (email alerts) such as news releases, you will be asked to provide certain contact information, as well as Personal  Information,  which  we  will  process  for  purposes  such  as:  account  creation  process,  answering any requests that you may submit on our Website, and if/when you sign up to receive news-related emails and updates.
+									</div>
+
+									<div class="col-12 font-size-14 text-justify font-assistant line-height-22 my-2">
+										If you no longer wish to receive email alerts, you can unsubscribe from this service by using the link supplied on the email, or by emailing a request to
+										<a href="mailto:privacy@andeanpm.com">privacy@andeanpm.com</a>.
+									</div>
+
+									<div class="col-12 font-size-14 text-justify font-assistant line-height-22 my-2 mb-4">
+										We also collect Non-Personal Information regarding your visits to our website through web server log files. We  do  not  link  automatically  collected  data  with  personally  identifiable  information.  We  use  the  Non-Personal Information that we collect to: present our Website and its contents to you, to create usage and Website summary statistics; and to manage the development and delivery of online systems.
+									</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">
+										II. STORING AND RETENTION PERIOD 
+									</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-4">
+										We will only retain and use your Personal Information for the period necessary to fulfill the purposes we collected  it  for,  including  for  the  purposes  of  satisfying  any  legal,  accounting,  or  reporting  requirements (“Retention  Period”)  and  it  will  be  stored  within  its  servers.  Therefore,  when  the  Retention  Period  is  still valid,  you  have  the  right  to  access,  the  right  to  erasure,  and  the  right  to  rectification  of  your  Personal Information, and once the Retention Period expires, your Personal Information shall be deleted from our servers.
+									</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">
+										III. SHARING PERSONAL INFORMATION TO THIRD PARTIES
+									</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">
+										We shall not share your Personal Information to third parties without your express consent. Notwithstanding the foregoing, we may share non-personally identifiable information to third party providers, such as Google Analytics, whose services we use, in order to improve our aggregate reporting, while using analytics tools and other related services providers.</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">
+										Third  parties  may  use  cookies  and  other  storage  technologies  to  collect  or  receive  information  from  our Website and use that information to provide target ads. If you would like to opt out of the collection and use of information for ad targeting, send us an email to <a href="mailto:privacy@andeanpm.com">privacy@andeanpm.com</a>.
+									</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">
+										Notwithstanding the aforesaid, we may share your Personal Information, if it is required by a corporate or legal process (i.e. an event of change of control or bankruptcy) or subpoena from a public authority within or outside your country of residence.
+									</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">
+										IV. DATA SECURITY
+									</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">The  security  of  your  personal  information  is  very  important  to  us.  We  use  physical,  electronic,  and administrative  measures  designed  to  secure  your  personal  information  from  accidental  loss  and  from unauthorized  access,  use,  alteration,  and  disclosure.  Please  note  that  the  internet  is  not  a  secure environment,  and  therefore  we  cannot  ensure  or  offer  any  guaranties  that  your  transmissions  are completely private and secure, even if your Personal Information is encrypted.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">V.	COOKIES</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">Our Website uses cookies to help us personalize your online experience. Cookies are pieces of data that a  web  page  server  sends  to  your  hard  disk  while  you  are  navigating  through  it.  We  may  use  cookies  to collect, store, and track information for statistical purposes to operate our Website. You can either accept them or decline them. For more information about the Cookies we use please read our Cookies Policy. </div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">VI.	YOUR RIGHTS</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">In any case, you have the right to access, request to rectify or delete, and to withdraw your consent to the processing of your Personal Information as well as request to receive your Personal Information in a simple format. We will make the requested information available within thirty (30) business days, or provide written notice of an extension where additional time is required to fulfill the request.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">VII.	ACCEPTANCE OF THIS POLICY</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">You acknowledge and recognize that you have read this Policy and agree to be bound to all its terms and conditions. By using our Website you also agree to be bound by this Policy. If you do not agree to be bound by this Policy, please refrain from providing any Personal Information through our Website.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">VIII.	INQUIRIES AND COMPLAINTS</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">If   you   have   any   such   request   about   your   Personal   Information,   please   send   us   an   email   to <a href="mailto:privacy@andeanpm.com">privacy@andeanpm.com</a>. </div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">We  have  procedures  in  place  to  receive  and  respond  to  complaints  or  inquiries  about  our  handling  of personal  information,  our  compliance  with  this  policy,  and  with  applicable  privacy  laws.  To  discuss  our compliance with this policy please contact our Privacy Officer using the contact information listed above.</div>
+
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">IX.	MISCELLANEOUS, GOVERNING LAW AND JURISDICTION </div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">This Policy shall be governed by the laws of Ontario and the federal laws applicable therein, without respect to its conflict of laws principles. You agree to submit to the personal and exclusive jurisdiction of the courts located  in  the  City  of  Toronto  where  this  Policy  was  issued,  and  waive  any  jurisdictional,  venue,  or inconvenient forum objections to such courts.</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">Also,  we  collect  and  process  personal  data  pursuant  to  Regulation  (EU)  2018/1725  of  the  European Parliament and of the Council of 23 October 2018 on the protection of natural persons with regard to the processing  of  personal  data  by  the  Union  institutions,  bodies,  offices  and  agencies  and  on  the  free movement of such data (repealing Regulation (EC) No 45/2001).</div>
+			  						<div class="col-12 font-size-12 text-justify font-assistant line-height-22 mb-3 f-110-4k">Last updated: March 10th, 2021.</div>
+								</div>
+
+								<div class="row mb-5" id="CookiesPolicy">
+			  						<div class="col-12">
+			  							<div class="paragraph-title text-right">COOKIES POLICY</div>
+			  							<div style="border: 1px solid #8393A2; width:100%;"></div>
+			  						</div>
+			  						<div class="col-12 bold font-size-14 text-justify font-assistant line-height-22 my-5">This cookies policy (“Policy”) describes how Andean Precious Metals, Corp. and its affiliates (collectively “we”,  “us”  or  “our”)  use  cookies  and  other  similar  technologies  on  our  website <a href="" class="yellow-hover text-decoration-none a-remover">www.andeanpm.com</a>  (“Website”) while you (“you” or “your”) visit our site.</div>
+
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">I.	DEFINITION OF COOKIES</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">Cookies are pieces of data that a web page server sends to your computer or mobile device while you are navigating through it. With the use of cookies your experience will be based on the preferences that you have set in place as well as help us to ensure that the marketing ads you see online are more relevant to your  interests.  Usage  of  a  cookie  is  in  no  way  linked  to  any  personally  identifiable  information  on  our website.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">II.	TYPES OF COOKIES</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">a.	Necessary cookies</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">Necessary cookies allow us to offer you a better experience when you access and navigate through our Website or using its features.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">b.	Functionality or Performance cookies</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">Functionality or Performance cookies let us operate our Website in accordance with the preferences you have set.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">c.	Analytical cookies</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">Analytical cookies enable us and third-party services’ providers, such as Google Analytics, whose services we use, to collect aggregated data for statistical purposes on how our visitors use our Website, services or products. These cookies do not contain personal data such as names, email addresses or phone numbers.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">III.	Deletion of cookies</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">If you want to reject or block the aforesaid cookies from your computer or mobile device you can do this accessing the cookies preferences in your browser. You can change your preferences for our website by changing your browser settings. Please note that most browsers automatically accept cookies. Therefore, if you do not wish cookies to be used, you may need to actively delete or block them. Please be aware that deleting and blocking cookies will have an impact on your user experience, as parts of our Website may no longer    work    or    not    work    correctly.    In    addition,    you    can    visit    the    following    website https://www.allaboutcookies.org/manage-cookies/, for further information in the management of cookies on a wide variety of browsers and devices.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">IV.	Contact Information</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">If you have any such questions about this Policy, please send us an email to <a href="mailto:cookies@andeanpm.com">cookies@andeanpm.com</a>.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">V.	Acceptance of this Policy</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">You acknowledge and recognize that you have read this Policy and agree to be bound to all its terms and conditions. By using our Website, you agree to be bound by this Policy. If you do not agree to be bound by this Policy, please read Section III above.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">VI.	Miscellaneous, Governing Law and Jurisdiction</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">Andean reserves the right to discontinue or amend any section of this Policy at any time and will notify you of any material changes for treatment of Personal Information. Any updated version of this Policy will be effective immediately upon the posting on our Website.</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">This Policy shall be governed by the laws of Ontario and the federal laws applicable therein, without respect to its conflict of laws principles. You agree to submit to the personal and exclusive jurisdiction of the courts located  in  the  City  of  Toronto  where  this  Policy  was  issued,  and  waive  any  jurisdictional,  venue,  or inconvenient forum objections to such courts.</div>
+			  						<div class="col-12 font-size-12 text-justify font-assistant line-height-22 mb-3 f-110-4k">Last updated: March 10th, 2021</div>
+								</div>
+
+								<div class="row" id="TermsandConditions">
+			  						<div class="col-12">
+			  							<div class="paragraph-title text-right">TERMS AND CONDITIONS</div>
+			  							<div style="border: 1px solid #8393A2; width:100%;"></div>
+			  						</div>
+			  						<div class="col-12 bold font-size-14 text-justify font-assistant line-height-22 my-5">These  terms  and  condition  (hereinafter  “Terms”)  govern  your  (“You”,  “you”  or  “your”)  use  of  Andean Precious Metals, Corp. (“we”, “us” or “our”) website located at <a href="" class="yellow-hover text-decoration-none a-remover">www.andeanpm.com</a>  (“Website”), including all associated features, functionalities, related websites and user interfaces, software applications, videos or other content or material that is owned by us.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">I.	ACCEPTANCE</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">You acknowledge and recognize that you have read these Terms and agree to be bound to these Terms. By using our Website, you also agree to be bound by these Terms. If you do not agree to be bound by these Terms, please refrain from using our Website.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">II.	PRIVACY POLICY</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">Please see our Privacy Policy, as it contains relevant information relating to your use of our Website.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">III.	COPYRIGHT AND TRADEMARKS</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">We own and retain all rights, title and interest in all intellectual property such as trademarks, copyrights, logos, materials and design content, included or made available through our Website (the “Company’s IP”) and you acknowledge that you neither own nor acquire any rights in and to the Company’s IP. You further acknowledge that we retain the absolute right to use the Company’s IP in its sole discretion for any purpose. The display of trademarks on pages at this Website does not imply that a license of any kind, implied or otherwise, has been granted to you. We reserve all rights not expressly granted to you hereunder.   You shall not challenge or enable third parties to challenge the ownership or validity of the Company’s IP.  You shall  not  adopt,  register,  apply  to,  register  or  otherwise  use  substantially  similar  or  confusingly  similar intellectual property or content to the Company’s IP. Except for non-commercial, personal or educational purposes,  where  the  material  is  not  modified  and  that  copyright  or  trademark  notices  are  not  deleted, materials  may  not  be  copied,  reproduced,  modified,  uploaded,  posted,  transmitted,  or  distributed  in  any way without our prior written approval. Any unauthorized downloading, re-transmission or other copying or modification of trademarks and/or the contents herein may be a violation of the laws of Ontario or federal laws, trademark and/or copyright laws and could subject the copier to legal action.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">IV.	INDEMNITY AND MORAL CLAUSE</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">You agree to defend, indemnify and hold us, our subsidiaries and other affiliated companies (and each of their  respective  present  shareholders,  managers,  directors,  officers,  employees,  agents  and  assigns) harmless from and against any and all damages, actions, claims, liabilities, costs and expenses (including reasonable attorneys’ fees, disbursements and court or administrative costs) incurred by any of them arising out of (i) your breach of any provision of these Terms  and (ii) a claim by a third party of an act, omission or wrongdoing  by  you  which,  if  proven  true,  would  constitute  a  breach  of  these  Terms  by  you  (hereinafter “Indemnification Obligation”). This Indemnification Obligation will survive any termination or cancellation of these Terms and your use of our Website.</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">For any given incident, we shall have the right to cancel, terminate or restrict your use or access to our Website, if you have engaged in conduct which would be deemed a violation of this section (hereinafter “Moral Clause”). For purposes of these Terms, you shall be deemed to have violated this Moral Clause of these Terms if you at any time after the date you started using or accessing our Website (i) are charged with committing a misdemeanor of moral turpitude or a felony that is punishable by a prison term (regardless of the length of their term associated with such offense); (ii) commit or are accused of committing an act involving moral and illegal turpitude under any federal, state or local law in Canada or worldwide; or (iii) commits an act of significant public disrepute or becomes the subject of a scandal such that we believe, in our  sole  discretion,  that  the  marketability  of  such  incident  or  our  image  has  been  or  will  be  negatively affected.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">V.	DISCLAIMER; NO REPRESENTATIONS OR WARRANTIES</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">Although  considerable  care  has  been  taken  in  preparing  and  maintaining  the  information  and  materials contained on this Website, your use of the Website, its content or items obtained through the Website is at your  own  risk.   The  website,  its  content  and  any  service  or  product  obtained  through  the  Website  are provided on an "as is" and "as available" basis, without any warranties of any kind, either express or implied. Neither we nor any person associated with us makes any warranty or representation with respect to the completeness,  security,  reliability,  quality,  accuracy  or  availability  of  our  Website.  Without  limiting  the foregoing, neither we nor anyone associated with us represents or warrants that the Website, its content or any service or product obtained through the Website will be accurate, reliable, error-free or uninterrupted, that defects will be corrected, that our Website or the server that makes it available are free of viruses or other harmful components or that the Website or any service or product obtained through the Website will otherwise meet your needs or expectations. We hereby disclaim all warranties of any kind, whether express or  implied,  statutory  or  otherwise,  including  but  not  limited  to  any  warranties  of  merchantability,  non-infringement and fitness for particular purpose.</div>
+									<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">The foregoing does not affect any warranties, which cannot be excluded or limited under applicable law.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">VI.	EXCLUSIONS AND LIMITATIONS OF LIABILITY</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">We  shall  not  be  liable  for  any  damages  whatsoever  (including  indirect,  incidental,  special,  punitive  or consequential  damages  and  loss  of  profits,  opportunities  or  information)  arising  from  (a)  your  use  of  or reliance on information contained on this Website; (b) any inaccuracy or omission in such information or failure  to  keep  the  information  current;  (c)  use  of  any  third  party  web  sites  linked  or  referred  to  in  this Website;  (d)  any  delays,  inaccuracies  or  errors  in,  or  in  the  transmission  of,  any  stock  price  quotes  or historical price data; (e) any Internet software used in connection with this Website or computer viruses or other  destructive  programs  encountered  as  a  result  of  using  this  Website;  and  (f)  any  other  matter connected  with  the  Website;  even  if  we  are  made  aware  of  the  possibility  of  such  claims,  damages  or losses.</div>
+
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">VII.	ACCEPTANCE OF THESE TERMS</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">You acknowledge and recognize that you have read this Policy and agree to be bound to all its terms and conditions. By using our Website you also agree to be bound by this Policy. If you do not agree to be bound by this Policy, please refrain from using our Website.</div>
+					
+									<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">VIII.	CONTACT US</div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">If   you   have   any   such   request   about   your   Personal   Information,   please   send   us   an   email   to <a href="mailto:info@andeanpm.com">info@andeanpm.com</a>.</div>
+
+									<div class="col-12 font-size-14 text-justify font-assistant line-height-22 bold">IX.	MISCELLANEOUS, GOVERNING LAW AND JURISDICTION </div>
+			  						<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">We reserve the right to discontinue or amend any section of this Policy at any time and will notify you of any  material  changes  for  treatment  of  Personal  Information.  Any  updated  version  of  this  Policy  will  be effective immediately upon the posting on our Website.</div>
+									<div class="col-12 font-size-14 text-justify font-assistant line-height-22 mb-3">This Policy shall be governed by the laws Ontario and the federal laws applicable therein, without respect to its conflict of laws principles. You agree to submit to the personal and exclusive jurisdiction of the courts located  in  the  City  of  Toronto  where  this  Policy  was  issued,  and  waive  any  jurisdictional,  venue,  or inconvenient forum objections to such courts.</div>
+					
+
+			  						<div class="col-12 font-size-12 text-justify font-assistant line-height-22 mb-3 f-110-4k">Last updated: March 10th, 2021</div>
+
+			  		
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+        <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+	private Banner banner { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+		banner = await BannerService.GetBanner("Customer Care");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if(isMenu)  return "pause";
+        return "";
+    }
+}

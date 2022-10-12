@@ -1,0 +1,219 @@
+﻿@page "/Operations/CerroRicoMine"
+
+@inject IJSRuntime JSRuntime
+@inject IBannerService BannerService
+@inject IOperationsService OperationsService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/operations.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+@if (isShowing == true)
+{
+    <Andeanpm.Client.Components.Public.ModalWindow ParentMethodToCallOnClickBtnClose="() => isShowing = false" operations="op" position="position" />
+}
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div>
+            <div class="d-block row m-0">
+                <div class="perspective-100">
+                    <img id="com-01" class="banner  z-index-m-2 paragraph-image-half" src="@banner.Url" />
+                </div>
+                <div class="d-flex flex-column justify-content-end ">
+                    <div class="px-5 py-3"></div>
+                </div>
+                <div class="centered d-none d-lg-block">
+                    <h1 class="paragraph-title align-end py-2">SURFACE DEPOSITS</h1>
+                </div>
+            </div>
+            <div class="row centered d-block d-lg-none">
+                <h1 class="paragraph-title align-end py-2">SURFACE DEPOSITS</h1>
+            </div>
+            <div class="container p-0">
+                <div class="col-12">
+                    <div class="col-12 pb-4">
+                        <div class="row mt-1 mb-4 d-lg-block d-none">
+                            <div class="col-12 pt-0 paragraph-content d-flex d-xl-none">
+                                <p class="text-justify pointer yellow-hover word-gold-hover" data-toggle="collapse" href="#boliviaSubmenu" aria-expanded="true">Production</p>
+                                <span class="pl-4 pr-4">|</span>
+                                <p class="text-justify pointer">
+                                    <NavLink href="/SanBartolome#top" ActiveClass="active" class="a-remover yellow-hover" Match="NavLinkMatch.All">
+										Processing
+									</NavLink>
+                                </p>
+                                <span class="pl-4 pr-4">|</span>
+                                <p class="text-justify pointer">
+                                    <NavLink href="/Exploration#top" ActiveClass="active" class="a-remover yellow-hover" Match="NavLinkMatch.All">
+										Exploration
+									</NavLink>
+                                </p>
+                            </div>
+                            <div class="col-12 p-0 d-flex d-md-block paragraph-content justify-content-center">
+                                <div class="collapse" id="boliviaSubmenu">
+                                    <div class="d-block d-md-flex col-12 p b-4">
+                                        <div class="pt-0 mr-4 submenu-border pointer active">
+                                            <NavLink href="/Operations/CerroRicoMine#top" ActiveClass="active" class="a-remover yellow-hover yellow" Match="NavLinkMatch.All">
+												Surface Deposits
+											</NavLink>
+                                            <div class="triangle"></div>
+                                        </div>
+                                        <div class="pt-0 mr-4 submenu-border pointer">
+                                            <NavLink href="/OrePurchasing#top" ActiveClass="active" class="a-remover yellow-hover" Match="NavLinkMatch.All">
+												Mine Reclamation
+											</NavLink>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 p-0 d-flex m-0 pt-lg-3 mt-5-4k mt-5">
+                            <div class="col-lg-5 center">
+                                <hr>
+                            </div>
+                            <div class="col-lg-2">
+                                <div class="font-size-18 text-center">
+                                    PROJECTS
+                                </div>
+                            </div>
+                            <div class="col-lg-5 center">
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="row m-0 pt-lg-4 pt-5-4k justify-content-center">
+                            <div class="col-md-4 text-center">
+                                <NavLink href="/Operations/CachiLaguna#top" class="btn a-remover yellow-hover" Match="NavLinkMatch.All">
+                                    <img class="image-regular image-regular-cards" src="@($"/assets/operations/07.jpg")" alt="">
+                                    <h1 class="mt-1 font-cards pb-1">CACHI LAGUNA</h1>
+                                </NavLink>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <NavLink href="/Operations/CerroRicoDeposits#top" class="btn a-remover yellow-hover" Match="NavLinkMatch.All">
+                                    <img class="image-regular image-regular-cards" src="@($"/assets/operations/08.jpg")" alt="">
+                                    <h1 class="mt-1 font-cards pb-1">CERRO RICO DEPOSITS</h1>
+                                </NavLink>
+                            </div>
+                        </div>
+                        <div class="col-12 p-0 d-flex m-0 mb-5 mt-5 mt-5-4k">
+                            <div class="col-lg-12 p-0">
+                                <h1 class="paragraph-title d-inline-block">OVERVIEW</h1>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5 py-4 pt-3-4k">
+                            <div class="col-lg-12 col-12">
+                                <p class="paragraph-content text-justify mb-3">Andean’s San Bartolomé plant processes 1.6 million tonnes of ore per annum from three sources of mill feed:</p>
+                                <ul class="list paragraph-content">
+                                    <li>Cerro Rico deposits</li>
+                                    <li>Mine waste reclamation</li>
+                                    <li>Ore sourcing</li>
+                                </ul>
+                                <br>
+                                <p class="paragraph-content text-justify mt-2">
+                                    Cerro Rico deposits are shallow deposits of quaternary silver and tin bearing ores. COMIBOL (state owned mining company) owns deposits which are old mine stockpiles and mine waste, these are licensed to Andean for removal and processing. Thirdly, the
+                                    plant receives ore from small scale independent community miners providing a local market, this ore sourcing material comes from five different locations, two of which have compliant NI 43-101 measured and indicated
+                                    resources.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row py-4">
+                            <div class="col-12">
+                                <img class=" image-regular my-4 d-none d-md-block safari-img" src="@($"/assets/operations/Map ore sourcing.jpg")">
+                                <img class="image-regular d-md-none d-block safari-img" src="@($"/assets/operations/map_responsive.jpg")" @onclick="() => ShowModal(0)">
+                            </div>
+                        </div>
+
+                        <div class="row mt-5">
+                            <div class="col-lg-12">
+                                <p class="paragraph-content">The proportion of plant feed in 2020 was 60% from NI 43-101 compliant sources and 40% from the three non-complaint sources.</p>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-12">
+                                <p class="paragraph-content paragraph-content-4k">In all cases the ore from third party sources is higher grade allowing for an elevated blended head grade into our plant.</p>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-12">
+                                <p class="paragraph-content paragraph-content-4k">Andean’s environmental, community and safety standard operating procedures apply to all third-party ore sources and each deposit is assessed by Andean’s production geologists.</p>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-12">
+                                <p class="paragraph-content paragraph-content-4k">The ore sourcing business is a low risk yet fundamental part of revenue stream which allows Andean to disperse G&A costs in Bolivia delivering lower AISC. Scope to expand the ore sourcing business by signing new contracts
+                                    with high-grade suppliers is ongoing.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row my-5 py-4 mt-5-4k">
+                            <div class="col-12 justify-content-center">
+                                <div class="paragraph-title text-center">
+                                    2020 SILVER PRODUCTION MILLION OUNCES Silver Eqv.
+                                </div>
+                                <div class="row mt-4 pt-3-4k">
+                                    <div class="col-0 col-md-2 col-lg-3"></div>
+                                    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                                        <iframe src="@($"/assets/chart.html")" frameborder="0" class="w-100" style="min-height: 400px;"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private List<Operation> op { get; set; } = new();
+
+    private Banner banner { get; set; } = new();
+
+    private int position = 0;
+
+    private bool isShowing = false;
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        banner = await BannerService.GetBanner("Cerro Rico Mine");
+
+        op.Add(new Operation() { Id = 0, ImageLink = $"/assets/operations/Map ore sourcing.jpg", Module = "CerroRicoMine" });
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+    private void ShowModal(int pos)
+    {
+        this.position = pos;
+        isShowing = true;
+
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if(isMenu)  return "pause";
+        return "";
+    }
+}

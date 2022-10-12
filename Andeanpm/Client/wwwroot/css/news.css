@@ -1,0 +1,53 @@
+﻿.w-fit {
+    width: fit-content;
+}
+
+.w-15 {
+    width: 15% !important;
+}
+
+.w-70 {
+    width: 70% !important;
+}
+
+.table th {
+    border: 0px solid transparent;
+}
+
+.center-content {
+    display: flex;
+    align-items: center;
+}
+
+.l-border {
+    border-left: 2px solid #AD8400 !important;
+}
+
+.docs-icons {
+    width: 50px !important;
+    height: 50px !important;
+}
+
+@media only screen and (max-width: 600px) {
+    .center-content {
+        display: block;
+    }
+}
+
+
+@media (min-width: 2048px) {
+
+    .docs-icons {
+        width: 25% !important;
+        height: 25% !important;
+    }
+}
+
+.table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+}
+
+.boder-md {
+    border-top: 2px transparent !important;
+    border-bottom: 2px solid #dee2e6 !important;
+}

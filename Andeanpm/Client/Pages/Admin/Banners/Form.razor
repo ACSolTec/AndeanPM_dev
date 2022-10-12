@@ -1,0 +1,163 @@
+﻿@page "/Admin/Banners/Update/{Id:int}"
+@using System.Net
+
+@inject IBannerService BannerService
+@inject IUploadImageService UploadImageService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/admin.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<AuthorizeView Roles="Admin">
+	<Authorized Context="Auth">
+		<div id="wrapper" class="@(isClosed ? "toggled" : "")">
+			<div class="overlay"></div>
+
+			<Andeanpm.Client.Components.Admin.Sidebar />
+
+			<div id="page-content-wrapper">
+				<button type="button" class="hamburger animated fadeInLeft @(isClosed ? "is-open" : "is-closed")" @onclick="OpenMenu" data-toggle="offcanvas">
+					<span class="hamb-top"></span>
+					<span class="hamb-middle"></span>
+					<span class="hamb-bottom"></span>
+				</button>
+				<div class="container">
+					<div class="row justify-content-end">
+						<div class="col-sm-12 col-lg-4">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="/Admin">Admin</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Banners</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-lg-12">
+							<div class="card">
+								<h5 class="card-header"></h5>
+								<div class="card-body">
+									<div class="row">
+										<div>
+											<div class="form-group mb-5">
+												<h2 for="thumbnailImage">@banner.Module image</h2>
+
+												<img src="@banner.Url" class="admin-crud-form-thumbnail-image" alt="Post thumbnail image" />
+												
+												<br />
+
+												<InputFile OnChange="UploadedImage" class="form-control mt-4" id="thumbnailImage" />
+												<span class="error">@reasonImageUploadFailed</span>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-12 col-lg-6">
+											<button type="button" class="btn btn-outline-info" @onclick="Back"><i class="fa-solid fa-delete-left"></i> Cancel</button>
+										</div>
+										<div class="col-md-12 col-lg-6 d-flex flex-row-reverse">
+											<button type="button" class="btn btn-outline-success" @onclick="Save"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</Authorized>
+	<NotAuthorized>
+		<Andeanpm.Client.Components.Admin.SignIn />
+	</NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+	[Parameter] public int Id { get; set; }
+
+	private bool isClosed { get; set; } = true;
+
+	private Banner banner { get; set; } = new();
+
+	private bool attemptingToUploadImage { get; set; } = false;
+
+	private bool attemptToUploadFailed { get; set; } = false;
+
+	private string reasonImageUploadFailed { get; set; } = null;
+
+	protected override async Task OnInitializedAsync()
+	{
+		banner = await BannerService.GetBanner(Id);
+	}
+
+	public void Back()
+	{
+		NavigationManager.NavigateTo($"/Admin/Banners");
+	}
+
+	public async Task Save()
+	{
+		if (!attemptToUploadFailed){
+			var response = await BannerService.UpdateBanner(banner);
+			if(response){
+				Back();
+			}
+		}
+	}
+
+	public async Task UploadedImage(InputFileChangeEventArgs e)
+	{
+		attemptingToUploadImage = true;
+
+		if (e.File.ContentType != "image/jpeg" && e.File.ContentType != "image/png")
+		{
+			reasonImageUploadFailed = "Please only upload JPEG, JPG, or PNG images.";
+			attemptToUploadFailed = true;
+		}
+		else if (e.File.Size >= 31457280) // 31457280 bytes = 30 megabytes
+		{
+			reasonImageUploadFailed = "Please only upload images that are smaller than 30 MegaBytes (MB).";
+			attemptToUploadFailed = true;
+		}
+		else
+		{
+
+			IBrowserFile uploadedImageFile = e.File;
+
+			byte[] imageAsByteArray = new byte[uploadedImageFile.Size];
+			// Fills the contents of the image byte array.
+			await uploadedImageFile.OpenReadStream(31457280).ReadAsync(imageAsByteArray);
+			string byteString = Convert.ToBase64String(imageAsByteArray);
+
+			UploadImage image = new UploadImage()
+			{
+				NewImageFileExtension = uploadedImageFile.Name.Substring(uploadedImageFile.Name.Length - 4),
+				NewImageBase64Content = byteString,
+				OldIamge = banner.uploadImage.OldIamge,
+				Folder = "banners"
+			};
+
+			var response = await UploadImageService.UploadedImage(image);
+
+			if (response.StatusCode == HttpStatusCode.Created)
+			{
+				banner.Url = await response.Content.ReadAsStringAsync();
+				banner.uploadImage.OldIamge = await response.Content.ReadAsStringAsync();
+			}
+			else
+			{
+			}
+		}
+		attemptingToUploadImage = false;
+		StateHasChanged();
+
+	}
+
+
+	private void OpenMenu()
+	{
+		isClosed = !isClosed;
+	}
+
+}

@@ -1,0 +1,78 @@
+﻿.image-button {
+    cursor: pointer;
+    margin-left: 1.5rem;
+}
+
+
+p {
+    margin-top: 30px !important;
+    font-family: Assistant;
+    font-size: 14px !important;
+    line-height: 26px !important;
+    color: black;
+    /* text-align: justify!important; */
+}
+
+b,
+strong {
+    font-weight: bolder !important;
+}
+
+@media (min-width: 2048px) {
+    p {
+        margin-top: 40px !important;
+        font-size: 170% !important;
+        line-height: 190% !important;
+    }
+
+    .docs-icons {
+        height: 75px !important;
+        width: 75px !important;
+    }
+}
+
+
+em {
+    font-style: italic;
+}
+
+ol {
+    list-style: decimal;
+}
+
+ul {
+    list-style: disc;
+}
+
+.h1, h1 {
+    font-size: 2.5rem;
+}
+
+.h2, h2 {
+    font-size: 2rem;
+}
+
+.h3, h3 {
+    font-size: 1.75rem;
+}
+
+.h4, h4 {
+    font-size: 1.5rem;
+}
+
+.h5, h5 {
+    font-size: 1.25rem;
+}
+
+.h6, h6 {
+    font-size: 1rem;
+}
+
+blockquote {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+    font-style: italic;
+}

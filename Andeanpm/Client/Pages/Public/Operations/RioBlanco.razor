@@ -1,0 +1,141 @@
+﻿@page "/Operations/RioBlanco"
+
+@inject IJSRuntime JSRuntime
+@inject IBannerService BannerService
+@inject IOperationsService OperationsService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/operations.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+@if (isShowing == true)
+{
+        <Andeanpm.Client.Components.Public.ModalWindow ParentMethodToCallOnClickBtnClose="() => isShowing = false" operations="op" position="position" />
+}
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div>
+            <div class="row m-0 p-0">
+                <div class="col-12 m-0 p-0">
+                        <img src="@banner.Url" class="banner banner-50">
+                </div>
+            </div>
+            <div class="container p-0">
+                <div class="col-12">
+                    <div class="col-12 p-4 pb-4">
+                        <div class="col-lg-12 paragraph-subtitle align-end p-0">
+                            <a href="/Operations/SanPablo" class="a-remover yellow-hover">
+                                @("<< Previous")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>|
+                            <a href="/Exploration#top" class="a-remover yellow-hover">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exploration</a>
+                        </div>
+                        <div class="row m-0 mt-5 mb-5 pt-5-4k">
+                            <div class="col-lg-12 p-0">
+                                <div class="paragraph-subtitle">Project</div>
+                                <h1 class="paragraph-title pb-2 andean-gold-bar d-inline-block">RIO BLANCO</h1>
+                            </div>
+                        </div>
+                        <div class="row my-5 py-4">
+                            <div class="col-lg-8">
+                                <p class="paragraph-content text-justify mb-3">The project is located 245km south of Potosí.
+                                </p>
+                                <p class="paragraph-content text-justify mb-3">Rio Blanco project is a gold-antimony project in Ordovician sedimentary rocks; it is a Bendigo style targetlocated in the prolific Orogenic Gold Belt in Western Bolivia. Structurally, the project is the axial plane (NW-SE
+                                    strike) of a regional anticline, along which several auriferous mines and projects are situated. These include Kori Kollo-Kori Chaca San Bernardino, San Pablo, Antofagasta, Chilcobija, Kori Khoya, and other projects.
+                                </p>
+                                <p class="paragraph-content text-justify mb-3">Rio Blanco concession area is a total of 3,745 Has. Andean’s subsidiary holds a 100% interest of mineral concessions.
+                                </p>
+                                <p class="paragraph-content text-justify mb-3">Andean regards Rio Blanco as a high-potential exploration target with known structure at surface mapped and trench sampled for 2.2km. The trench sampling completed cuts the axial plane of a regional anticline. Selective
+                                    results from trenching which will inform further exploration activities in 2021. These results include 17 metres at 2.2g/t, 6m at 2.8g/t, 5m at 3g/t, 20m at 1.9g/t, 2m at 9.57g/t, 7m at 3.87g/t, 9m at 3.7g/t
+                                </p>
+                                <p class="paragraph-content text-justify mb-3">Andean has concluded a new access to the property and will conduct firstly an intensive programme of prospecting, including surface mapping and sampling, geochemistry and geophysics survey including deep geophysics Quantec
+                                    Titan. Andeans drilling programme will commence in Q4 of 2021 initiating a budgeted programme of 10,000 metres.
+                                </p>
+                            </div>
+                            <div class="col-lg-4 p-2">
+                                <div class="row m-0">
+                                    @foreach (var item in op.GetRange(0, 4))
+                                    {
+                                        <div class="col-lg-6 col-6 p-2 eye-container">
+                                            <div class="eye"></div>
+                                            <img class="image-regular operations-gallery-preview w-100" src="@item.ImageLink" @onclick="() => ShowModal(item.Id)">
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-5 py-4 pt-5-4k">
+                            @foreach (var item in op.GetRange(4, 3))
+                            {
+                                <div class="col-md-4 p-2 eye-container">
+                                    <div class="eye"></div>
+                                    <img class="image-regular" src="@item.ImageLink" @onclick="() => ShowModal(item.Id)">
+                                </div>
+                            }
+                        </div>
+                        <div class="row mt-5 pt-5-4k">
+                            @foreach (var item in op.GetRange(7, 3))
+                            {
+                                <div class="col-md-4 p-2 eye-container">
+                                    <div class="eye"></div>
+                                    <img class="image-regular" src="@item.ImageLink" @onclick="() => ShowModal(item.Id)">
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private List<Operation> op { get; set; } = new();
+
+    private Banner banner { get; set; } = new();
+
+    private int position = 0;
+
+    private bool isShowing = false;
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    private string currentPage = string.Empty;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        op = await OperationsService.Get("RioBlanco");
+        banner = await BannerService.GetBanner("Rio Blanco");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+    private void ShowModal(int pos)
+    {
+        this.position = pos;
+        isShowing = true;
+
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if (isMenu) return "pause";
+        return "";
+    }
+}

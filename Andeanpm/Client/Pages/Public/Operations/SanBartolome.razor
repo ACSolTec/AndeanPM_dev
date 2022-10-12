@@ -1,0 +1,190 @@
+﻿@page "/SanBartolome"
+
+@inject IJSRuntime JSRuntime
+@inject IBannerService BannerService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/sanbartolome.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+@if (isShowing == true)
+{
+    <Andeanpm.Client.Components.Public.ModalWindow ParentMethodToCallOnClickBtnClose="() => isShowing = false" imageModal="imageModal" position="position" />
+}
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div class="d-block row m-0">
+            <div class="perspective-100">
+                <img id="com-01" class="banner  z-index-m-2 paragraph-image-half"
+                     src="@banner.Url" />
+            </div>
+            <div class="centered d-none d-lg-block">
+                <h1 class="paragraph-title align-end py-2">PROCESSING</h1>
+            </div>
+        </div>
+        <div class="row centered d-block d-lg-none">
+            <h1 class="paragraph-title align-end py-2">PROCESSING</h1>
+        </div>
+
+
+        <div>
+            <div class="container p-0">
+                <div class="col-12">
+                    <div class="col-12 pb-4">
+                        <div class="row mt-1 mb-4 d-lg-block d-none">
+                            <div class="col-12 pt-0 paragraph-content d-flex d-xl-none">
+                                <p class="text-justify pointer yellow-hover f-inherit-4k word-gold-hover" data-toggle="collapse" href="#boliviaSubmenu" aria-expanded="false">Production</p>
+                                <span class="pl-4 pr-4">|</span>
+                                <p class="text-justify pointer word-gold-hover">
+                                    <a href="/SanBartolome#top" class="a-remover yellow-hover yellow">
+                                        Processing
+                                    </a>
+                                </p>
+                                <span class="pl-4 pr-4">|</span>
+                                <p class="text-justify pointer">
+                                    <a href="/Exploration#top" class="a-remover yellow-hover">
+                                        Exploration
+                                    </a>
+                                </p>
+                            </div>
+                            <div class="col-12 p-0 d-flex d-md-block paragraph-content justify-content-center">
+                                <div class="collapse" id="boliviaSubmenu">
+                                    <div class="d-block d-md-flex col-12 pb-4">
+                                        <div class="pt-0 mr-4 submenu-border pointer">
+                                            <a href="/Operations/CerroRicoMine#top" class="a-remover yellow-hover">
+                                                Surface Deposits
+                                            </a>
+                                        </div>
+                                        <div class="pt-0 mr-4 submenu-border pointer">
+                                            <a href="/OrePurchasing#top" class="a-remover yellow-hover">
+                                                Mine Reclamation
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5 py-4 mt-5-4k">
+                            <div class="col-lg-12">
+                                <p class="paragraph-content text-justify ">
+                                    The San Bartolomé plant treats ore from Andean’s Cerro Rico deposits, mine reclamation projects and its ore sourcing business. The plant pre-processes (washes) the ore to remove the Ag -8M fraction which increases the head grade of mill feed. In 2020,
+                                    mill feed was 1.5 million tonnes (Including eight weeks shut for Covid-19). Head grade averages 132g/t and Silver produced 6 Moz. Metallurgical recovery averages 84%.
+                                    <br /><br /> The plant is an established operation of 12 years de-risked technically and having earned its social license to operate. San Bartolome was commissioned by Coeur in June 2008 at a cost of US$180 million, it
+                                    is the only oxide processing plant of scale in Bolivia.
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="row py-4 pt-5-4k">
+                            <div class="col-lg-12">
+                                <h2 class="paragraph-title">OPERATING HISTORY</h2>
+                            </div>
+                            <div class="col-lg-12 d-block d-lg-flex justify-content-center">
+                                <div class="text-right mt-4 d-lg-none d-block font-size-12 font-assistant" data-toggle="modal" data-target="#gallery"><u>Click image to see in fullscreen</u></div>
+                                <img class="image-regular my-4 d-none d-lg-block safari-img" src="@($"/assets/san-bartolome/Operating History.jpg")" style="max-width: 80% !important;">
+                                <img class="image-regular my-4 d-lg-none d-block safari-img" src="@($"/assets/san-bartolome/Operating History.jpg")">
+                            </div>
+                        </div>
+
+                        <div class="row py-3 pt-5-4k">
+                            <div class="col-lg-12">
+                                <h2 class="paragraph-title">SAN BARTOLOMÉ, FLOWSHEET</h2>
+                            </div>
+                            <div class="col-lg-12 d-block d-lg-flex justify-content-center">
+                                <div class="text-right mt-4 d-lg-none d-block font-size-12 font-assistant"><u>Click image to see in fullscreen</u></div>
+                                <img class="image-regular d-none d-lg-block safari-img" src="@($"/assets/san-bartolome/Flowsheet.jpg")" style="max-width: 75%;!important">
+                                <img class="image-regular d-lg-none d-block safari-img" src="@($"/assets/san-bartolome/Flowsheet.jpg")">
+                            </div>
+                        </div>
+
+                        <div class="row my-3 pt-4 py-4 pt-5-4k">
+                            <div class="col-lg-12">
+                                <h2 class="paragraph-title mb-4">TAILINGS MANAGEMENT</h2>
+                                <p class="paragraph-content text-justify mb-3 pt-3-4k">San Bartolomé has both a dry stack facility (DSF) and a wet (fines) tailings storage (FDF). The DSF receives tailings from the main process circuit and the FDF receives the Ag-8M tail from the pre-washing process.</p>
+                                <p class="paragraph-content text-justify mb-3">Tailing's design was by Fluor Daniels and annual inspections are conducted by Knight Piesold. Dams have full structural monitoring systems.</p>
+                                <p class="paragraph-content text-justify mb-3">Budgeted sustaining capital is $15 million will provide capacity for five years production.</p>
+                                <p class="paragraph-content text-justify mb-3">During 2021 a review of tailings’ design will be completed to optimise the operation. Andean will also be assessing adoption of ICMM’s Global Industry Standard for Tailings Management, (GISTM).</p>
+                            </div>
+                        </div>
+                        <div class="row m-0 pt-3-4k">
+                            <div class="col-md-4 p-2 eye-container">
+                                <div class="eye"></div>
+                                <img class="image-regular" src="@($"/assets/san-bartolome/DiqueDeColas.jpg")" @onclick="() =>  ShowModal(0)">
+                            </div>
+                            <div class="col-md-4 p-2 eye-container">
+                                <div class="eye"></div>
+                                <img class="image-regular" src="@($"/assets/san-bartolome/Truck.jpg")" @onclick="() =>  ShowModal(1)">
+                            </div>
+                            <div class="col-md-4 p-2 eye-container">
+                                <div class="eye"></div>
+                                <img class="image-regular" src="@($"/assets/san-bartolome/Facilities.jpg")" @onclick="() =>  ShowModal(2)">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private List<ImageModal> imageModal = new();
+
+    private int position = 0;
+
+    private bool isHome = false;
+
+    private bool isShowing = false;
+
+    private string fragment = string.Empty;
+
+    private Banner banner { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        banner = await BannerService.GetBanner("San Bartolome");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+
+        LoadGalleryImage();
+    }
+
+    private void ShowModal(int position)
+    {
+        this.position = position;
+        isShowing = true;
+
+    }
+
+    private void LoadGalleryImage()
+    {
+        imageModal.Add(new ImageModal() { Id = 0, Path = $"/assets/san-bartolome/DiqueDeColas.jpg" });
+        imageModal.Add(new ImageModal() { Id = 1, Path = $"/assets/san-bartolome/Truck.jpg" });
+        imageModal.Add(new ImageModal() { Id = 2, Path = $"/assets/san-bartolome/Facilities.jpg" });
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if(isMenu)  return "pause";
+        return "";
+    }
+}

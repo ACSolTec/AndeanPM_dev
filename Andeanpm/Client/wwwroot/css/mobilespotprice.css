@@ -1,0 +1,37 @@
+﻿
+.btn-exit:focus {
+    outline: 0px solid black;
+}
+
+.z-index-10 {
+    z-index: 10 !important;
+}
+
+.spot-icons {
+    opacity: 1;
+    width: 42px;
+    height: 42px;
+}
+
+.btn-container {
+    position: absolute !important;
+    right: 0px;
+    top: -35px;
+    width: 64px;
+    z-index: 400;
+    border-radius: .5rem .5rem 0 0;
+    text-align: center;
+    height: 35px;
+    opacity: 1;
+    background: black;
+    border-color: black;
+    justify-content: center;
+    display: flex;
+}
+
+.iframe-container {
+    background: black;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
+}

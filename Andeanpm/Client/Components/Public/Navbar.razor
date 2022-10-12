@@ -1,0 +1,575 @@
+﻿@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
+<link href="css/navbar.css" rel="stylesheet" />
+
+<div class="row m-0" id="top">
+    <nav class="navbar-overlayed-container d-none d-xl-flex navbar-expand-lg px-0 navbar-light">
+        <a class="navbar-brand" style="width: 15%;" href="#">
+            <img src="@($"/assets/navbar/logo.svg")" class="cursor-pointer pl-4" href="/" />
+        </a>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mr-auto nav-list">
+                <li class="nav-item">
+                    <a class="nav-link underline" href="javascript:void(0)" @onclick="(() => OnClickMenu(1))">OUR COMPANY </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link underline" href="/OurPeople#top">OUR PEOPLE</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link underline" href="/Careers#top">CAREERS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link underline" href="javascript:void(0)" @onclick="(() => OnClickMenu(3))">OPERATIONS </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link underline" href="javascript:void(0)" @onclick="(() => OnClickMenu(4))">RESPONSIBILITY</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link underline" href="javascript:void(0)" @onclick="(() => OnClickMenu(5))">INVESTORS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link underline" href="/News#top">NEWS</a>
+                </li>
+            </ul>
+            <!-- Socials -->
+            <div class="d-flex flex-row justify-content-end align-items-center px-0">
+                <div class="d-flex flex-row w-70 justify-content-end align-items-center px-4">
+
+                    <div class="d-none d-lg-flex align-items-center">
+                        <a href="https://www.linkedin.com/company/andeanpm/" target="_blank" class="mr-3 d-flex flex-column justify-content-center align-items-center navbar-icon-container-fixed-size navbar-icon-container">
+                            <i class="fab fa-linkedin-in white navbar-icon-size align-self-center navbar-icon"></i>
+                        </a>
+                        <a href="https://twitter.com/AndeanPM" target="_blank" class="mr-3  d-flex flex-column justify-content-center align-items-center navbar-icon-container-fixed-size navbar-icon-container">
+                            <i class="fab fa-twitter white navbar-icon-size align-self-center navbar-icon"></i>
+                        </a>
+                        <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Contact" id="ContactUs">
+								<a href="/NewContact#top"
+									class="d-flex flex-column justify-content-center align-items-center navbar-icon-container-fixed-size navbar-icon-container yellow-hover"
+									style="height: auto;">
+                                <img class="navbar-contact-logo-on-idle" src="@($"/assets/navbar/contactus_w.svg")" />
+									<!--AQUI SE DEBE PONER EL ON HOVER-->
+									<img class="navbar-contact-logo-on-hover" src="@($"/assets/navbar/contactus_g.svg")" />
+								</a>
+						</button>
+
+                    </div>
+                </div>
+                @if(isBigScreen){
+                <div class="d-none d-md-flex flex-row w-30 justify-content-end align-items-center px-0" >
+                        <iframe scrolling="no" allowtransparency="true" frameborder="0" src="https://s.tradingview.com/embed-widget/single-quote/?locale=en#%7B%22symbol%22%3A%22TSXV%3AAPM%22%2C%22width%22%3A%22210%22%2C%22colorTheme%22%3A%22dark%22%2C%22isTransparent%22%3Atrue%2C%22largeChartUrl%22%3A%22https%3A%2F%2Fwww.andeanpm.com%2FInvestors%23top%22%2C%22height%22%3A126%2C%22utm_source%22%3A%22www.tradingview.com%22%2C%22utm_medium%22%3A%22widget_new%22%2C%22utm_campaign%22%3A%22single-quote%22%7D"
+                        style="box-sizing: border-box; height: calc(85px); width: 210px;position: relative;top: -3px;background: black;"></iframe>
+                </div>
+                }
+            </div>
+
+        </div>
+    </nav>
+
+   @if (menuFlag){
+        <div class="w-100 submenu-container d-none d-xl-flex">
+            <div style="z-index: 9; opacity: 1; width: 100%; position: relative;">
+                @switch (idMenu)
+                {
+                    <!-- Our Company -->
+                    case 1:
+                        <div>
+                            <div class="swing-in-top-bck justify-content-center submenu-row">
+                                <div class="submenu-background"></div>
+                                <div class="row main-submenu py-4">
+                                    <div class="col-6 justify-content-center ">
+                                        <div class="row justify-content-start align-items-center">
+                                            <ul>
+                                                <li> <a href="/OurCompany#top">Overview</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 justify-content-center ">
+                                        <div class="row justify-content-start">
+                                            <ul>
+                                                <li><a href="/OurCompany#CompanyPolicies" fragment="CompanyPolicies">Company Policies and Committees</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        break;
+                    case 2:
+                        <!-- Our People -->
+                        <div></div>
+                        break;
+                    case 3:
+                    <!-- Operations -->
+                        <div>
+                            <div class="swing-in-top-bck justify-content-center submenu-row">
+                                <div class="submenu-background"></div>
+                                <div class="row main-submenu py-4 ">
+                                        <div class="col-4 justify-content-center ">
+
+                                        <div class="row justify-content-start">
+                                            <ul>
+                                                <li>
+                                                    <h1>Production</h1>
+                                                </li>
+                                                <li>
+                                                    <a href="/Operations/CerroRicoMine#top" @onclick="() => OnClickMenu(7)">Surface deposits</a>
+                                                    <ul class="px-2">
+                                                        <li class="px-2">
+                                                            <a href="/Operations/CachiLaguna#top" @onclick="() => OnClickMenu(7)">Cachi Laguna</a>
+                                                            </li>
+                                                        <li class="px-2">
+                                                            <a href="/Operations/CerroRicoDeposits#top" @onclick="() => OnClickMenu(7)">Cerro Rico</a>
+                                                          </li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="/OrePurchasing#top" hrefActive="active" @onclick="() => OnClickMenu(7)">Mine Reclamation</a>
+                                                    <ul class="px-2">
+                                                        <li class="px-2"><a href="/Operations/ElAsiento#top" @onclick="() => OnClickMenu(7)">El Asiento</a></li>
+                                                        <li class="px-2"><a href="/Operations/TatasiPortugalete#top" @onclick="() => OnClickMenu(7)">Tatasi-Portugalete</a></li>
+                                                        <li class="px-2"><a href="/Operations/Monserrat#top" @onclick="() => OnClickMenu(7)">Monserrat</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 justify-content-center ">
+                                        <div class="row justify-content-center">
+                                            <ul>
+                                                <li>
+                                                    <h1><a href="/SanBartolome#top">Processing</a></h1>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 justify-content-center ">
+                                        <div class="row justify-content-end">
+                                            <ul>
+                                                <li>
+                                                    <h1><a href="/Exploration#top" @onclick="() => OnClickMenu(7)">Exploration</a></h1>
+                                                </li>
+                                                <li class="px-3"><a href="/Operations/SanPablo#top" @onclick="() => OnClickMenu(7)">San Pablo</a></li>
+                                                <li class="px-3"><a href="/Operations/RioBlanco#top" @onclick="() => OnClickMenu(7)">Rio Blanco</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        break;
+                    case 4:
+                        <!-- Responsibility -->
+                        <div>
+                            <div class="swing-in-top-bck justify-content-center submenu-row">
+                                <div class="submenu-background"></div>
+                                <div class="row main-submenu py-4">
+                                    <div class="col-6 justify-content-center ">
+                                        <div class="row justify-content-start">
+                                            <ul>
+                                                <li><a href="/SustainabilityFramework#top" @onclick="() => OnClickMenu(7)">ESG</a></li>
+                                                <li><a href="/EsgOverview#top" @onclick="() => OnClickMenu(7)">Community</a></li>
+                                                <li><a href="/Governance#peopleAndDiversityDetail" @onclick="() => OnClickMenu(7)">People and Diversity</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-6 justify-content-center ">
+                                        <div class="row justify-content-start">
+                                            <ul>
+                                                <li><a href="/Governance#healthSafetyDetail" @onclick="() => OnClickMenu(7)">Health and Safety</a></li>
+                                                <li><a href="/Governance#enviromentalStrategy" @onclick="() => OnClickMenu(7)">Environment</a></li>
+                                                <li><a href="/Governance#top" @onclick="() => OnClickMenu(7)">Governance</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        break;
+                    case 5:
+                        <!-- Investors -->
+                        <div>
+                            <div class="swing-in-top-bck justify-content-center submenu-row">
+                                <div class="submenu-background"></div>
+                                <div class="row main-submenu py-4">
+                                    <div class="col-3 justify-content-center ">
+                                        <div class="row justify-content-start">
+                                            <ul>
+                                                <li><a href="/Investors#top" @onclick="() => OnClickMenu(7)">Highlights</a></li>
+                                                <li><a href="/Investors#CorporatePresentation" @onclick="() => OnClickMenu(7)">Corporate Presentation</a></li>
+                                                <li><a href="/Investors#StockInformation" @onclick="() => OnClickMenu(7)">Stock information</a></li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 justify-content-center ">
+                                        <div class="row justify-content-center">
+                                            <ul>
+                                                <li><a href="/Investors#KeyInvestors" @onclick="() => OnClickMenu(7)">Key Investors</a></li>
+                                                <li><a href="/Investors#FinancialReports" @onclick="() => OnClickMenu(7)">Financial Reports</a></li>
+                                                <li><a href="/Investors#TechnicalReports" @onclick="() => OnClickMenu(7)">Technical Reports</a></li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 justify-content-center ">
+                                        <div class="row justify-content-end">
+                                            <ul>
+                                                <li><a href="/Investors#Sustainability" @onclick="() => OnClickMenu(7)">Sustainability</a></li>
+                                                <li><a href="/Investors#AGSM" @onclick="() => OnClickMenu(7)">AGSM</a></li>
+                                                <li><a href="/Investors#CapitalStructure" @onclick="() => OnClickMenu(7)">Capital Structure</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-3 justify-content-center ">
+                                        <div class="row justify-content-end">
+                                            <ul>
+                                                <li><a href="/Investors#ESTMA" @onclick="() => OnClickMenu(7)">ESTMA</a></li>
+                                                <li><a href="/Investors#AnalystCoverage" @onclick="() => OnClickMenu(7)">Analyst Coverage</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        break;
+                    case 6:
+                        <!-- News-->
+                        <div></div>
+                        break;
+                }
+        </div>
+        <div class="invisible-background" @onclick="() => OnClickMenu(7)"> </div>
+    </div>
+    }
+
+    <div class="d-flex d-xl-none navbar-overlayed-container">
+        <div class="logo-container d-flex flex-row w-50  p-0 pl-1 pl-md-0 py-md-1 pl-xl-1">
+            <div class="d-flex flex-row w-100 logo justify-content-start p-0 pl-1 pl-md-0 py-md-1 pl-xl-1">
+                <img style="width: fit-content;transform: scale(1.25);" src="@($"/assets/navbar/logo.svg")" class="cursor-pointer pl-4" @onclick="@(() => GoToPage("/"))" />
+            </div>
+        </div>
+        <div class="d-flex flex-row w-50 justify-content-end align-items-center px-0">
+            <div class="d-flex flex-row w-70 justify-content-end align-items-center px-4">
+                <div class="d-flex mr-lg-4 flex-column justify-content-center align-items-center navbar-icon-container-fixed-size navbar-icon-container" @onclick="() => Menu(true)">
+                    <i class="fab fas fa-bars white navbar-icon-size align-self-center navbar-icon"></i>
+                </div>
+                <div class="d-none d-lg-flex align-items-center">
+                    <a href="https://www.linkedin.com/company/andeanpm/" target="_blank" class="mr-3 d-flex flex-column justify-content-center align-items-center navbar-icon-container-fixed-size navbar-icon-container">
+                        <i class="fab fa-linkedin-in white navbar-icon-size align-self-center navbar-icon"></i>
+                    </a>
+                    <a href="https://twitter.com/AndeanPM" target="_blank" class="mr-3  d-flex flex-column justify-content-center align-items-center navbar-icon-container-fixed-size navbar-icon-container">
+                        <i class="fab fa-twitter white navbar-icon-size align-self-center navbar-icon"></i>
+                    </a>
+                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Contact" id="ContactUs">
+						<a href="NewContact#top"
+							class="d-flex flex-column justify-content-center align-items-center navbar-icon-container-fixed-size navbar-icon-container yellow-hover"
+							style="height: auto;">
+							<img class="navbar-contact-logo-on-idle" src="@($"/assets/navbar/contactus_w.svg")" />
+							<!--AQUI SE DEBE PONER EL ON HOVER-->
+							<img class="navbar-contact-logo-on-hover" src="@($"/assets/navbar/contactus_g.svg")" />
+						</a>
+					</button>
+                </div>
+            </div>
+            @if (isBigScreen)
+            {
+                <div class="d-none d-md-flex flex-row w-30 justify-content-end align-items-center px-0">
+                    <iframe scrolling="no" allowtransparency="true" frameborder="0" src="https://s.tradingview.com/embed-widget/single-quote/?locale=en#%7B%22symbol%22%3A%22TSXV%3AAPM%22%2C%22width%22%3A%22210%22%2C%22colorTheme%22%3A%22dark%22%2C%22isTransparent%22%3Atrue%2C%22largeChartUrl%22%3A%22https%3A%2F%2Fwww.andeanpm.com%2FInvestors%23top%22%2C%22height%22%3A126%2C%22utm_source%22%3A%22www.tradingview.com%22%2C%22utm_medium%22%3A%22widget_new%22%2C%22utm_campaign%22%3A%22single-quote%22%7D"
+                    style="box-sizing: border-box; height: calc(85px); width: 210px;position: relative;top: -3px;background: black;"></iframe>
+            </div>
+            }
+        </div>
+
+        <!--THE MENU-->
+        <div class="@(isMenu ? "navbar-menu" : "d-none")">
+            <a class="yellow-hover"><i class="navbar-cierre fas fa-times-circle white yellow-hover" @onclick="() => Menu(false)"></i></a>
+            <a href="/" class="navbar-home d-flex flex-column justify-content-center align-items-center navbar-icon-container-fixed-size navbar-icon-container yellow-hover white">
+                <img class="navbar-contact-logo-on-idle" src="@($"/assets/navbar/home_w.svg")" />
+                <!--AQUI SE DEBE PONER EL ON HOVER-->
+                <img class="navbar-contact-logo-on-hover" src="@($"/assets/navbar/home_g.svg")" />
+            </a>
+
+            <div class="navbar-patch">
+                <div class="navbar-menu-title white">
+                    <div class="navbar-menu-title-text @IsSubmenuOpen(1, "title")" @onclick="() => OpenOrCloseSubmenu(1)">OUR COMPANY</div>
+                    <div class="navbar-menu-submenu @IsSubmenuOpen(1, "submenu")">
+                        <div class="navbar-submenu-option mt-2" @onclick="() => Menu(false)">
+                            <a href="/OurCompany#top">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Overview
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/OurCompany#CompanyPolicies">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Company Policies and Committees
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navbar-menu-title white">
+                    <a href="/OurPeople#top" class="navbar-menu-title-text white no-decoration">
+					    OUR PEOPLE
+				    </a>
+                </div>
+                
+                <div class="navbar-menu-title white">
+                    <a href="/Careers#top" class="navbar-menu-title-text white no-decoration">
+					    CAREERS
+				    </a>
+                </div>
+
+                <div class="navbar-menu-title white">
+                    <div class="navbar-menu-title-text @IsSubmenuOpen(3, "title")" @onclick="() => OpenOrCloseSubmenu(3)">OPERATIONS</div>
+                    <div class="navbar-menu-submenu @IsSubmenuOpen(3, "submenu")">
+                        <div class="">
+                            <div class="navbar-submenu-option mt-2" @onclick="() => OpenOrCloseSubSubmenu(1)">
+                                <a>
+                                    <i class="fas fa-caret-right navbar-submenu-caret"></i> Production
+                                </a>
+                            </div>
+                            <div class="pl-3 @IsSubmenuOpen(1, "subsubmenu")">
+                                <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                                    <a href="/Operations/CerroRicoMine#top">
+                                        <i class="fas fa-caret-right navbar-submenu-caret"></i> Surface Deposits
+                                    </a>
+                                </div>
+                                <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                                    <a href="/OrePurchasing#top">
+                                        <i class="fas fa-caret-right navbar-submenu-caret"></i> Mine Reclamation
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="navbar-submenu-option mt-2">
+                                <a href="/SanBartolome#top">
+                                    <i class="fas fa-caret-right navbar-submenu-caret"></i> Processing
+                                </a>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="navbar-submenu-option mt-2">
+                                <a href="/Exploration#top">
+                                    <i class="fas fa-caret-right navbar-submenu-caret"></i> Exploration
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navbar-menu-title white">
+                    <div class="navbar-menu-title-text @IsSubmenuOpen(5, "title")"  @onclick="() => OpenOrCloseSubmenu(5)">RESPONSIBILITY</div>
+                    <div class="navbar-menu-submenu @IsSubmenuOpen(5, "submenu")">
+                        <div class="navbar-submenu-option mt-2" @onclick="() => Menu(false)">
+                            <a href="/SustainabilityFramework#top">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> ESG
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/EsgOverview#top">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Community
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/Governance#peopleAndDiversityDetail">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> People and Diversity
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/Governance#healthSafetyDetail">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Health and Safety
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/Governance#enviromentalStrategy">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Environment
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/Governance#top">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Governance
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navbar-menu-title white">
+                    <div class="navbar-menu-title-text @IsSubmenuOpen(6, "title")" @onclick="() => OpenOrCloseSubmenu(6)">INVESTORS</div>
+
+                    <div class="navbar-menu-submenu @IsSubmenuOpen(6, "submenu")">
+                        <div class="navbar-submenu-option mt-2" @onclick="() => Menu(false)">
+                            <a href="/Investors#top">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Highlights
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/Investors#CorporatePresentation">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Corporate Presentation
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option mt-2" @onclick="() => Menu(false)">
+                            <a href="/Investors#StockInformation">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Stock Information
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/Investors#KeyInvestors">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Key Investors
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/Investors#FinancialReports">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Financial Reports
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/Investors#TechnicalReports">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Technical Reports
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/Investors#Sustainability">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Sustainability
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/Investors#AGSM">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> AGSM
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/Investors#CapitalStructure">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Capital Structure
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/Investors#ESTMA">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> ESTMA
+                            </a>
+                        </div>
+                        <div class="navbar-submenu-option" @onclick="() => Menu(false)">
+                            <a href="/Investors#AnalystCoverage">
+                                <i class="fas fa-caret-right navbar-submenu-caret"></i> Analyst Coverage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navbar-menu-title white">
+                    <a href="/News#top" class="navbar-menu-title-text white no-decoration">NEWS</a>
+                </div>
+
+            </div>
+
+
+            <!--MENU: BOTTOM-->
+            <div class="chrome-res-navbar ">
+                <div class="navbar-line"></div>
+                <div class="navbar-menu-title">
+                    <div class="navbar-menu-submenu navbar-menu-submenu-show d-flex flex-column">
+                        <a class="navbar-submenu-option yellow-hover text-decoration-none a-remover" href="/NewContact#top" @onclick="() => ScrollToId()">
+                            <i class="fas fa-caret-right navbar-submenu-caret"></i> Contact
+                        </a>
+                        <a class="navbar-submenu-option yellow-hover text-decoration-none a-remover" href="/CustomerCare#top" @onclick="() => ScrollToId()">
+                            <i class="fas fa-caret-right navbar-submenu-caret"></i> Privacy Policy
+                        </a>
+                        <a class="navbar-submenu-option yellow-hover text-decoration-none a-remover" href="/CustomerCare#CookiesPolicy" @onclick="() => ScrollToId()">
+                            <i class="fas fa-caret-right navbar-submenu-caret"></i> Cookies Policy
+                        </a>
+                        <a class="navbar-submenu-option yellow-hover text-decoration-none a-remover" href="/CustomerCare#TermsandConditions" @onclick="() => ScrollToId()">
+                            <i class="fas fa-caret-right navbar-submenu-caret"></i> Terms and Conditions
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar-protector" @onclick="() => Menu(false)"></div>
+    </div>
+    <div class="navbar"></div>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private bool isMenu;
+
+    private int submenuOpened;
+
+    private int subSubmenuOpened;
+
+    private bool menuFlag = false;
+
+    private int idMenu;
+
+    private bool isBigScreen;
+
+    protected override async Task OnInitializedAsync()
+    {
+        int response = await JSRuntime.InvokeAsync<int>("CustomFunctions.getDimensions");
+
+        isBigScreen = response > 768 ? true : false;
+    }
+
+    private void OnClickMenu(int id)
+    {
+        if(id == idMenu && menuFlag == true)
+            menuFlag = false;
+        else menuFlag = true;
+
+        idMenu = id;
+
+        if(id == 7)
+            menuFlag = false;
+    }
+
+    private async Task Menu(bool doOpen)
+    {
+        isMenu = doOpen;
+        await OnMenuEvent.InvokeAsync(isMenu);
+    }
+
+    private void OpenOrCloseSubmenu(int subMenu)
+    {
+        subSubmenuOpened = 0;
+        if (submenuOpened == subMenu) submenuOpened = 0;
+        else submenuOpened = subMenu;
+    }
+
+    private string IsSubmenuOpen(int subMenu, string type)
+    {
+        switch (type)
+        {
+            case "title":
+                return this.submenuOpened == subMenu ? "navbar-menu-title-text-underline" : "";
+            case "submenu":
+                return this.submenuOpened == subMenu ? "navbar-menu-submenu-show" : "";
+            case "subsubmenu":
+                return this.subSubmenuOpened == subMenu ? "navbar-menu-submenu-show" : "d-none";
+            default:
+                return "";
+        }
+    }
+
+    private void OpenOrCloseSubSubmenu(int subSubMenu)
+    {
+        if (subSubmenuOpened == subSubMenu) subSubmenuOpened = 0;
+        else subSubmenuOpened = subSubMenu;
+    }
+
+    private void ScrollToId()
+    {
+        Menu(false);
+    }
+
+    private void Scroll()
+    {
+        isMenu = false;
+
+    }
+
+    private void GoToPage(string page)
+    {
+        NavigationManager.NavigateTo(page);
+    }
+}

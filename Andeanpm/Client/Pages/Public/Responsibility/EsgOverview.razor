@@ -1,0 +1,514 @@
+﻿@page "/EsgOverview"
+
+@inject IJSRuntime JSRuntime
+@inject IBannerService BannerService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/esg.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent" />
+    <div class="esg-overview-info">
+        <div class="d-block row m-0">
+            <div class="perspective-100">
+                <img id="com-01" class="banner banner-fade z-index-m-2 paragraph-image-half" src="@banner.Url" />
+            </div>
+            <div class="px-5 py-3">
+            </div>
+            <div class="centered d-none d-lg-block">
+                <h1 class="paragraph-title align-end py-2">COMMUNITY ENGAGEMENT</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row centered d-block d-lg-none">
+        <h1 class="paragraph-title align-end py-2">COMMUNITY ENGAGEMENT</h1>
+    </div>
+    <div class="w-100 @ContentClass()">
+        <div class="container p-0">
+            <div class="col-12">
+
+                <!--SUBMENU-->
+                <div class="row mt-1 mb-4 d-lg-block d-none">
+                    <div class="col-12 pl-3 pr-2 pt-0 ml-4 mr-4 paragraph-content d-flex d-xl-none">
+                        <p class="text-justify pointer">
+                            <a href="/SustainabilityFramework#top" class="a-remover yellow-hover">ESG</a>
+                        </p>
+                        <span class="pl-4 pr-4">|</span>
+                        <p class="text-justify pointer">
+                            <a href="/EsgOverview#top" class="a-remover yellow-hover yellow">Community</a>
+                        </p>
+                        <span class="pl-4 pr-4">|</span>
+                        <p class="text-justify pointer">
+                            <a href="/Governance#peopleAndDiversityDetail" class="a-remover yellow-hover">Employees</a>
+                        </p>
+                        <span class="pl-4 pr-4">|</span>
+                        <p class="text-justify pointer">
+                            <a href="/Governance#healthSafetyDetail" class="a-remover yellow-hover">Health and Safety</a>
+                        </p>
+                        <span class="pl-4 pr-4">|</span>
+                        <p class="text-justify pointer">
+                            <a href="/Governance#enviromentalStrategy" class="a-remover yellow-hover">Environment</a>
+                        </p>
+                        <span class="pl-4 pr-4">|</span>
+                        <p class="text-justify pointer">
+                            <a href="/Governance#top" class="a-remover yellow-hover">Governance</a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row mt-5 pt-4 mt-5-4k">
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-10 col-12 d-flex justify-content-center align-items-center mb-3">
+                        <p class="paragraph-content">
+                            Our Community Strategy is aligned with the following UN Sustainable Development Goals:<br />
+                            <span class="bold">SDG1</span> No poverty; <span class="bold">SDG2</span> Zero hunger; <span class="bold">SDG3</span> Good health and wellbeing; <span class="bold">SDG4</span> Quality Education; <span class="bold">SDG5</span>                            Gender Equality; <span class="bold">SDG8</span> Decent work and economic growth; <span class="bold">SDG9</span> Industry, innovation and infrastructure; <span class="bold">SDG12</span> Responsible consumption and production.
+                        </p>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center align-items-center mt-5">
+                        <img class="logo-sdg" src="@($"/assets/governance/SDG_LOGO.png")" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 p-0">
+
+
+            <div class="container p-0">
+                <div class="row m-0 my-5 mt-5-4k">
+                </div>
+                <div class="col-lg-12 col-12 p-0 pb-4">
+                    <div class="row esg-background-1 pt-5 px-0 px-lg-5 pb-0 pb-lg-5 m-0" style="margin-top: 120px; margin-bottom: 150px;">
+                        <div class="col-12 d-lg-flex">
+                            <div class="col-lg-7 col-12" style="align-self: center;">
+                                <div class="white font-abhaya font-size-24 bold my-3 line-height-22 letter-spacing-0-07 text-center f-250-4k">COMMUNITY PROJECTS IN BOLIVIA</div>
+                                <div class="white font-abhaya font-size-20 bold my-3 line-height-22 letter-spacing-0-07 text-center f-200-4k">Plan Ayllu Jesus de Machaca</div>
+                                <div class="white paragraph-content my-3 line-height-22 text-center">We listen and support the community and their needs</div>
+                            </div>
+                            <div class="col-lg-6 col-12 d-none d-lg-block" style="position: relative;">
+                                <img src="@($"/assets/esg-overview/02.jpg")" class="esg-420" />
+                            </div>
+                            <div class="row d-block d-lg-none">
+                                <img src="@($"/assets/esg-overview/02_rsp.jpg")" class="w-100" />
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 pt-4">
+
+                        <div class="col-12 font-assistant paragraph-content font-size-16 line-height-22 my-5 my-5-4k py-4">
+                            <div class="bold">
+                                Ayllu community members work together to create a sustainable development plan based on their people's needs with no external influence:
+                            </div>
+                            <div>
+                                <div class="head-list my-3">Contributes to sustainable development, health, and society's well-being.</div>
+                                <div class="head-list my-3">Consider the expectations of its key stakeholders.</div>
+                                <div class="head-list my-3">Complies with the applicable legislation and is coherent with the international code of conduct.</div>
+                                <div class="head-list my-3">Obtain a plan from the community which is developed entirely by the community members themselves with no interference of externalities.</div>
+                            </div>
+                        </div>
+
+
+                        <div class="row py-5">
+                            <div class="col-3 d-none d-lg-block">
+                                <img class="image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-2" src="@($"/assets/esg-overview/04.jpg")" />
+                            </div>
+                            <div class="col-lg-9 col-12 centrium-card p-5">
+                                <div class="row justify-content-center pb-4 d-flex d-lg-none ">
+                                    <div class="col-6 align-self-center">
+                                        <div class="font-abhaya font-size-26 bold res-text">WATER, SANITARY AND ELECTRICITY SERVICES</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <img class="p-0 image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-2" src="@($"/assets/esg-overview/04.jpg")" />
+                                    </div>
+                                </div>
+                                <div class="font-abhaya font-size-26 bold d-none  d-lg-block">WATER, SANITARY AND ELECTRICITY SERVICES</div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    The program includes providing necessary water and sanitation services by constructing dry latrines and electricity for all houses in the Ayllu community.
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row py-5">
+                            <div class="col-3 d-none d-lg-block">
+                                <img class="image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-3" src="@($"/assets/esg-overview/05.jpg")" />
+                            </div>
+                            <div class="col-lg-9 col-12 centrium-card p-5">
+                                <div class="row justify-content-center pb-4 d-flex d-lg-none ">
+                                    <div class="col-6">
+                                        <img class="p-0 d-block d-lg-none image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-3" src="@($"/assets/esg-overview/05.jpg")" />
+                                    </div>
+                                    <div class="col-6 align-self-center">
+                                        <div class="font-abhaya font-size-26 bold res-text">SILVERSMITHS SCHOOL</div>
+                                    </div>
+                                </div>
+                                <div class="font-abhaya font-size-26 bold d-none  d-lg-block">SILVERSMITHS SCHOOL</div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    Manquiri renewed its commitment to support not only the development and training of qualified human resources in the silversmithing, but also the massive production of jewels and silverworks.
+                                </div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    These public-private alliances for development have acquired increased importance given the concurrence of resources and shared responsibility reinforcing the relationship among several actors to generate enhanced capacities
+                                    through joint work.
+                                </div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    Manquiri has established an alliance with the Municipal Government of Potosí to promote the silver industry. The plan has three fundamental stages of positioning the city of Potosí as the silversmith center per excellence:
+                                    1.- Training of highly qualified human resources for silverware and silver jewelry to reach 100 technicians from silversmiths; 2.- technician from silversmiths begin to produce jewelry and silver items with high benefit through their own companies or a factory, and 3.- implementation of a global marketing system, to position the silversmith companies from Potosi.
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row py-5">
+                            <div class="col-3 d-none d-lg-block">
+                                <img class="image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-4" src="@($"/assets/esg-overview/06.jpg")" />
+                            </div>
+                            <div class="col-lg-9 col-12 centrium-card p-5">
+                                <div class="row justify-content-center pb-4 d-flex d-lg-none ">
+                                    <div class="col-6">
+                                        <img class="p-0 d-block d-lg-none image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-4" src="@($"/assets/esg-overview/06.jpg")" />
+                                    </div>
+                                    <div class="col-6 align-self-center">
+                                        <div class="font-abhaya font-size-26 bold res-text">BUILDING</div>
+                                    </div>
+                                </div>
+                                <div class="font-abhaya font-size-26 bold d-none  d-lg-block">BUILDING</div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    These public-private alliances for development have acquired increased importance given the concurrence of resources and shared responsibility reinforcing the relationship among several actors to generate enhanced capacities
+                                    through joint work.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-5">
+                            <div class="col-3 d-none d-lg-block">
+                                <img class="image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-5" src="@($"/assets/esg-overview/07.jpg")" />
+                            </div>
+                            <div class="col-lg-9 col-12 centrium-card p-5">
+                                <div class="row justify-content-center pb-4 d-flex d-lg-none ">
+                                    <div class="col-6 align-self-center">
+                                        <div class="font-abhaya font-size-26 bold res-text">EDUCATION AND SPORTS PROMOTION</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <img class="p-0 d-block d-lg-none image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-5" src="@($"/assets/esg-overview/07.jpg")" />
+                                    </div>
+                                </div>
+                                <div class="font-abhaya font-size-26 bold d-none  d-lg-block">EDUCATION AND SPORTS PROMOTION</div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    Through the development plan and in coordination with community authorities, Manquiri supported the construction of schools with complete infrastructure such as sports facilities, auditorium, cafeteria and kitchen, laboratory,
+                                    and library.
+                                </div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    As part of the sport promotion, we support the construction of fields, provide funding to the Soccer School's operation, and other sport disciplines.
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row py-5">
+                            <div class="col-3 d-none d-lg-block">
+                                <img class="image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-6" src="@($"/assets/esg-overview/08.jpg")" />
+                            </div>
+                            <div class="col-lg-9 col-12 centrium-card p-5">
+                                <div class="row justify-content-center pb-4 d-flex d-lg-none ">
+                                    <div class="col-6 align-self-center">
+                                        <div class="font-abhaya font-size-26 bold res-text">TRANSPORTATION SERVICES FOR STUDENTS</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <img class="p-0 d-block d-lg-none image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-6" src="@($"/assets/esg-overview/08.jpg")" />
+                                    </div>
+                                </div>
+                                <div class="font-abhaya font-size-26 bold d-none  d-lg-block">TRANSPORTATION SERVICES FOR STUDENTS</div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">We support the education and attendance of the students. We provide funding for the transportation from remote communities to the Central Chalviri School.</div>
+                            </div>
+                        </div>
+
+
+                        <div class="row py-5">
+                            <div class="col-3 d-none d-lg-block">
+                                <img class="image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-7" src="@($"/assets/esg-overview/09.jpg")" />
+                            </div>
+                            <div class="col-lg-9 col-12 centrium-card p-5">
+                                <div class="row justify-content-center pb-4 d-flex d-lg-none ">
+                                    <div class="col-6">
+                                        <img class="p-0 d-block d-lg-none image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-7" src="@($"/assets/esg-overview/09.jpg")" />
+                                    </div>
+                                    <div class="col-6 align-self-center">
+                                        <div class="font-abhaya font-size-26 bold res-text">FARMING</div>
+                                    </div>
+                                </div>
+                                <div class="font-abhaya font-size-26 bold d-none  d-lg-block">FARMING</div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    Another priority in the Ayllu Jesús de Machaca communities was the construction of 15 greenhouses for horticultural production. The benefited communities are in a position to improve their food quality. These greenhouses' output aims to diversify the community members' food security and the surpluses destined for the market, generating income.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-5">
+                            <div class="col-3 d-none d-lg-block">
+                                <img class="image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-8" src="@($"/assets/esg-overview/10.jpg")" />
+                            </div>
+                            <div class="col-lg-9 col-12 centrium-card p-5">
+                                <div class="row justify-content-center pb-4 d-flex d-lg-none ">
+                                    <div class="col-6">
+                                        <img class="p-0 d-block d-lg-none image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-8" src="@($"/assets/esg-overview/10.jpg")" />
+                                    </div>
+                                    <div class="col-6 align-self-center">
+                                        <div class="font-abhaya font-size-26 bold res-text">FISH FARM</div>
+                                    </div>
+                                </div>
+                                <div class="font-abhaya font-size-26 bold d-none  d-lg-block">FISH FARM</div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    The community of Chalviri Alta, Potosí, has identified the potential of trout farming as the driving force behind its development. A fish farm was built with facilities for spawning, hatching, fingerlings, fattening, filleting
+                                    trout, and facilities and equipment for the preparation of balanced meals.
+                                </div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    This fish farm has a production capacity of 100,000 fingerlings and more than 4,000 kilos of trout meat per year, benefiting both Ayllu and the population of the city due to the high demand for this product. Through this
+                                    project, the community improves their food quality and the economic income generated by its commercialization.
+                                </div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">The fish farm is one of the most important projects executed by the Ayllu community and was financed by Manquiri.</div>
+                            </div>
+                        </div>
+
+
+                        <div class="row py-5">
+                            <div class="col-3 d-none d-lg-block">
+                                <img class="image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-9" src="@($"/assets/esg-overview/11.jpg")" />
+                            </div>
+                            <div class="col-lg-9 col-12 centrium-card p-5">
+                                <div class="row justify-content-center pb-4 d-flex d-lg-none ">
+                                    <div class="col-6 align-self-center">
+                                        <div class="font-abhaya font-size-26 bold res-text">TOURISM</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <img class="p-0 d-block d-lg-none image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-9" src="@($"/assets/esg-overview/11.jpg")" />
+                                    </div>
+                                </div>
+                                <div class="font-abhaya font-size-26 bold d-none  d-lg-block">TOURISM</div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    As a complement and integrated project to the Fish Farm, Manquiri financed the construction and implementation of the "Community Tourist Complex" in the community of Lackachaca. It consists of two cabins, two modules for
+                                    the restaurant, grills, boats, bathrooms, and attached services.
+                                </div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    The fingerlings are raised in the fish farm and transfer to the Lackachaca lagoon to develop and allow the community and tourists to fish. The visitors can take the caught fish on the installed grills or ask the restraint to cook and serve them
+                                </div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    The services offered are fishing, local cuisine based on trout and llama, boat rides, and guided walks. This project directly benefits 80% of the residents of Ayllu community and the population of Potosí as on weekends,
+                                    families go to enjoy the amenities of the Community Tourist Complex.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row py-5">
+                            <div class="col-3 d-none d-lg-block">
+                                <img class="image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-10" src="@($"/assets/esg-overview/12.jpg")" />
+                            </div>
+                            <div class="col-lg-9 col-12 centrium-card p-5">
+                                <div class="row justify-content-center pb-4 d-flex d-lg-none ">
+                                    <div class="col-6 align-self-center">
+                                        <div class="font-abhaya font-size-26 bold res-text">HEAVY EQUIPMENT CONTRACTORS</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <img class="p-0 d-block d-lg-none image-regular border-bottom-width-10 border-bottom-style-solid esg-overview-panel-10" src="@($"/assets/esg-overview/12.jpg")" />
+                                    </div>
+                                </div>
+                                <div class="font-abhaya font-size-26 bold d-none  d-lg-block">HEAVY EQUIPMENT CONTRACTORS</div>
+                                <div class="font-size-14 font-assistant line-height-22 mt-3">
+                                    Manquiri has developed a successful job creation model by incorporating community members among its contractors. Since 2009 Manquiri established and strengthened community-based companies and formed
+                                    partnerships with communities who provide Manquiri heavy equipment services for land moving, mainly in the tailing dams.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mt-5 mt-5-4k">
+                            <div class="col-lg-12 col-12 d-flex paragraph-content font-size-20 bold text-center px-5 mt-5 mb-2">
+                                Andean knows that human resources are the key company asset, and that our social responsibilities are a basic priority of the business. We commit to the social and economic development of sustainable communities associated with our operations.
+                            </div>
+                        </div>
+
+                        <div class="row mt-5 pt-5-4k">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6 col-12 button d-flex justify-content-center align-items-center">
+                                Our Community Engagement Strategy
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+
+                        <div class="col-12 p-0">
+                            <div class="col-md-12 col-12 p-0 d-md-flex">
+                                <div class="rectangle mb-4 list">
+
+                                    <div class="row py-4">
+                                        <span>
+                                            <a class="circle bold">1</a>
+                                            <a class="content-li">
+                                                Earmarking the communities and other stakeholders associated with our operations and by engaging with them in a culturally appropriate and transparent manner to facilitate a mutually beneficial relationship and active participation;
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="row ">
+                                        <span>
+                                            <a class="circle bold">2</a>
+                                            <a class="content-li white-background">
+                                                Respecting rights, local traditions, interests and cultures of
+                                                local communities including minority groups and indigenous peoples (as defined
+                                                by the UN);
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="row py-4">
+                                        <span>
+                                            <a class="circle bold">3</a>
+                                            <a class="content-li">
+                                                Prioritising local recruitment, and providing training and skills development to
+                                                enable local community members to work at our operations
+                                                and allow the economy in the local community to improve;
+                                            </a>
+                                        </span>
+                                    </div>
+
+                                    <div class="row">
+                                        <span>
+                                            <a class="circle bold">4</a>
+                                            <a class="content-li white-background">
+                                                Promoting gender equality in our operations,
+                                                and provide the necessary training and skills to enable equal opportunities;
+                                            </a>
+                                        </span>
+                                    </div>
+
+                                    <div class="row py-4">
+                                        <span>
+                                            <a class="circle bold">5</a>
+                                            <a class="content-li">
+                                                Implementing workforce and community-led environmental and social risk
+                                                management plans;
+                                            </a>
+                                        </span>
+                                    </div>
+
+                                    <div class="row">
+                                        <span>
+                                            <a class="circle bold">6</a>
+                                            <a class="content-li white-background">
+                                                Funding initiatives that provide sustainable benefit to
+                                                communities associated with our projects;
+                                            </a>
+                                        </span>
+                                    </div>
+
+                                    <div class="row py-4">
+                                        <span>
+                                            <a class="circle bold">7</a>
+                                            <a class="content-li">
+                                                Working to reduce adverse community impacts, and avoiding or reducing sole dependence on our operations, to provide lasting benefits and promotion of sustainable livelihoods;
+                                            </a>
+                                        </span>
+                                    </div>
+
+                                    <div class="row">
+                                        <span>
+                                            <a class="circle bold">8</a>
+                                            <a class="content-li white-background">
+                                                Supporting local communities and their sustainability through
+                                                measures such as community development programmes, and local sourcing
+                                                of goods;
+                                            </a>
+                                        </span>
+                                    </div>
+
+                                    <div class="row py-4">
+                                        <span>
+                                            <a class="circle bold">9</a>
+                                            <a class="content-li">
+                                                Ensuring that stakeholder engagement is conducted in a free, open, transparent
+                                                and culturally appropriate manner;
+                                            </a>
+                                        </span>
+                                    </div>
+
+                                    <div class="row">
+                                        <span>
+                                            <a class="circle bold">10</a>
+                                            <a class="content-li white-background">
+                                                Acknowledging and recording grievances and complaints of
+                                                stakeholders and acting to rectify those over which we have control or influence;
+                                            </a>
+                                        </span>
+                                    </div>
+
+                                    <div class="row py-4">
+                                        <span>
+                                            <a class="circle bold">11</a>
+                                            <a class="content-li">
+                                                Preserving, and where possible enhancing, cultural and historical heritage sites
+                                                in the areas in which we operate;
+                                            </a>
+                                        </span>
+                                    </div>
+
+                                    <div class="row">
+                                        <span>
+                                            <a class="circle bold">12</a>
+                                            <a class="content-li white-background">
+                                                Setting aside funds for social development initiatives to
+                                                benefit communities associated with our projects;
+                                            </a>
+                                        </span>
+                                    </div>
+
+                                    <div class="row py-4">
+                                        <span>
+                                            <a class="circle bold">13</a>
+                                            <a class="content-li">
+                                                Ensuring any activities, taking place on private or indigenous lands, take place with the Free, Prior, Informed Consent of the landowner;
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <Andeanpm.Client.Components.Public.Footer isHome="@isHome" />
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    private Banner banner { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        banner = await BannerService.GetBanner("Esg");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if(isMenu)  return "pause";
+        return "";
+    }
+}

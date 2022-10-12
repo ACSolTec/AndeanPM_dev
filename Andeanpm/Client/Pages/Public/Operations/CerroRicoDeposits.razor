@@ -1,0 +1,136 @@
+﻿@page "/Operations/CerroRicoDeposits"
+
+@inject IJSRuntime JSRuntime
+@inject IBannerService BannerService
+@inject IOperationsService OperationsService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/operations.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+@if (isShowing == true)
+{
+        <Andeanpm.Client.Components.Public.ModalWindow ParentMethodToCallOnClickBtnClose="() => isShowing = false" operations="op" position="position" />
+}
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div>
+            <div class="row m-0 p-0">
+                <div class="col-12 m-0 p-0">
+                    <img src="@banner.Url" class="banner banner-50">
+                </div>
+            </div>
+            <div class="container p-0">
+                <div class="col-12">
+                    <div class="col-12 p-4 pb-4">
+                        <div class="col-lg-12 paragraph-subtitle align-end p-0">
+                                <a href="/Operations/CachiLaguna#top" class="a-remover yellow-hover">
+                                @("<< Previous")</a>|
+                                <a href="/Operations/CerroRicoMine#top" class="a-remover yellow-hover">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Surface Deposits</a>
+                        </div>
+                        <div class="row m-0 mt-5 mb-5 pt-5-4k">
+                            <div class="col-lg-12 p-0">
+                                <div class="paragraph-subtitle">Project</div>
+                                <h1 class="paragraph-title pb-2 andean-gold-bar d-inline-block">CERRO RICO DEPOSITS</h1>
+                            </div>
+                        </div>
+                        <div class="row mt-5 pt-4">
+                            @foreach(var item in op.GetRange(0, 4))
+                            {
+                                <div class="col-lg-3 col-6 p-2 eye-container">
+                                    <div class="eye"></div>
+                                        <img class="image-regular operations-gallery-preview2 w-100" src="@item.ImageLink" @onclick="() => ShowModal(item.Id)">
+                                </div>
+                            }
+                        </div>
+                        <div class="row my-5 py-4 my-5-4k">
+                            <div class="col-lg-8">
+                                <h2 class="paragraph-title text-justify mb-4 pr-3-4k">LOCATION, ACCESS AND HISTORY</h2>
+                                <p class="paragraph-content text-justify mb-3 pr-3-4k">Our deposits are located 3 km south of the city of Potosí on the road to the city of Tarija, the facilities are located in an area on the south east slopes of the world’s largest pure silver deposit called "Cerro Rico”
+                                    (translation “Rich Hill”) mined since 1545.</p>
+                                <p class="paragraph-content text-justify mb-3 pr-3-4k">Andean’s focus is the extraction of silver from the secondary mineral deposition within shallow quaternary deposits at Cerro Rico called “Pallaco”.</p>
+                            </div>
+                            <div class="col-md-4 p-2 eye-container">
+                                <div class="eye"></div>
+                                <img class="image-regular" src="@op.Find( x=> x.Id == 10).ImageLink" @onclick="() =>  ShowModal(op.Find( x=> x.Id == 10).Id)">
+                            </div>
+                        </div>
+                        <div class="row my-5 pt-4 py-4 my-5-4k">
+                            <div class="col-lg-4">
+                                <h2 class="paragraph-title mb-4">GEOLOGY AND MINERALIZATION</h2>
+                                <p class="paragraph-content text-justify mb-3 pr-3-4k">The core of Cerro Rico is a high sulfidation epithermal deposit, with advanced argillization, silicification and Vuggy alterations of silica (above). It presents a vertical and horizontal zoning with a nucleus enriched
+                                    in Sn-Ag and a halo of Zn-Ag-Pb in veins, Stock Works, hydrothermal breccias and disseminations.</p>
+                                <p class="paragraph-content text-justify mb-3 pr-3-4k">Presence of a secondary deposit on the slopes of the hill, product of the erosion and metorization processes that acted on the primary deposit, this accumulation of material is found in sectors of depression, ravines and
+                                    areas of low slope, locally it is called "Pallaco".</p>
+                            </div>
+                            <div class="col-md-4 p-2 eye-container">
+                                <div class="eye"></div>
+                                <img class="image-regular" src="@op.Find( x=> x.Id == 11).ImageLink" @onclick="() =>  ShowModal(op.Find( x=> x.Id == 11).Id)">
+                            </div>
+                            <div class="col-md-4 p-2 eye-container">
+                                <div class="eye"></div>
+                                <img class="image-regular" src="@op.Find( x=> x.Id == 12).ImageLink" @onclick="() =>  ShowModal(op.Find( x=> x.Id == 12).Id)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private List<ImageModal> imageModal { get; set; } = new();
+
+    private List<Operation> op { get; set; } = new();
+
+    private Banner banner { get; set; } = new();
+
+    private int position = 0;
+
+    private bool isShowing = false;
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    private string currentPage = string.Empty;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        op = await OperationsService.Get("CerroRicoDeposits");
+        banner = await BannerService.GetBanner("Cerro Rico Deposits");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+    private void ShowModal(int pos)
+    {
+        this.position = pos;
+        isShowing = true;
+
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if (isMenu) return "pause";
+        return "";
+    }
+}

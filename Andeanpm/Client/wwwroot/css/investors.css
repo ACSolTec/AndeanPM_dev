@@ -1,0 +1,83 @@
+﻿.table-our-people > table > tbody > tr:nth-child(odd) {
+    background: #E5E5E5;
+}
+
+.table-our-people > table > tbody > tr:nth-child(even) {
+    background: white;
+}
+
+.investors-banner-container {
+    background-color: #383842;
+}
+
+.gray-card {
+    background: #F4F4F4;
+}
+
+.big-card {
+    height: 250px;
+}
+
+.small-card {
+    height: 150px;
+}
+
+@media (max-width: 768px) {
+    .small-card {
+        height: inherit;
+    }
+
+    .big-card.b-t.b-b {
+        border: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .small-card {
+        height: 150px;
+    }
+}
+
+
+.small-card.bl::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 25%;
+    height: 50%;
+    width: 1px;
+    border-right: 1px solid #AD8400;
+}
+
+.b-b {
+    border-bottom: 1px solid #AD8400;
+}
+
+.b-t {
+    border-top: 1px solid #AD8400;
+}
+
+.my-6 {
+    margin-bottom: 5rem !important;
+    margin-top: 5rem !important;
+}
+
+@media (min-width: 2048px) {
+    .paragraph-big-number {
+        font-size: 6rem !important;
+    }
+}
+
+@media (max-width: 2048px) {
+    .pt-md-4 {
+        font-size: 6rem !important;
+    }
+}
+
+.graph1 div {
+    min-height: 400px !important;
+}
+
+    .graph1 div iframe {
+        min-height: 400px !important;
+    }

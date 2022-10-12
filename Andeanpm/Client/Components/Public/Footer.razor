@@ -1,0 +1,134 @@
+﻿@inject IJSRuntime JSRuntime
+@inject IFormService FormService
+@inject HttpClient HttpClient;
+
+<link href="css/footer.css" rel="stylesheet" />
+
+<div class="row m-0 footer d-flex justify-content-center align-items-center p-4 p-lg-0 @(!isHome ? "m-footer" : "")" style="width: 100%">
+	<div class="col-12 col-xl-4 mt-2 mt-lg-4 mt-xl-2">
+		<div class="font-assistant font-size-12 d-flex justify-content-center white">
+			<NavLink class="a-remover mx-2 d-flex align-items-center text-center yellow-hover" href="CustomerCare#top" Match="NavLinkMatch.All">
+				<i class="fas fa-circle mr-1" style="font-size:4px;"></i> Privacy Policy
+			</NavLink>
+			<NavLink class="a-remover mx-2 d-flex align-items-center text-center yellow-hover" href="CustomerCare#CookiesPolicy" Match="NavLinkMatch.All">
+				<i class="fas fa-circle mr-1" style="font-size:4px;"></i> Cookies Policy
+			</NavLink>
+			<NavLink class="a-remover mx-2 d-flex align-items-center text-center yellow-hover" href="CustomerCare#TermsandConditions" Match="NavLinkMatch.All">
+				<i class="fas fa-circle mr-1" style="font-size:4px;"></i> Terms and conditions
+			</NavLink>
+		</div>
+	</div>
+	<div class="col-xl-2 d-flex justify-content-center border-lg-right-white mt-2" >
+		<div class="main-title white font-size-20">SUBSCRIBE</div>
+	</div>
+	<div class="col-xl-3 d-flex justify-content-center" >
+		<div class="main-text white width346 text-center font-size-12 subscribe">
+			Subscribe to Andean Precious Metals news to receive our updates and information.
+		</div>
+	</div>
+	@if(!showMessage){
+	<div class="col-xl-3 d-flex justify-content-center mt-2 mt-xl-1 mb-0 mb-lg-5 mb-xl-0">
+		<EditForm Model="subscriber" class="d-flex col-12 p-0 d-flex justify-content-center">
+			<InputText type="email" @bind-Value="subscriber.Email" class="footer-input gray-blue pl-3 white" placeholder="Enter your email" />
+			<div>
+				<div @onclick="(() => SubscribeNewsletter())" class="footer-button @(disabled ? "disable" : "")">
+					<i class="fa fa-arrow-right arrow-btn font-size-30"
+						aria-hidden="true"></i>
+				</div>
+			</div>
+		</EditForm>
+	</div>
+	}
+	@if(showMessage){
+	<div class="col-xl-3 d-flex justify-content-center mt-2 mt-xl-1 mb-0 mb-lg-5 mb-xl-0">
+		<div @onclick="(() => AcceptSubscribe())">
+			<div class="footer-button @(error1 ? "error1" : "")">
+				<i class="fa fa-arrow-left arrow-btn font-size-30" aria-hidden="true"></i>
+			</div>
+		</div>
+		<div class="ml-2 main-text width346 d-flex d-flex align-items-center bold green @(error1 ? "error-text" : "")">@message</div>
+	</div>
+	}
+
+	<div class="d-flex d-lg-none py-2">
+		<a href="https://www.linkedin.com/company/andeanpm/" target="_blank" class="d-flex flex-column justify-content-center align-items-center navbar-icon-container-fixed-size navbar-icon-container">
+			<i class="fab fa-linkedin-in white navbar-icon-size align-self-center navbar-icon"></i>
+		</a>
+		<a href="https://twitter.com/AndeanPM" target="_blank" class="d-flex flex-column justify-content-center align-items-center navbar-icon-container-fixed-size navbar-icon-container">
+			<i class="fab fa-twitter white navbar-icon-size align-self-center navbar-icon"></i>
+		</a>
+		
+		<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="left" title="Contact" id="ContactUs">
+			<NavLink href="/NewContact#top" Match="NavLinkMatch.All" class="d-flex flex-column justify-content-center align-items-center navbar-icon-container-fixed-size navbar-icon-container yellow-hover" style="height: auto;">
+				<img class="navbar-contact-logo-on-idle" src="@($"/assets/navbar/contactus_w.svg")"/>
+				<!--AQUI SE DEBE PONER EL ON HOVER-->
+				<img class="navbar-contact-logo-on-hover" src="@($"/assets/navbar/contactus_g.svg")"/>
+			</NavLink>
+		</button>
+	</div>
+
+</div>
+
+<Andeanpm.Client.Components.Public.MobileSpotPrice />
+
+@code {
+	[Parameter]
+	public bool isHome { get; set; }
+
+	Subscriber subscriber = new();
+
+	//subscription : Subscription;
+	private bool submited = false;
+	private bool disabled = false;
+	private bool showMessage = false;
+	private bool error1 = false;
+	private string invalidEmailMessage = "Invalid email format.";
+	private string message = string.Empty;
+	private string Valid = string.Empty;
+
+	private async Task SubscribeNewsletter()
+	{
+
+		error1 = false;
+		submited = true;
+		message = string.Empty;
+
+		if (UtilityFunctions.IsValidEmail(subscriber.Email))
+		{
+			try
+			{
+				var response = await FormService.Subscription(subscriber);
+				if (response.Success)
+				{
+					subscriber = new();
+				}
+				else
+				{
+					error1 = true;
+				}
+
+				disabled = false;
+				submited = false;
+				showMessage = true;
+				message = response.Message;
+			}catch(Exception e)
+			{
+
+			}
+	}
+		else
+		{
+			showMessage = true;
+			message = invalidEmailMessage;
+			disabled = false;
+			error1 = true;
+			subscriber = new();
+		}
+	}
+
+	private void AcceptSubscribe()
+	{
+		showMessage = false;
+		error1 = false;
+	}
+}

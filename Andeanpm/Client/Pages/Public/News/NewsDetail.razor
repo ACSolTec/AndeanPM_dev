@@ -1,0 +1,119 @@
+﻿@page "/News/{IdNews}"
+
+@inject IJSRuntime JSRuntime
+@inject INewsService NewsService
+@inject IBannerService BannerService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/newsdetail.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+       <div class="d-block row m-0">
+           <div class="perspective-100">
+                <img id="com-01" class="banner  z-index-m-2 paragraph-image-half" src="@banner.Url" />
+           </div>
+           <div class="centered d-none d-lg-block">
+                <h1 class="paragraph-title align-end py-2">NEWS</h1>
+           </div>
+        </div>
+        <div class="row centered d-block d-lg-none">
+            <h1 class="paragraph-title align-end py-2">NEWS</h1>
+        </div>
+        <div class="container p-0 mb-5 mb-5-4k pb-4" style="min-height: 60vh;">
+
+            <div class="row m-0 p-0">
+                <div class="col-lg-1"></div>
+                <div class="col-12 col-lg-5 paragraph-subtitle pt-4">
+                    Share <a class="andean-gold-font font-size-14 bold mr-2 ml-2">|</a>
+                    <a href="@buttons.TwitterUrl" target="_blank">
+                        <img shareButton="twitter" title="@news.Title" class="image-button" src="@($"/assets/share-buttons/Twitter.svg")">
+                    </a>
+                    <a href="@buttons.LinkedInUrl" target="_blank">
+                        <img shareButton="linkedin" title="@news.Title" class="image-button" src="@($"/assets/share-buttons/LinkedIn.svg")">
+                    </a>
+                    <a href="@buttons.FacebookUrl" target="_blank">
+                        <img shareButton="facebook" title="@news.Title" class="image-button" src="@($"/assets/share-buttons/facebook.svg")">
+                    </a>
+                    <a href="@buttons.WhatsappUrl" target="_blank">
+                        <img shareButton="whatsapp" title="@news.Title" class="image-button" src="@($"/assets/share-buttons/Whatsapp.svg")">
+                    </a>
+                    <img class="image-button" @onclick="( () => DownloadFileFromURL(news.PKNews, news.PDFURL))">
+                    
+                </div>
+                <div class="col-12 col-lg-5 paragraph-subtitle align-end pt-4">
+                    <a href="/News#top" class="a-remover yellow-hover">@("<<") Back to News</a>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+            <div class="row m-0 pt-5 mt-5-4k mt-5">
+                <div class="col-lg-1"></div>
+                <div class="col-12 col-lg-10">
+                    <div class="paragraph-title text-center">@news.Title</div>
+                    <br>
+                    <div class="col-12 p-0">
+                        @convertedMarkdown
+                    </div>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+        </div>
+        <Andeanpm.Client.Components.Public.Footer isHome="@isHome" />
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public string IdNews { get; set; } = string.Empty;
+
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private News news = new();
+
+    private ShareButtons buttons = new();
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    private MarkupString convertedMarkdown;
+
+    private Banner banner { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        banner = await BannerService.GetBanner("News");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+
+        news = await NewsService.GetNewsId(IdNews);
+
+        buttons = new(news.Title, $"{NavigationManager.BaseUri}{news.PKNews}#top");
+
+        convertedMarkdown = (MarkupString)news.Content;
+    }
+
+    private async Task DownloadFileFromURL(string fileName, string fileURL)
+    {
+        await JSRuntime.InvokeVoidAsync("CustomFunctions.triggerFileDownload", $"{fileName}.pdf", $"{NavigationManager.BaseUri}{fileURL}");
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if (isMenu) return "pause";
+        return "";
+    }
+}

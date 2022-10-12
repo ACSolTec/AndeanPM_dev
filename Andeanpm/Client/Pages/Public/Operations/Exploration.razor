@@ -1,0 +1,206 @@
+﻿@page "/Exploration"
+
+@inject IJSRuntime JSRuntime
+@inject IBannerService BannerService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/exploration.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div class="d-block row m-0">
+            <div class="perspective-100">
+                <img id="com-01" class="banner banner-fade z-index-m-2 paragraph-image-half" src="@banner.Url" />
+            </div>
+            <div class="px-5 py-3">
+            </div>
+            <div class="centered d-none d-lg-block">
+                <h1 class="paragraph-title align-end py-2">EXPLORATION</h1>
+            </div>
+        </div>
+        <div class="row centered d-block d-lg-none">
+            <h1 class="paragraph-title align-end py-2">EXPLORATION</h1>
+        </div>
+
+        <div class="container p-0">
+            <div class="col-12">
+                <div class="col-12 pb-4">
+                    <div class="row mt-1 mb-4 d-lg-block d-none">
+                        <div class="col-12 pt-0 paragraph-content d-flex d-xl-none">
+                            <p class="text-justify pointer yellow-hover" data-toggle="collapse" href="#boliviaSubmenu" aria-expanded="false">Production</p>
+                            <span class="pl-4 pr-4">|</span>
+                            <p class="text-justify pointer">
+                                <a href="/SanBartolome#top" class="a-remover yellow-hover">
+                                    Processing
+                                </a>
+                            </p>
+                            <span class="pl-4 pr-4">|</span>
+                            <p class="text-justify pointer">
+                                <a href="/Exploration#top" class="a-remover yellow-hover yellow">
+                                    Exploration
+                                </a>
+                            </p>
+                        </div>
+                        <div class="col-12 p-0 d-flex d-md-block paragraph-content justify-content-center">
+                            <div class="collapse" id="boliviaSubmenu">
+                                <div class="d-block d-md-flex col-12 pb-4">
+                                    <div class="pt-0 mr-4 submenu-border pointer">
+                                        <a href="/Operations/CerroRicoMine#top" class="a-remover yellow-hover">
+                                            Surface Deposits
+                                        </a>
+                                    </div>
+                                    <div class="pt-0 mr-4 submenu-border pointer">
+                                        <a href="/OrePurchasing#top" class="a-remover yellow-hover">
+                                            Mine Reclamation
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 p-0 d-flex mt-5 mt-5-4k">
+                        <div class="col-lg-5 center">
+                            <hr>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="font-size-18 text-center">
+                                PROJECTS
+                            </div>
+                        </div>
+                        <div class="col-lg-5 center">
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="row m-0 pt-lg-4 pt-5-4k mb-5-4k">
+                        <div class="col-12 col-lg-12 p-0 p-lg-1 justify-content-center">
+                            <div class="row m-0 justify-content-center">
+                                <div class="col-md-4 text-center">
+                                    <a href="/Operations/SanPablo" class="btn a-remover yellow-hover">
+                                        <img class="image-regular" src="@($"/assets/operations/04.jpg")" alt="">
+                                        <h1 class="mt-1 font-cards pb-1">SAN PABLO</h1>
+                                    </a>
+                                </div>
+
+                                <div class="col-md-4 text-center">
+                                    <a href="/Operations/RioBlanco" class="btn a-remover yellow-hover">
+                                        <img class="image-regular" src="@($"/assets/operations/06.jpg")" alt="">
+                                        <h1 class="mt-1 font-cards pb-1">RIO BLANCO</h1>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 d-flex p-0 our-company-background-1 justify-content-center my-8 my-xs-4 my-sm-4 my-md-4 mt-5-4k">
+                        <div class="col-12 d-md-flex d-block">
+                            <div class="col-md-8 col-12 text-center" style="align-self: center;">
+                                <div class="text-center white font-abhaya font-size-24 bold my-3 line-height-22 letter-spacing-0-07" style="line-height: 2rem;">
+                                    MATERIAL EXPLORATION PROJECTS,
+                                    <br /> 100% OWNED
+                                </div>
+                                <div class="white paragraph-content my-3 line-height-22">
+                                    Two prospective Gold projects in a known gold producing belt.
+                                </div>
+                                <div class="white paragraph-content my-3 line-height-22">
+                                    Andean has recently commenced an extensive multi-year campaign.
+                                </div>
+                            </div>
+                            <div class="col-12 d-block d-md-none p-4">
+                                <img class="image-regular" src="@($"/assets/operations/174.jpg")" />
+                            </div>
+                            <div class="col-md-4 ml-5 pl-5 d-md-block d-none" style="position: relative;">
+                                <img src="@($"/assets/operations/174.jpg")" class="our-company-420" st />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-0 pt-5 pt-5-4k justify-content-center">
+                        <div class="col-12 p-0 p-lg-1">
+                            <div class="col-12 d-md-flex d-block p-0 pb-5 pt-3">
+                                <div class="col-md-1"></div>
+                                <div class="col-12 col-md-6">
+                                    <h1 class="paragraph-title pb-2 andean-gold-bar d-inline-block mb-4 ">SAN PABLO GOLD</h1>
+                                    <div class="paragraph-content bold mb-4 col-12 p-0">Phase I - Diamond drill programme of 10,000m in 2021</div>
+                                    <div class="paragraph-content col-12 pl-3">
+                                        <ul class="list">
+                                            <li>Located 90km SW of Potosi.</li>
+                                            <li>Prolific orogenic gold belt hosting multiple deposits including Kori Kollo (5.5 million Au oz., Newmont) and San Bernardino, (2.3 million Au oz, Orvana).</li>
+                                            <li>Overturned anticline with intrusive location close to axial place.</li>
+                                            <li>Surface grades of 15.95 g/t Au.</li>
+                                            <li>Mineralisation width 40 metres.</li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 p-4">
+                                    <img class="image-regular" src="@($"/assets/operations/224.png")" alt="">
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+
+                            <div class="col-12 d-md-flex d-block p-0 py-4 pt-5-4k">
+                                <div class="col-md-1"></div>
+                                <div class="col-12 col-md-6">
+                                    <h1 class="paragraph-title pb-2 andean-gold-bar d-inline-block mb-4 ">RIO BLANCO AU/SB</h1>
+                                    <div class="paragraph-content bold mb-4 col-12 p-0">Phase I – Surface Mapping, Deep IP and Geophysics in Q2, 2021</div>
+                                    <div class="paragraph-content col-12 pl-3">
+                                        <ul class="list">
+                                            <li>Located 117km South of Potosi.</li>
+                                            <li>Ordovician sedimentary Bendigo style mineralisation.</li>
+                                            <li>Same orogenic belt as San Pablo.</li>
+                                            <li>Structural continuity over 22km.</li>
+                                            <li>21 trenches completed cutting the axial plane of regional anticline.</li>
+                                            <li>10g/t 2m • 2.2g/t 17m • 3.7g/t 9m (all gold g/t)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 p-4 mb-4">
+                                    <img class="image-regular " src="@($"/assets/operations/225.png")" alt="">
+                                </div>
+                                <div class="col-md-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    private Banner banner { get; set; } = new();    
+
+    protected override async Task OnInitializedAsync()
+    {
+        banner = await BannerService.GetBanner("Exploration");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if(isMenu)  return "pause";
+        return "";
+    }
+}

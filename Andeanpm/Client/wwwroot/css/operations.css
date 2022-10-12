@@ -1,0 +1,104 @@
+﻿
+.operations-gallery-preview {
+    /*EA, TP, MT, SP, RB*/
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.operations-gallery-preview2 {
+    /*CerroRicoMine*/
+    width: 200px;
+    height: 165px;
+    object-fit: cover;
+}
+
+.operations-gallery-preview3 {
+    /*CachiLaguna*/
+    width: 200px;
+    height: 165px;
+    object-fit: cover;
+}
+
+
+
+::deep .carousel-cell img {
+    max-width: 100% !important;
+    height: auto !important;
+    object-fit: none !important
+}
+
+@media (orientation: landscape) {
+    ::deep .carousel-cell img {
+        object-fit: contain !important;
+        height: 100% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    ::deep .carousel-cell img {
+        object-fit: contain !important
+    }
+
+    .operations-gallery-preview2 {
+        /*CerroRicoMine*/
+        height: 120px !important;
+    }
+
+    .operations-gallery-preview3 {
+        /*CachiLaguna*/
+        height: 120px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .operations-gallery-preview {
+        /*EA, TP, MT, SP, RB*/
+        height: 165px !important;
+    }
+
+    .operations-gallery-preview2 {
+        /*CerroRicoMine*/
+        height: 165px !important;
+    }
+
+    .operations-gallery-preview3 {
+        /*CachiLaguna*/
+        height: 165px !important;
+    }
+
+    .image-regular-cards {
+        width: 90%;
+    }
+}
+
+@media (min-width: 992px) {
+    .operations-gallery-preview3 {
+        /*CachiLaguna*/
+        height: 130px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .operations-gallery-preview3 {
+        /*CachiLaguna*/
+        min-height: 165px !important;
+    }
+}
+
+@media (min-width: 2048px) {
+    .operations-gallery-preview {
+        /*EA, TP, MT, SP, RB*/
+        min-height: 200px !important;
+    }
+
+    .operations-gallery-preview2 {
+        /*CerroRicoMine*/
+        min-height: 400px !important;
+    }
+
+    .operations-gallery-preview3 {
+        /*CachiLaguna*/
+        min-height: 310px !important;
+    }
+}

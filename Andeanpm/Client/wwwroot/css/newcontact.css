@@ -1,0 +1,107 @@
+﻿.new-contact-banner, .new-contact-banner-mov {
+    width: 100%;
+    height: 100vh;
+    background-image: url("/assets/new-contact/01.jpg");
+    background-size: 100% 50%;
+    background-repeat: no-repeat;
+}
+
+.invalid{
+    border-color: red;
+}
+
+.new-contact-banner-mov {
+    height: calc(100vh + 10em);
+    background-size: cover;
+}
+
+.new-contact-form-container {
+    margin-top: 100px;
+    margin-bottom: 50px;
+}   
+
+.new-contact-form-container-mul {
+    background-color: white !important;
+    box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.25) !important;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.new-contact-input {
+    background-color: transparent;
+}
+
+.border-right-pseudo-white {
+    border-right: 1px solid #AD8400;
+}
+
+
+.b-border {
+    border-bottom: 1px solid #AD8400;
+}
+
+
+@media (min-width: 769px) {
+    .p-lg-8 {
+        padding-bottom: 2.5rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .new-contact-banner-mov {
+        height: calc(100vh + 20em) !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .new-contact-banner-mov {
+        height: 100% !important;
+    }
+}
+
+@media (min-width: 2048px) {
+    .andean-button-gray-blue {
+        max-width: 300px !important;
+        min-width: 300px !important;
+        font-size: 170% !important;
+    }
+}
+
+.error {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: red;
+    background-color: #fff;
+    background-clip: padding-box;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* FORM VALID */
+.new-contact-input.is-valid, .was-validated .new-contact-input:valid {
+    border-color: #28a745;
+    padding-right: calc(1.5em + 0.75rem);
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.new-contact-input.is-invalid, .was-validated .new-contact-input:invalid {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + 0.75rem);
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem rem );
+}
+
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
+}

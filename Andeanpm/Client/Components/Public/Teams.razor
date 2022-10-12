@@ -1,0 +1,88 @@
+﻿
+<link href="css/readmore.css" rel="stylesheet" />
+
+<div class="row">
+    @if (!string.IsNullOrEmpty(Person.PathImage))
+    {
+        <div class="text-center col-4 p-0 pb-4">
+            <img class="profile-photo" src="@($"{@Person.PathImage}")" alt="" srcset="">
+        </div>
+    }
+    <div class="col-8  @(string.IsNullOrEmpty(Person.PathImage) ? "col-12" : "col-8")">
+        <div class="font-size-20 font-abhaya @(string.IsNullOrEmpty(Person.PathImage) ? "text-center" : string.Empty)">@Person.Title</div>
+        <div class="paragraph-content font-abhaya font-size-16 andean-gold-font p-0 my-2  @(string.IsNullOrEmpty(Person.PathImage) ? "text-center" : string.Empty)">@Person.Subtitle</div>
+        <div class="paragraph-content line-height-22 text-justify @(string.IsNullOrEmpty(Person.PathImage) ? "text-center" : string.Empty)">@aux</div>
+        <div class="row">
+            @if (readMore && cumpleCondicion)
+            {
+                <div class="col-12 read-more mt-2 @(string.IsNullOrEmpty(Person.PathImage) ? "text-center" : string.Empty)" @onclick="(() => Read())">Read More >></div>
+            }
+            @if (!readMore)
+            {
+                <div class="col-12 read-more mt-2 @(string.IsNullOrEmpty(Person.PathImage) ? "text-center" : string.Empty)" @onclick="(() => ReadLess())">@("<< Read Less")</div>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public Person Person { get; set; }
+
+    private bool readMore = true;
+
+    private int numeroPalabras = 21;
+
+    private bool isReadMore = true;
+
+    private bool cumpleCondicion = true;
+
+    private string aux = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        CortarCadena();
+    }
+
+    private void CortarCadena()
+    {
+        string[] fullString = Person.Content.Split(" ");
+
+        if (fullString.Length >= numeroPalabras)
+        {
+
+            List<string> list = new List<string>();
+
+            for (var i = 0; i < numeroPalabras; i++)
+            {
+                list.Add(fullString[i]);
+            }
+
+            string[] auxString = list.ToArray();
+
+            aux = $"{string.Join(" ", auxString)}...";
+
+        }
+        else
+        {
+            cumpleCondicion = false;
+            aux = Person.Content;
+        }
+    }
+
+    private void Read()
+    {
+        readMore = false;
+        ReplaceString();
+    }
+
+    private void ReplaceString()
+    {
+        aux = Person.Content;
+    }
+
+    private void ReadLess()
+    {
+        readMore = true;
+        CortarCadena();
+    }
+}

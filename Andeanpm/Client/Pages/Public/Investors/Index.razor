@@ -1,0 +1,558 @@
+﻿@page "/Investors"
+
+@inject IJSRuntime JSRuntime
+@inject IInvestorsService InvestorsService
+@inject IBannerService BannerService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/investors.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div class="d-block row m-0">
+            <div class="perspective-100">
+                <img id="com-01" class="banner  z-index-m-2 paragraph-image-half" src="@banner.Url" />
+            </div>
+            <div class="centered d-none d-lg-block">
+                <h1 class="paragraph-title align-end py-2">INVESTORS</h1>
+            </div>
+        </div>
+        <div class="row centered d-block d-lg-none">
+            <h1 class="paragraph-title align-end py-2">INVESTORS</h1>
+        </div>
+        <div class="container p-0 mt-5-4k">
+            <div class="row m-0 pt-5">
+                <div class="col-12">
+                    <div class="row my-5 m-0 p-0 d-flex" id="andean-description">
+                        <div class="col-md-6 col-12">
+                            <div class="col-12 d-flex paragraph-title text-center align-items-center p-4 big-card gray-card">
+                            Andean Precious Metals is a Canadian, growth-focused silver producer operating in Bolivia.
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="col-12 d-flex font-size-18 text-center align-items-center p-3 b-t b-b h-100">
+                                The company is positioned to become a mid-tier consolidator while adding long-term shareholder value by expanding its silver production and gold exploration assets in the region.
+                                The company’s common shares are traded under the symbol “APM” on the TSX Venture Exchange. 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Points" class="row d-flex my-5 m-0 p-0">
+                        <div class="d-none d-sm-block">
+                            <div class="col-12 d-flex">
+                                <div class="col-4 small-card text-center d-flex align-items-center bl">
+                                    <div class="w-100">
+                                        <strong>
+                                          2020 production of 5.9M ounces
+                                        </strong>
+                                        <br>
+                                          of silver at all-in sustaining cost of approximately US$14.75 per ounce, primarily from its wholly owned
+                                          Cerro Rico deposits.
+                                    </div>
+                                </div>
+                                <div class="col-4 small-card text-center d-flex align-items-center bl">
+                                    <div class="w-100">
+                                        <strong>
+                                            Flagship 1.65 Mtpa San Bartolomé 
+                                        </strong>
+                                        <br>
+                                        plant has the capacity to produce up to 99.9% refined silver doré bars.
+                                    </div>
+                                </div>
+                                <div class="col-4 small-card text-center d-flex align-items-center">
+                                    <div class="w-100">
+                                        <strong>
+                                            Expanding high margin
+                                        </strong>
+                                        <br>
+                                        third-party ore sourcing business.
+                                    </div>
+                                </div>
+                            </div>
+  
+                            <div class="col-12 d-flex my-4">
+                                <div class="col-4 d-flex justify-content-center">
+                                    <div class="col-4 b-b"></div>
+                                </div>
+                                <div class="col-4 d-flex justify-content-center">
+                                    <div class="col-4 b-b"></div>
+                                </div>
+                                <div class="col-4 d-flex justify-content-center">
+                                    <div class="col-4 b-b"></div>
+                                </div>
+                            </div>
+  
+                            <div class="col-12 d-flex">
+                                <div class="col-4 small-card text-center d-flex align-items-center bl">
+                                    <div class="w-100">
+                                        <strong>
+                                            Flagship 1.65 Mtpa San Bartolomé 
+                                        </strong>
+                                        <br>
+                                            plant has the capacity to produce up to 99.9% refined silver doré bars.
+                                    </div>
+                                </div>
+                                <div class="col-4 small-card text-center d-flex align-items-center bl">
+                                    <div class="w-100">
+                                        <strong>
+                                        Strong balance sheet
+                                        </strong>
+                                        <br>
+                                        and free cash flow generation.
+                                    </div>
+                                </div>
+                                <div class="col-4 small-card text-center d-flex align-items-center">
+                                    <div class="w-100">
+                                        <strong>
+                                            Experienced management team
+                                        </strong>
+                                        <br>
+                                        and Board of Directors with track record of managing growth-focused, publicly traded companies.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-block d-sm-none">
+                            <div class="col-12 small-card text-center d-flex align-items-center py-4 b-b b-t">
+                                <div class="w-100">
+                                    <strong>
+                                        2020 production of 5.9M ounces
+                                    </strong>
+                                    <br>
+                                    of silver at all-in sustaining cost of approximately US$14.75 per ounce, primarily from its wholly owned
+                                    Cerro Rico deposits.
+                                </div>
+                            </div>
+                            <div class="col-12 small-card text-center d-flex align-items-center py-4 b-b">
+                                <div class="w-100">
+                                    <strong>
+                                        Flagship 1.65 Mtpa San Bartolomé 
+                                    </strong>
+                                    <br>
+                                    plant has the capacity to produce up to 99.9% refined silver doré bars.
+                                </div>
+                            </div>
+                            <div class="col-12 small-card text-center d-flex align-items-center py-4 b-b">
+                                <div class="w-100">
+                                    <strong>
+                                        Expanding high margin
+                                    </strong>
+                                    <br>
+                                    third-party ore sourcing business.
+                                </div>
+                            </div>
+                            <div class="col-12 small-card text-center d-flex align-items-center py-4 b-b">
+                                <div class="w-100">
+                                    <strong>
+                                        Flagship 1.65 Mtpa San Bartolomé 
+                                    </strong>
+                                    <br>
+                                    plant has the capacity to produce up to 99.9% refined silver doré bars.
+                                </div>
+                            </div>
+                            <div class="col-12 small-card text-center d-flex align-items-center py-4 b-b">
+                                <div class="w-100">
+                                    <strong>
+                                        Strong balance sheet
+                                    </strong>
+                                    <br>
+                                    and free cash flow generation.
+                                </div>
+                            </div>
+                            <div class="col-12 small-card text-center d-flex align-items-center py-4 b-b">
+                                <div class="w-100">
+                                    <strong>
+                                    Experienced management team
+                                    </strong>
+                                    <br>
+                                    and Board of Directors with track record of managing growth-focused, publicly traded companies.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="CorporatePresentation" class="row my-5  m-0 p-0 d-flex">
+
+                        <div class="col-8  d-none d-lg-flex">
+                            <iframe id="vrify-iframe" width="100%" height="100%" frameborder="0" allowfullscreen="true" allow="fullscreen" src="https://vrify.com/embed/decks/10896-corporate-presentation-jan22"></iframe>
+                        </div>
+                        <div class="col-12 col-lg-6 p-0 mb-4  d-flex d-lg-none">
+                            <iframe id="vrify-iframe" width="100%" height="400px" frameborder="0" allowfullscreen="true" allow="fullscreen" src="https://vrify.com/embed/decks/10896-corporate-presentation-jan22"></iframe>
+                        </div>
+
+                        <div class="col-lg-4 col-12 investors-banner-container p-0">
+                            <div class="col-12 col-lg-12 p-0">
+                                <img class="image-regular" src="@($"/assets/investors/PresentCorp.jpg")" />
+                            </div>
+                            <div class="col-12 col-lg-12 p-0 pt-4 pb-4 d-flex flex-column align-items-center justify-content-center">
+                                <div class="font-assistant white font-size-20 mb-3 mt-2" @onclick='(() => DownloadFileFromURL("CorporatePresentation", "Andean_Investor_Deck.pdf"))'>
+                                    <a class="a-remover" style="cursor: pointer;">
+                                        Download PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="StockInformation" class="d-flex row my-6">
+                        <div class="col-12 mt-5-4k">
+                            <div class="d-none d-lg-flex background-dark-gray px-3 py-2 w-50 white bold font-assistant font-size-20">STOCK INFORMATION</div>
+                            <div class="d-flex d-lg-none background-dark-gray px-3 py-2 w-100 white bold font-assistant font-size-20">STOCK INFORMATION</div>
+                            <div class="border-gray-full p-3">
+                                <iframe src="/assets/investors/todayprices.html?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" class="w-100 res-graph" scrolling="no" style="min-height: 280px" frameborder="0" allowfullscreen></iframe>
+                                <div class="tradingview-widget-container">
+                                    <div id="tradingview_ec0ef" class="graph1"></div>
+                                    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/TSXV-APM/" rel="noopener" target="_blank"><span class="blue-text">APM Chart</span></a> by TradingView</div>
+                                </div>
+                            </div>
+                            <div  class="col-12 pt-2 font-size-12 font-assistant">
+                                Data delayed 15 minutes unless otherwise indicated. Market data powered by TradingView.
+                            </div>
+                        </div>
+                    </div>
+          
+                    <div id="KeyInvestors">
+                        <div  class="d-none d-lg-flex row my-6">
+                            <div class="col-12 mt-5-4k">
+                                <div class="background-dark-gray px-3 py-2 w-50 white bold font-assistant font-size-20">KEY INVESTORS</div>
+                                <div class="border-gray-full p-3">
+                                    <div class="row p-3">
+                                        <div class="col-4 border-right-black text-center">
+                                            <span class="paragraph-title line-height-30 font-size-18"><br />MANAGEMENT AND INSIDERS</span>
+                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                            <span
+                                                class="text-center paragraph-big-number letter-spacing-0-07 gray-blue font-size-72">55.8%</span>
+                                            </div>
+  
+                                        </div>
+                                        <div class="col-4 border-right-black text-center">
+                                            <span class="paragraph-title line-height-30 font-size-18"><br />INDUSTRY BACKING FROM ERIC
+                                            SPROTT</span>
+                                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                            <span
+                                                class="text-center paragraph-big-number letter-spacing-0-07 gray-blue font-size-72">14%</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 pr-0 text-center">
+                                            <span class="paragraph-title line-height-30 font-size-18"><br />INSTITUTIONAL
+                                            SHAREHOLDERS<br /></span>
+                                            <span class="paragraph-title line-height-30 gray-blue font-size-16 f-200-4k">
+                                            Merk, AIMS (Phoenix gold), Ruffer, Arrow, Sprott AM, APAC, Dundee, Ixios AM
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+  
+                        <div class="d-flex d-lg-none row my-5 p-3">
+                            <div class="col-12 p-0 m-0">
+                                <div class="background-dark-gray px-3 py-2 w-100 white bold font-assistant font-size-20">KEY INVESTORS</div>
+                            </div>
+                            <div class="row m-0 border-gray-full">
+                                <div class="col-12 d-flex justify-content-center pt-5">
+                                    <div class="paragraph-title line-height-30 font-size-18 w-75 text-center">MANAGEMENT AND INSIDERS</div>
+                                </div>
+                                <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                                    <div class="text-center paragraph-big-number letter-spacing-0-07 gray-blue font-size-72 border-bottom-black pb-5">55.8%</div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-center pt-5">
+                                    <div class="paragraph-title line-height-30 font-size-18 w-75 text-center">INDUSTRY BACKING FROM ERIC SPROTT</div>
+                                </div>
+                                <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                                    <div class="text-center paragraph-big-number letter-spacing-0-07 gray-blue font-size-72 border-bottom-black pb-5">14%</div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-center pt-5">
+                                    <div class="paragraph-title line-height-30 font-size-18 w-75 text-center">INSTITUTIONAL SHAREHOLDERS
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+                                    <div class="text-center letter-spacing-0-07 gray-blue font-size-16 pb-5">Merk, AIMS (Phoenix gold), Ruffer, Arrow, Sprott AM, APAC, Dundee, Ixios AM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+          
+                    <div id="FinancialReports" class="col-12 p-0 d-block d-lg-flex my-6">
+                        <div class="col-12 col-lg-6 m-0 p-0 mt-5-4k">
+                            <div class="d-none d-lg-flex background-dark-gray px-3 py-2 w-50 white bold font-assistant font-size-20">FINANCIAL REPORTS</div>
+                            <div class="d-flex d-lg-none background-dark-gray px-3 py-2 w-100 white bold font-assistant font-size-20">FINANCIAL REPORTS</div>
+                            <div class="border-gray-full p-3 ">
+                                <div class="table-responsive table-sm table-our-people font-assistant">
+                                    <table class="table text-justify">
+                                        <tbody>
+                                            @foreach (var item in InvestorReports.Where(x => x.Module.Equals("FinancialReports")).Reverse())
+                                            {
+                                            <tr class="font-size-14">
+                                                <td>@item.Title</td>
+                                                <td class="yellow">
+                                                    <a @onclick='(() => DownloadFileFromURL(item.Module , item.Url.Split("/").Last()))' class="a-remover yellow-hover" style="cursor: pointer;">
+                                                        @item.SubTitle
+                                                    </a>
+                                                </td>   
+                                            </tr>
+                                            }
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="TechnicalReports" class="col-12 col-lg-6 m-0 p-0 pl-lg-2 mt-5-4k pt-4 pt-lg-0">
+                            <div class="background-dark-gray px-3 py-2 w-50 white bold font-assistant font-size-20 d-none d-lg-block">TECHNICAL REPORTS</div>
+                            <div class="background-dark-gray px-3 py-2 w-100 white bold font-assistant font-size-20 d-block d-lg-none">TECHNICAL REPORTS</div>
+                            <div class="border-gray-full p-3">
+                                <div class="table-responsive table-sm table-our-people font-assistant">
+                                    <table class="table text-justify">
+                                        <tbody>
+                                            @foreach (var item in InvestorReports.Where(x => x.Module.Equals("TechnicalReports")).Reverse())
+                                            {
+                                            <tr class="font-size-14">
+                                                <td>@item.DateCreate.ToString("MMM d, yyyy")</td>
+                                                <td>@item.Title</td>
+                                                <td class="yellow">
+                                                    <a @onclick='(() => DownloadFileFromURL(item.Module , item.Url.Split("/").Last()))' class="a-remover yellow-hover" style="cursor: pointer;">
+                                                        @item.SubTitle
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Sustainability" class="col-12 p-0 d-block d-lg-flex my-6">
+                        <div class="col-12 col-lg-6 m-0 p-0 mt-5-4k">
+                            <div class="d-none d-lg-flex background-dark-gray px-3 py-2 w-50 white bold font-assistant font-size-20">
+                                SUSTAINABILITY
+                            </div>
+                            <div class="d-flex d-lg-none background-dark-gray px-3 py-2 w-100 white bold font-assistant font-size-20">
+                                SUSTAINABILITY
+                            </div>
+                            <div class="border-gray-full p-3 ">
+
+                                <div class="table-responsive table-sm table-our-people font-assistant">
+                                    <table class="table text-justify">
+                                        <tbody>
+                                            @foreach (var item in InvestorReports.Where(x => x.Module.Equals("Sustainability")).Reverse())
+                                            {
+                                                <tr class="font-size-14">
+                                                    <td>@item.Title</td>
+                                                    <td class="yellow">
+                                                        <a @onclick='(() => DownloadFileFromURL(item.Module , item.Url.Split("/").Last()))' class="a-remover yellow-hover" style="cursor: pointer;">
+                                                            @item.SubTitle
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="AGSM" class="col-12 p-0 d-block d-lg-flex my-6">
+                        <div class="col-12 col-lg-6 m-0 p-0 mt-5-4k">
+                            <div class="d-none d-lg-flex background-dark-gray px-3 py-2 w-50 white bold font-assistant font-size-20">
+                                AGSM
+                            </div>
+                            <div class="d-flex d-lg-none background-dark-gray px-3 py-2 w-100 white bold font-assistant font-size-20">
+                                AGSM
+                            </div>
+                            <div class="border-gray-full p-3 ">
+                                <div class="table-responsive table-sm table-our-people font-assistant">
+                                    <table class="table text-justify">
+                                        <tbody>
+                                            @foreach (var item in InvestorReports.Where(x => x.Module.Equals("AGSM")).Reverse())
+                                            {
+                                                <tr class="font-size-14">
+                                                    <td>@item.Title</td>
+                                                    <td class="yellow">
+                                                        <a @onclick='(() => DownloadFileFromURL(item.Module , item.Url.Split("/").Last()))' class="a-remover yellow-hover" style="cursor: pointer;">
+                                                            @item.SubTitle
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="CapitalStructure">
+                        <div  class="col-12 p-0 my-6 d-none d-lg-block">
+                            <div class="col-12 p-0 mt-5-4k">
+                                <div class="background-dark-gray px-3 py-2 w-50 white bold font-assistant font-size-20">CAPITAL STRUCTURE</div>
+                                <div class="border-gray-full p-3">
+                                    <div class="row p-3">
+  
+                                    <div class="col-lg-4 border-right-black d-flex flex-column justify-content-center alig-items-center">
+                                        <div class="paragraph-title line-height-30 text-center font-size-18">SHARES OUTSTANDING</div>
+                                        <div class="paragraph-big-number text-center gray-blue letter-spacing-0-07 font-size-72">157.3M</div>
+                                    </div>
+                                    <div class="col-lg-4 border-right-black d-flex flex-column justify-content-center alig-items-center">
+                                        <div class="paragraph-title line-height-30 text-center font-size-18">OPTIONS</div>
+                                        <div class="paragraph-big-number text-center gray-blue letter-spacing-0-07 font-size-72">2.3M</div>
+                                    </div>
+                                    <div class="col-lg-4 p-2 d-flex flex-column justify-content-center alig-items-center">
+                                        <div class="paragraph-title line-height-30 text-center font-size-18">FULLY DILUTED</div>
+                                        <div class="paragraph-big-number text-center gray-blue letter-spacing-0-07 font-size-72">159.6M
+                                        </div>
+                                    </div>
+  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-lg-none d-flex row my-5 mt-5-4k p-3">
+                            <div class="col-12 p-0 m-0">
+                                <div class="background-dark-gray px-3 py-2 w-100 white bold font-assistant font-size-20">CAPITAL STRUCTURE</div>
+                            </div>
+                            <div class="col-12 row p-0 m-0 border-gray-full">
+                                <div class="col-12 d-flex flex-column justify-content-center alig-items-center pt-5">
+                                    <div class="paragraph-title line-height-30 text-center font-size-18">SHARES OUTSTANDING</div>
+                                    <div
+                                    class="paragraph-big-number text-center gray-blue letter-spacing-0-07 font-size-72 border-bottom-black pb-5">
+                                    157.3M</div>
+                                </div>
+                                <div class="col-12 d-flex flex-column justify-content-center alig-items-center pt-5">
+                                    <div class="paragraph-title line-height-30 text-center font-size-18">OPTIONS</div>
+                                    <div
+                                    class="paragraph-big-number text-center gray-blue letter-spacing-0-07 font-size-72 border-bottom-black pb-5">
+                                    2.3M</div>
+                                </div>
+                                <div class="col-12 d-flex flex-column justify-content-center alig-items-center py-5">
+                                    <div class="paragraph-title line-height-30 text-center font-size-18">FULLY DILUTED</div>
+                                    <div class="paragraph-big-number text-center gray-blue letter-spacing-0-07 font-size-72">159.6M</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+          
+
+                    <div id="ESTMA" class="col-12 p-0 d-block d-lg-flex my-6">
+                        <div class="col-12 col-lg-12 m-0 p-0 mt-5-4k">
+                            <div class="d-none d-lg-flex background-dark-gray px-3 py-2 w-50 white bold font-assistant font-size-20">ESTMA</div>
+                            <div class="d-flex d-lg-none background-dark-gray px-3 py-2 w-100 white bold font-assistant font-size-20">ESTMA</div>
+                            <div class="border-gray-full p-3 h-100">
+                                <div class="col-12 font-assistant p-4 font-size-14" style="line-height: normal;">
+                                    The Extractive Sector Transparency Measures Act (“ESTMA”) was made effective by the Government of Canada on June 1, 2015. This Act delivers on Canada’s international 
+                                    commitments to contribute to global efforts to increase transparency and deter corruption in the extractive sector by requiring extractive entities active in Canada to publicly 
+                                    disclose, on an annual basis, specific payments made to all governments in Canada and abroad.
+                                </div>
+                                <div class="col-12 font-assistant p-4 font-size-14" style="line-height: normal;">
+                                    <a @onclick='(() => DownloadFileFromURL("ESTMA", "Andean_FY2020_ESTMA_Report.pdf"))'
+                                        class="a-remover yellow-hover" style="cursor:pointer;"> Andean FY2020 ESTMA Report</a>
+                                </div>
+                                <div class="col-12 font-assistant p-4 font-size-14" style="line-height: normal;">
+                                    <a @onclick='(() => DownloadFileFromURL("ESTMA", "Andean_FY2021_ESTMA_Report.pdf"))'
+                                       class="a-remover yellow-hover" style="cursor:pointer;"> Andean FY2021 ESTMA Report</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="AnalystCoverage" class="col-12 p-0 d-block d-lg-flex my-6">
+                        <div class="col-12 col-lg-12 m-0 p-0 mt-5-4k">
+                            <div class="d-none d-lg-flex background-dark-gray px-3 py-2 w-50 white bold font-assistant font-size-20">ANALYST COVERAGE</div>
+                            <div class="d-flex d-lg-none background-dark-gray px-3 py-2 w-100 white bold font-assistant font-size-20">ANALYST COVERAGE</div>
+                            <div class="border-gray-full p-3 h-100">
+                                <div class="col-12 font-assistant p-4 font-size-14" style="line-height: normal;">
+                                    The following are the names of analysts who provide research coverage on Andean Precious Metals. 
+                                    Please note that we do not distribute analyst reports to persons outside of the company.
+                                    Please contact the research analyst directly to obtain a report.
+                                </div>
+                                <div class="row p-3">
+                                    <div class="col-12 col-sm-12 col-md-3 font-assistant p-4 font-size-14" style="line-height: normal;">
+                                        Justin Chan
+                                        <br>
+                                        <div class="bold">Sprott Capital Partners LP</div>
+                                        <a href="mailto:jchan@sprott.com ">jchan@sprott.com </a>
+                                        <br>
+                                        Tel: +44 7554 784 688
+                                    </div>
+                                    <div class="col-12 col-sm-12 col-md-3 font-assistant p-4 font-size-14" style="line-height: normal;">
+                                        Jonathan Eglio
+                                        <br>
+                                        <div class="bold">Desjardins Securities Inc.</div>
+                                        <a href="mailto:Jonathan.eglio@desjardins.com ">Jonathan.eglio@desjardins.com</a>
+                                        <br>
+                                        Tel: +1 647 207 3961
+                                    </div>
+                                </div>
+                                <div class="col-12 font-assistant p-4 font-size-14" style="line-height: normal;">
+                                    Please note that any opinions, estimates, or forecasts regarding Andean Precious Metals’ 
+                                    performance made by analysts do not represent opinions, forecasts, or predictions of Andean Precious Metals Corp., or its management. 
+                                    Andean Precious Metals does not, by its reference below, imply its endorsement of, or concurrence with, such information, conclusions, 
+                                    or recommendations.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    private List<InvestorReport> InvestorReports { get; set; } = new();
+
+    private Banner banner { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        banner = await BannerService.GetBanner("Investors");
+
+        InvestorReports = await InvestorsService.Get();
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+    protected override Task OnAfterRenderAsync(bool firstRender)
+    {
+        JSRuntime.InvokeVoidAsync("CustomFunctions.loadInvestor");
+        return base.OnAfterRenderAsync(firstRender);
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if(isMenu)  return "pause";
+        return "";
+    }
+
+    private async Task DownloadFileFromURL(string module, string fileName)
+    {
+        var url = $"assets/investors/{module}/{fileName}";
+
+
+        await JSRuntime.InvokeVoidAsync("CustomFunctions.triggerFileDownload", $"{fileName}", $"{NavigationManager.BaseUri}{url}");
+    }
+}

@@ -1,0 +1,193 @@
+﻿@page "/Admin/InvestorReports/"
+
+@inject IInvestorsService InvestorsService
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/admin.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<AuthorizeView Roles="Admin">
+	<Authorized Context="Auth">
+		<div id="wrapper" class="@(isClosed ? "toggled" : "")">
+			<div class="overlay"></div>
+
+			<Andeanpm.Client.Components.Admin.Sidebar />
+
+			<div id="page-content-wrapper">
+				<button type="button" class="hamburger animated fadeInLeft @(isClosed ? "is-open" : "is-closed")" @onclick="OpenMenu" data-toggle="offcanvas">
+					<span class="hamb-top"></span>
+					<span class="hamb-middle"></span>
+					<span class="hamb-bottom"></span>
+				</button>
+				<div class="container">
+					<div class="row justify-content-end">
+						
+						<div class="col-sm-12 col-lg-6">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="/Admin">Admin</a></li>
+									<li class="breadcrumb-item active" aria-current="page">User</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-lg-12">
+							<div class="card">
+								<h5 class="card-header">Reports</h5>
+
+							</div>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-sm-10">
+										<select @onchange="SelectedInput">
+											<option value="">Select Kind of Report</option>
+											<option value="FinancialReports">Financial Reports</option>
+											<option value="TechnicalReports">Technical Reports</option>
+											<option value="Sustainability">Sustainability</option>
+											<option value="AGSM">AGSM</option>
+										</select>
+									</div>
+									<div class="col-sm-12 col-lg-2">
+										<button type="button" class="btn btn-sm btn-outline-info" @onclick="Create"><i class="fa-solid fa-plus"></i> Add</button>
+									</div>
+									<br />
+									<br />
+									<div class="col-sm-12">
+									
+										@if (investorReports.Count > 0)
+										{
+											<div class="table-responsive-sm">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															@if (Module.Equals("TechnicalReports"))
+															{
+																<th scope="col">Date</th>
+															}
+															<th scope="col">Title</th>
+															<th scope="col">SubTitle</th>
+															<th scope="col">PDF</th>
+															<th scope="col">Actions</th>
+														</tr>
+													</thead>
+													<tbody>
+														@foreach (var item in investorReports)
+														{
+															<tr>
+																@if (Module.Equals("TechnicalReports"))
+																{
+																	<td scope="row">@item.DateCreate.ToString("MMM dd, yyyy")</td>
+																}
+																<td>@item.Title</td>
+																<td>@item.SubTitle</td>
+																<td>
+																	<img src="@($"/assets/news/pdf.svg")" alt="" srcset="" class="docs-icons pointer pr-2 pl-2"
+																 @onclick="( () => DownloadFileFromURL(item.Title, item.Url))">
+																</td>
+																<td>
+																	<button type="button" class="btn btn-sm btn-outline-primary" @onclick="(() => Edit(item.Id))"><i class="fa-solid fa-pen-to-square"></i> Update</button>
+																	<button type="button" class="btn btn-sm btn-outline-danger" @onclick="(() => Delete(item.Id))"><i class="fa-solid fa-eraser"></i> Delete</button>
+																</td>
+															</tr>
+														}
+													</tbody>
+												</table>
+											</div>
+											<div class="row justify-content-end">
+												<div class="col-sm-12">
+													<Andeanpm.Client.Components.Admin.Pagination MetaData="MetaData" Spread="2" SelectedPage="SelectedPage" />
+												</div>
+											</div>
+										}
+										else
+										{
+											<span>
+												Loading products...
+											</span>
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Authorized>
+	<NotAuthorized>
+		<Andeanpm.Client.Components.Admin.SignIn />
+	</NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+	private bool isClosed { get; set; } = true;
+
+	private List<InvestorReport> investorReports { get; set; } = new();
+
+	private MetaData MetaData { get; set; } = new();
+
+	private PaginationParameters paginationParameters = new();
+
+	private string Module { get; set; } = string.Empty;
+
+	private async Task SelectedPage(int page)
+	{
+		paginationParameters.PageNumber = page;
+		await Get();
+	}
+
+	private async Task Get()
+	{
+		var pagingResponse = await InvestorsService.Get(paginationParameters, Module);
+		investorReports = pagingResponse.Items;
+		MetaData = pagingResponse.MetaData;
+	}
+
+	private async Task SelectedInput(ChangeEventArgs e)
+	{
+		if (!string.IsNullOrEmpty(e.Value.ToString()))
+		{
+			Module = e.Value.ToString();
+			await Get();
+		}else
+		{
+			investorReports = new();
+		}
+	}
+
+	private void OpenMenu()
+	{
+		isClosed = !isClosed;
+	}
+
+
+	private void Edit(int id)
+	{
+		NavigationManager.NavigateTo($"/Admin/InvestorReports/Form/{Module}/{id}");
+	}
+
+	private void Create()
+	{
+		if (!string.IsNullOrEmpty(Module))
+		{
+
+			NavigationManager.NavigateTo($"/Admin/InvestorReports/Form/{Module}");
+		}
+	}
+
+
+	private async Task Delete(int id)
+	{
+		await InvestorsService.Delete(id);
+		await Get();
+	}
+
+	private async Task DownloadFileFromURL(string fileName, string fileURL)
+	{
+		await JSRuntime.InvokeVoidAsync("CustomFunctions.triggerFileDownload", $"{fileName}.pdf", $"{NavigationManager.BaseUri}{fileURL}");
+	}
+
+}

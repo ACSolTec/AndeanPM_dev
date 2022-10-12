@@ -1,0 +1,432 @@
+﻿@page "/SustainabilityFramework"
+
+@inject IJSRuntime JSRuntime
+@inject IBannerService BannerService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/sustainabilityframework.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent" />
+    <div class="w-100 @ContentClass()">
+        <div class="d-block row m-0">
+            <div class="perspective-100">
+                <img id="com-01" class="banner  z-index-m-2 paragraph-image-half" src="@banner.Url" />
+            </div>
+            <div class="centered d-none d-lg-block">
+                <h1 class="paragraph-title align-end py-2">ENVIRONMENTAL, SOCIAL, GOVERNANCE</h1>
+            </div>
+        </div>
+        <div class="row centered d-block d-lg-none">
+            <h1 class="paragraph-title align-end py-2">ENVIRONMENTAL, SOCIAL, GOVERNANCE</h1>
+        </div>
+        <div class="container p-0">
+            <div class="col-12">
+                <div class="row m-0 pt-lg-4 mb-5">
+                    <div class="col-12 col-lg-12 p-0">
+                        <div class="container p-0">
+                            <div class="col-12">
+
+                                <!--SUBMENU-->
+                                <div class="row mt-1 mb-4 d-lg-block d-none">
+                                    <div class="col-12 pl-3 pr-2 pt-0 ml-4 mr-4 paragraph-content d-flex d-xl-none">
+                                        <p class="text-justify pointer">
+                                            <a href="/SustainabilityFramework#top" class="a-remover yellow-hover yellow">ESG</a>
+                                        </p>
+                                        <span class="pl-4 pr-4">|</span>
+                                        <p class="text-justify pointer">
+                                            <a href="/EsgOverview#top" class="a-remover yellow-hover">Community</a>
+                                        </p>
+                                        <span class="pl-4 pr-4">|</span>
+                                        <p class=" text-justify pointer">
+                                            <a href="/Governance#peopleAndDiversityDetail" class="a-remover yellow-hover">Employees</a>
+                                        </p>
+                                        <span class="pl-4 pr-4">|</span>
+                                        <p class="text-justify pointer">
+                                            <a href="/Governance#healthSafetyDetail" class="a-remover yellow-hover">Health and Safety</a>
+                                        </p>
+                                        <span class="pl-4 pr-4">|</span>
+                                        <p class="text-justify pointer">
+                                            <a href="/Governance#enviromentalStrategy" class="a-remover yellow-hover">Environment</a>
+                                        </p>
+                                        <span class="pl-4 pr-4">|</span>
+                                        <p class="text-justify pointer">
+                                            <a href="/Governance#top" class="a-remover yellow-hover">Governance</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="row m-0 pt-lg-4 mb-5">
+                                    <div class="col-12 col-lg-12 p-0">
+
+                                        <div class="col-12 d-flex mb-5 mt-5 mt-lg-0 mt-5-4k mb-3-4k justify-content-center">
+                                            <div class="col-4 d-md-flex py-2 pl-1 align-items-center justify-content-end text-center">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-3 align-items-center">
+                                                        <img src="@($"/assets/sustainability/1.png")" class="fix-img" />
+                                                    </div>
+                                                    <div class="col-12 col-md-9 align-items-center d-flex">
+                                                        <a class="label-a text-center">PROTECT PEOPLE</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 d-md-flex py-2 px-1 align-items-center justify-content-center text-center">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-3 align-items-center justify">
+                                                        <img src="@($"/assets/sustainability/2.png")" class="fix-img" />
+                                                    </div>
+                                                    <div class="col-12 col-md-9 align-items-center d-flex justify-content-start">
+                                                        <a class="label-a text-center responsive-nowrap">PROTECT ENVIRONMENT</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 d-md-flex py-2 pr-1 align-items-center justify-content-start text-center">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-3 align-items-center">
+                                                        <img src="@($"/assets/sustainability/3.png")" class="fix-img" />
+                                                    </div>
+                                                    <div class="col-12 col-md-9 align-items-center d-flex">
+                                                        <a class="label-a text-center">PROTECT INVESTORS</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row m-0 py-5 mt-2" style="background-color: #79acc6; position: relative">
+                                            <div id="cl-1" class="col-12 col-lg-5 p-0 d-flex justify-content-center align-items-center">
+                                                <a class="important-class">OUR SUSTAINABILITY FRAMEWORK</a>
+                                            </div>
+                                            <div class="col-12 col-lg-7 mt-3 pr-4 pr-3-4k text-center align-items-center">
+                                                <a class="paragraph-content align-items-center" style="color: white;">
+                                                    Andean is committed to fostering sustainable and responsible operations and growth, ensuring ethical and smart value  creation for our stakeholders.
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-md-flex my-5 mt-5 mb-5 mt-5-4k">
+                                            <div class="col-12 col-md-2">
+                                            </div>
+                                            <div class="col-12 col-md-8 px-md-5 py-5">
+                                                <div id="cl-12" class="paragraph-title text-center">
+                                                    OUR COMMITMENT
+                                                </div>
+                                                <div id="cl-14" class="grayseparator mt-2">
+                                                </div>
+                                                <div id="cl-15" class="paragraph-content text-justify">
+                                                    We will build strong relationships adding and sharing value.
+                                                    <br /><br /> We are investing our time and resources to formulate a responsible strategy for sustainable actions.
+                                                    <br /><br /> We intend to define ambitious new targets by building on our existing operations in Bolivia.
+                                                    <br /><br /> We will adopt global industry best practices where they can directly influence our business.
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-2"></div>
+                                        </div>
+
+                                        <div class="col-12 d-md-flex mb-5">
+                                            <div class="col-12 col-md-6 px-md-5 py-5">
+                                                <div id="cl-12" class="paragraph-title text-center">
+                                                    SUSTAINABILITY GOVERNANCE
+                                                </div>
+                                                <div id="cl-14" class="grayseparator mt-2"></div>
+                                                <div id="cl-15" class="paragraph-content text-justify">
+                                                    We will reassess our business model to manage key risks and to identify opportunities.
+                                                    <br /><br /> Andean’s Sustainability and Safety Committee evaluates key business risks and aids the leadership team in deliberating on mitigative actions.
+                                                    <br /><br /> we will conduct annual audits of our governance protocols using industry leading and independent external advisors to understand our performance against strategic objectives.
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6 px-md-5 py-5">
+                                                <div id="cl-12" class="paragraph-title text-center">
+                                                    INTERNATIONAL STANDARDS
+                                                </div>
+                                                <div id="cl-14" class="grayseparator mt-2"></div>
+                                                <div id="cl-15" class="paragraph-content text-justify">
+                                                    Our sustainable development framework is being developed in accordance with the Global Reporting Initiative (GRI) Standards: Core option and is being mapped to the United Nations Global Compact (UNGC) and aligns to the Sustainable Development Goals (SDG’s).
+                                                    <br /><br /> Our management systems are drawn on standards set by International Finance Corporation (IFC), International Council for Metals & Mining (ICMM) and OECD.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!--AQUI VAN LAS TARJETAS-->
+                                        <div class="col-12 d-md-flex my-5 mt-5 mt-5-4k">
+
+                                            <div class="col-12 col-md-4 p-0 pt-5 px-md-2" id="com-06">
+                                                <div class="m-lg-x-5 h-100">
+                                                    <div class="centrium-card py-4 h-100">
+                                                        <div class="centrium-card-product-text p-4">
+                                                            <div class="paragraph-title bold text-center py-2 mb-3">
+                                                                Sustainability
+                                                            </div>
+                                                            <div class="text-center line-height-22 paragraph-content">
+                                                                <br /> Sustainability is not just an environmental term.
+                                                                <br /><br /> Sustainability is meeting our needs without compromising the ability of future generations to meet their own needs.
+                                                                <br />
+                                                                <span class="font-size-10">(University of Alberta definition of Sustainability)</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-4 p-0 pt-5 px-md-2" id="com-07" style="min-height: 100%;">
+                                                <div class="m-lg-x-5 h-100">
+                                                    <div class="centrium-card py-4 h-100">
+                                                        <img class="centrium-card-image object-fit-cover" src="@($"/assets/sustainability/AndeanPM_logo.png")" />
+                                                        <div class="centrium-card-product-text p-4">
+                                                            <div class="text-center line-height-22 paragraph-content">
+                                                                “Andean’s Sustainability framework promotes Environmental stewardship, our Social license to operate and Governance protocols to deliver on its corporate responsibility commitments to protect its employees, contractors and suppliers and to enhance the
+                                                                environment and communities we work with”.
+                                                                <br /><br /> “Delivering shareholder value ethically and sustainably”.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-4 p-0 pt-5 px-md-2" id="com-08">
+                                                <div class="m-lg-x-5 h-100">
+                                                    <div class="centrium-card py-4 h-100">
+                                                        <div class="centrium-card-product-text p-4">
+                                                            <div class="paragraph-title bold text-center py-2 mb-3">
+                                                                ESG
+                                                            </div>
+                                                            <div class="text-center line-height-22 paragraph-content">
+                                                                <br /><span class="bold">ESG</span> measures Sustainability in a business.
+                                                                <br /><br />
+                                                                <span class="bold">Environmental</span> criteria consider how a company performs as a steward of nature.
+                                                                <br /><br />
+                                                                <span class="bold">Social</span> criteria examine how it manages relationships with employees, suppliers, customers, and the communities.
+                                                                <br /><br />
+                                                                <span class="bold">Governance</span> deals with a company’s leadership, executive pay, audits, internal controls and shareholder rights.
+                                                                <br />
+                                                                <span class="font-size-10">(www.investopedia.com)</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--FIN-->
+                                    </div>
+                                </div>
+
+                                <div class="paragraph-title text-center py-3 mt-5 mt-5-4k">OUR STAKEHOLDERS</div>
+
+                                <div class="col-12 d-lg-flex mb-5 pt-3-4k">
+                                    <div class="col-lg-3 col-12">
+                                        <div class="col-12 px-md-3">
+                                            <div class="paragraph-title font-size-20 paragraph-title-20 head-list py-4">Regulators</div>
+                                            <div class="list paragraph-content">
+                                                Legislation
+                                                <br />Permit conditions
+                                                <br />Agreement conditions
+                                                <br />Promises made to stakeholders
+                                                <br />Stock Exchange
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-12">
+                                        <div class="col-12 px-md-3">
+                                            <div class="paragraph-title font-size-20 paragraph-title-20 head-list py-4">Communities</div>
+                                            <div class="list paragraph-content">
+                                                Local communities
+                                                <br />Small-scale miners
+                                                <br />Downstream water users
+                                                <br />Employees
+                                                <br />Generally affected public
+                                                <br />Affiliated contractors
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-12">
+                                        <div class="col-12 px-md-3">
+                                            <div class="paragraph-title font-size-20 paragraph-title-20 head-list py-4">People & Ecosystems</div>
+                                            <div class="list paragraph-content">
+                                                Understanding of people, biodiversity and ecosystems and how the resources they depend on are impacted.
+                                                <br />Human, social and natural capital and how these may be affected
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-12">
+                                        <div class="col-12 px-md-3">
+                                            <div class="paragraph-title font-size-20 paragraph-title-20 head-list py-4">Business Stakeholders</div>
+                                            <div class="list paragraph-content">
+                                                Investors, lenders & shareholders
+                                                <br />Insurers
+                                                <br />Metal traders / exchanges
+                                                <br />Manufacturers
+                                                <br />End consumers
+                                                <br />Employees
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="paragraph-title text-center py-5 mt-5 mt-5-4k">INTEGRATED GOVERNANCE MODEL</div>
+
+                                <div class="col-12 d-lg-flex py-4 pt-3-4k mb-3 justify-content-center">
+                                    <div class="col-12 col-md-12 col-lg-8 col-xl-10 text-center">
+                                        <img class="img-res-with" src="@($"/assets/sustainability/GRAFICA.png")">
+                                    </div>
+                                </div>
+
+                                <div class="paragraph-title text-center py-5 mt-5 mt-5-4k">SUSTAINABILITY OBJECTIVES</div>
+
+                                <div class="col-12 pb-4">
+                                    <div class="row">
+
+                                        <div class="col-lg-3 col-12 mt-5">
+                                            <div class="col-12">
+                                                <div class="text-center my-2"><img src="@($"/assets/sustainability/Group 325.png")"></div>
+                                                <div class="paragraph-title font-size-20 paragraph-title-20 bold text-center py-4">CORPORATE RESPONSIBILITY</div>
+                                                <div>
+                                                    <div class="text-center paragraph-content">
+                                                        Our board and executive leadership team will promote the success of the company, for the benefit of its members, while acting in good faith and taking account of the interests of stakeholders and the environment.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-12 mt-5">
+                                            <div class="col-12">
+                                                <div class="text-center my-2"><img src="@($"/assets/sustainability/Group 327.png")"></div>
+                                                <div class="paragraph-title font-size-20 paragraph-title-20 bold text-center py-4">PEOPLE AND DIVERSITY</div>
+                                                <div>
+                                                    <div class="text-center paragraph-content">
+                                                        Andean’s policy on diversity and inclusion is a commitment to equality and the treatment of all individuals with respect. Diversity to us considers age, religious beliefs, cultural diversity, nationality, ethnicity, gender, sexual orientation, disabilities,
+                                                        socio-economic background and perspectives and experience.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-12 mt-5">
+                                            <div class="col-12">
+                                                <div class="text-center my-2"><img src="@($"/assets/sustainability/Group 328.png")"></div>
+                                                <div class="paragraph-title font-size-20 paragraph-title-20 bold text-center py-4">HEALTH & SAFETY EXCELLENCE</div>
+                                                <div>
+                                                    <div class="text-center paragraph-content">
+                                                        Our goal is to create a safe and healthy working environment for our employees, contractors, consultants and visitors, and we aim for zero harm in the workplace. Identifying, assessing and eliminating potential risks.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-12 mt-5">
+                                            <div class="col-12">
+                                                <div class="text-center my-2"><img src="@($"/assets/sustainability/Group 329.png")"></div>
+                                                <div class="paragraph-title font-size-20 paragraph-title-20 bold text-center py-4">SOCIETY</div>
+                                                <div>
+                                                    <div class="text-center paragraph-content">
+                                                        Global society demands that all sectors work towards a clean earth. We aim to align with international standards and to transfer new technologies through our business to impact the communities and physicals environments in which we work.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 col-12 mt-5">
+                                            <div class="col-12">
+                                                <div class="text-center my-2"><img src="@($"/assets/sustainability/Group 330.png")"></div>
+                                                <div class="paragraph-title font-size-20 paragraph-title-20 bold text-center py-4">ENVIRONMENTAL STEWARDSHIP</div>
+                                                <div>
+                                                    <div class="text-center paragraph-content">
+                                                        Andean’s goal is sustainable use of resources, biodiversity safeguarding, and environmental protection. We seek good environmental management for present and future generations.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-12 mt-5">
+                                            <div class="col-12">
+                                                <div class="text-center my-2"><img src="@($"/assets/sustainability/Group 331.png")"></div>
+                                                <div class="paragraph-title font-size-20 paragraph-title-20 bold text-center py-4">OPERATIONAL EXCELLENCE</div>
+                                                <div>
+                                                    <div class="text-center paragraph-content">
+                                                        Our industry is cyclical, and our goal is to build a business that can adapt to challenges and operate with margin during times of adverse metal pricing. We aim to do this by implementing an operational excellence framework.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-12 mt-5">
+                                            <div class="col-12">
+                                                <div class="text-center my-2"><img src="@($"/assets/sustainability/Group 332.png")"></div>
+                                                <div class="paragraph-title font-size-20 paragraph-title-20 bold text-center py-4">SOCIAL LICENCE</div>
+                                                <div>
+                                                    <div class="text-center paragraph-content">
+                                                        We aim to retain our social license to operate in Bolivia and to enhance the social and economic development of the communities associated with our operations. Andean work with communities and other stakeholders to build strong relationships as part of our operational best practices
+                                                        of operational practices.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-12 mt-5">
+                                            <div class="col-12">
+                                                <div class="text-center my-2"><img src="@($"/assets/sustainability/Group 333.png")"></div>
+                                                <div class="paragraph-title font-size-20 paragraph-title-20 bold text-center py-4">FISCAL CONTROL</div>
+                                                <div>
+                                                    <div class="text-center paragraph-content">
+                                                        Andean strives for transparent financial reporting. We will actively implement anti-corruption and anti-bribery policies and procedures and to ensure that all stakeholders benefit from our business activities
+                                                        from our business activities.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 bold text-center mt-5 mt-5-4k py-5 font-abhaya bold font-size-34 white" style="font-style: italic; background-color: #79acc6; position: relative">
+                                    Business leadership is no longer just about profits.
+                                </div>
+
+                                <!-- Este es el div-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Andeanpm.Client.Components.Public.Footer isHome="@isHome" />
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    private Banner banner { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        banner = await BannerService.GetBanner("Sustainability");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if (isMenu) return "pause";
+        return "";
+    }
+}

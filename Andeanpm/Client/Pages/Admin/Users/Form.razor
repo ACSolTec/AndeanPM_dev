@@ -1,0 +1,136 @@
+﻿@page "/Admin/User/Update/"
+@page "/Admin/User/Update/{Id:int}"
+
+@inject IUserService UserService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/admin.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<AuthorizeView Roles="Admin">
+	<Authorized Context="Auth">
+		<div id="wrapper" class="@(isClosed ? "toggled" : "")">
+			<div class="overlay"></div>
+
+			<Andeanpm.Client.Components.Admin.Sidebar />
+
+			<div id="page-content-wrapper">
+				<button type="button" class="hamburger animated fadeInLeft @(isClosed ? "is-open" : "is-closed")" @onclick="OpenMenu" data-toggle="offcanvas">
+					<span class="hamb-top"></span>
+					<span class="hamb-middle"></span>
+					<span class="hamb-bottom"></span>
+				</button>
+				<div class="container">
+					<div class="row justify-content-end">
+						<div class="col-sm-12 col-lg-4">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="/Admin">Admin</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Users</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-lg-12">
+							<div class="card">
+								<h5 class="card-header">@(Id == 0 ? "Create" : "Update") user in the Team @Team</h5>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-sm-12">
+											<EditForm Model="userForm" OnValidSubmit="Save">
+												<DataAnnotationsValidator />
+												<div class="form-group row">
+													<label class="col-sm-2 col-form-label">Name</label>
+													<div class="col-sm-10">
+														<InputText @bind-Value="userForm.Email" class="form-control form-control-sm" placeholder="User" disabled="@(Id == 0 ? false : true)" />
+														<ValidationMessage class="error" For="@(() => userForm.Email)" />
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-sm-2 col-form-label">Password</label>
+													<div class="col-sm-10">
+														<InputText @bind-Value="userForm.Password" class="form-control form-control-sm" placeholder="Password" type="password" />
+														<ValidationMessage class="error" For="@(() => userForm.Password)" />
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-sm-2 col-form-label">Role</label>
+													<div class="col-sm-10">
+														<InputSelect @bind-Value="userForm.Role" class="andean-input w-100 p-2 font-assistant font-size-12" style="color: gray;">
+															<option value="">Role</option>
+															<option value="Admin">Administrator</option>
+														</InputSelect>
+														<ValidationMessage class="error" For="@(() => userForm.Role)" />
+													</div>
+													
+												</div>
+												<div class="form-group row">
+													<div class="col-md-12 col-lg-6">
+														<button type="button" class="btn btn-outline-info" @onclick="Back"><i class="fa-solid fa-delete-left"></i> Cancel</button>
+
+													</div>
+													<div class="col-md-12 col-lg-6 d-flex flex-row-reverse">
+														<button type="submit" class="btn btn-outline-success"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+													</div>
+												</div>
+												
+											</EditForm>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Authorized>
+	<NotAuthorized>
+		<Andeanpm.Client.Components.Admin.SignIn />
+	</NotAuthorized>
+</AuthorizeView>
+
+@code {
+	[Parameter] public string Team { get; set; } = string.Empty;
+
+	[Parameter] public int Id { get; set; } = 0;
+
+	private bool isClosed { get; set; } = true;
+
+	private User user { get; set; } = new();
+
+	private UserForm userForm { get; set; } = new();
+
+	protected override async Task OnInitializedAsync()
+	{
+		if (Id != 0) 
+		{
+			user = await UserService.Get(Id);
+			userForm.Email = user.Email;
+			userForm.Role = user.Role;
+			userForm.Id = Id;
+		}
+		
+	}
+
+	public void Back()
+	{
+		NavigationManager.NavigateTo($"/Admin/User");
+	}
+
+	public async Task Save()
+	{
+		var response = Id == 0 ? await UserService.Create(userForm) : await UserService.Update(userForm);
+		if (response)
+		{
+			Back();
+		}
+	}
+
+	private void OpenMenu()
+	{
+		isClosed = !isClosed;
+	}
+
+}

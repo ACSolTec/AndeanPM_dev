@@ -1,0 +1,175 @@
+﻿@page "/OrePurchasing"
+
+@inject IJSRuntime JSRuntime
+@inject IBannerService BannerService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/orepurchasing.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div class="d-block row m-0">
+            <div class="perspective-100">
+                <img id="com-01" class="banner banner-fade z-index-m-2 paragraph-image-half" src="@banner.Url" />
+            </div>
+            <div class="px-5 py-3">
+            </div>
+            <div class="centered d-none d-lg-block">
+                <h1 class="paragraph-title align-end py-2">MINE RECLAMATION</h1>
+            </div>
+        </div>
+        <div class="row centered d-block d-lg-none">
+            <h1 class="paragraph-title align-end py-2">MINE RECLAMATION</h1>
+        </div>
+
+        <div class="container p-0">
+            <div class="col-12">
+                <div class="col-12 pb-4">
+
+                    <!--SUBMENU-->
+                    <div class="row mt-1 mb-4 d-lg-block d-none">
+                        <div class="col-12 pt-0 paragraph-content d-flex d-xl-none">
+                            <p class="text-justify pointer yellow-hover word-gold-hover" data-toggle="collapse" href="#boliviaSubmenu" aria-expanded="true">Production</p>
+                            <span class="pl-4 pr-4">|</span>
+                            <p class="text-justify pointer">
+                                <a href="/SanBartolome#top" class="a-remover yellow-hover">
+                                    Processing
+                                </a>
+                            </p>
+                            <span class="pl-4 pr-4">|</span>
+                            <p class="text-justify pointer">
+                                <a href="/Exploration#top" class="a-remover yellow-hover">
+                                    Exploration
+                                </a>
+                            </p>
+                        </div>
+                        <!-- class show usada para mostrar las opciones predefinas sin hacer click en el menu -->
+                        <div class="col-12 p-0 d-flex d-md-block paragraph-content justify-content-center">
+                            <div class="collapse" id="boliviaSubmenu">
+                                <div class="d-block d-md-flex col-12 p b-4">
+                                    <div class="pt-0 mr-4 submenu-border pointer">
+                                        <a href="/Operations/CerroRicoMine#top" class="a-remover yellow-hover">
+                                            Surface Deposits
+                                        </a>
+                                    </div>
+                                    <div class="pt-0 mr-4 submenu-border pointer active">
+                                        <a href="/OrePurchasing#top" class="a-remover yellow-hover yellow">
+                                            Mine Reclamation
+                                        </a>
+                                        <div class="triangle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-0 pt-lg-3 mt-5-4k mt-5">
+                        <div class="col-12 col-lg-12 p-0 p-lg-1">
+
+                            <div class="col-12 p-0 d-flex">
+                                <div class="col-lg-5 center">
+                                    <hr>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="font-size-18 text-center">
+                                        PROJECTS
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 center">
+                                    <hr>
+                                </div>
+                            </div>
+
+                            <div class="row m-0 justify-content-center pt-lg-4 pt-5-4k">
+                                <div class="col-md-4 text-center">
+                                    <a href="/Operations/ElAsiento" class="btn a-remover yellow-hover">
+                                        <img class="image-regular" src="@($"/assets/operations/05.jpg")" alt="">
+                                        <h1 class="mt-1 font-cards pb-1">EL ASIENTO</h1>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <a href="/Operations/TatasiPortugalete" class="btn a-remover yellow-hover">
+                                        <img class="image-regular" src="@($"/assets/operations/03.jpg")" alt="">
+                                        <h1 class="mt-1 font-cards pb-1">TATASI-PORTUGALETE</h1>
+                                    </a>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <a href="/Operations/Monserrat" class="btn a-remover yellow-hover">
+                                        <img class="image-regular" src="@($"/assets/operations/02.jpg")" alt="">
+                                        <h1 class="mt-1 font-cards pb-1">MONSERRAT</h1>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <div class="row ml-2 mt-5-4k mt-5 mr-2">
+                                <div class="col-2">
+                                </div>
+                                <div class="col-lg-8 col-12">
+                                    <p class="paragraph-content text-center bold">Our mine reclamation programme removes high-grade stockpiles from historical mines. This programme in partnership with state owned COMIBOL addresses environmental legacies.</p>
+                                </div>
+                            </div>
+
+
+                            <div class="row ml-2 mt-4 mr-2">
+                                <div class="col-1">
+                                </div>
+                                <div class="col-lg-10 col-12">
+                                    <p class="paragraph-content text">
+                                        The mineralised material is excavated, loaded and hauled by road to San Bartolome for processing at and average head grade of 230 g/t. These reclamation projects are taking place at El Asiento, Tatasi Portugalete and
+                                        Monserrat up to 300km from the San Bartolome plant.
+                                    </p>
+                                    <p class="paragraph-content text-center">Andean will produce approximately 4.5 million ounces of Silver from these locations between 2021 and 2023.</p>
+                                    <p class="paragraph-content text-center">Our in-country team is constantly pursuing new opportunities for mine waste reclamation of silver bearing oxides as well as ore sourcing opportunities.</p>
+                                </div>
+                            </div>
+
+                            <div class="row ml-2 mt-4 mr-2">
+                                <div class="col-lg-4"></div>
+                                <div class="col-12 col-lg-4">
+                                    <img class="image-regular safari-img" src="@($"/assets/operations/MINE_RECLAMATION.jpg")">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    private Banner banner { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        banner = await BannerService.GetBanner("Ore Purchasing");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if(isMenu)  return "pause";
+        return "";
+    }
+}

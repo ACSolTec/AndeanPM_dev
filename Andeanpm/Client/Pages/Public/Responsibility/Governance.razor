@@ -1,0 +1,1204 @@
+﻿@page "/Governance"
+
+@inject IJSRuntime JSRuntime
+@inject IBannerService BannerService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/governance.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div class="d-block row m-0">
+            <div class="perspective-100">
+                <img id="com-01" class="banner banner-fade z-index-m-2 paragraph-image-half" src="@banner.Url" />
+            </div>
+            <div class="py-3">
+            </div>
+            <div class="centered d-none d-lg-block">
+                <h1 class="paragraph-title align-end py-2">GOVERNANCE</h1>
+            </div>
+        </div>
+        <div class="row centered d-block d-lg-none">
+            <h1 class="paragraph-title align-end py-2">GOVERNANCE</h1>
+        </div>
+
+        <div class="container p-0">
+
+            <div class="col-12">
+                <!--SUBMENU-->
+                <div class="row mt-1 mb-4 d-lg-block d-none">
+                    <div class="col-12 pl-3 pr-2 pt-0 ml-4 mr-4 paragraph-content d-flex d-xl-none">
+                        <p class="text-justify pointer">
+                            <a href="/SustainabilityFramework#top" fragment="top" class="a-remover yellow-hover">ESG</a>
+                        </p>
+                        <span class="pl-4 pr-4">|</span>
+                        <p class="text-justify pointer">
+                            <a href="/EsgOverview#top" fragment="top" class="a-remover yellow-hover">Community</a>
+                        </p>
+                        <span class="pl-4 pr-4">|</span>
+                        <p class="text-justify pointer">
+                            <a href="/Governance#peopleAndDiversityDetail" class="a-remover yellow-hover @ActiveFragment("peopleAndDiversityDetail")">Employees</a>
+                        </p>
+                        <span class="pl-4 pr-4">|</span>
+                        <p class="text-justify pointer">
+                            <a href="/Governance#healthSafetyDetail" class="a-remover yellow-hover @ActiveFragment("healthSafetyDetail")">Health and Safety</a>
+                        </p>
+                        <span class="pl-4 pr-4">|</span>
+                        <p class="text-justify pointer">
+                            <a href="/Governance#enviromentalStrategy" class="a-remover yellow-hover @ActiveFragment("enviromentalStrategy")">Environment</a>
+                        </p>
+                        <span class="pl-4 pr-4">|</span>
+                        <p class="text-justify pointer">
+                            <a href="/Governance#top" class="a-remover yellow-hover @ActiveFragment("top")">Governance</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="row m-0">
+                    <div class="col-12 col-lg-12 p-0">
+                        <div class="col-12 mt-lg-0 pb-4">
+                            <div class="col-12 d-lg-flex">
+
+                                <div class="col-lg-4 col-12 mt-5 mt-5-4k">
+                                    <div class="col-12">
+                                        <div class="text-center my-2"><img src="@($"/assets/governance/Group 339.png")"></div>
+                                        <div class="paragraph-title font-size-20 paragraph-title-20 bold text-center py-4">INTERNATIONAL STANDARDS</div>
+                                        <div>
+                                            <div class="paragraph-content text-center">
+                                                Andean is introducing the main assurance systems and best practice guidance that are relevant. These are voluntary initiatives which we consider are the most applicable. These international standards allow for benchmarking performance in decarbonisation, tailings management, environmental protection, social engagement and transparent supply chains which are all fundamental to our business.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-12 mt-5  mt-5-4k">
+                                    <div class="col-12">
+                                        <div class="text-center my-2"><img src="@($"/assets/governance/Group 338.png")"></div>
+                                        <div class="paragraph-title font-size-20 paragraph-title-20 bold text-center py-4">ADVISORY</div>
+                                        <div>
+                                            <div class="paragraph-content text-center">
+                                                <br /> Andean recognises that to achieve its Governance objectives and accelerate the business to contribute to an improved mining future requires professional expertise spanning the full mineral value
+                                                chain. External advisors provide audit, systems development, and training our people.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-12 mt-5  mt-5-4k">
+                                    <div class="col-12">
+                                        <div class="text-center my-2"><img src="@($"/assets/governance/Group 335.png")"></div>
+                                        <div class="paragraph-title font-size-20 paragraph-title-20 bold text-center py-4">AUDIT<br />COMMITTEE</div>
+                                        <div>
+                                            <div class="paragraph-content text-center">
+                                                The Audit Committee serve as an independent and objective party to i) monitor the Company’s financial reporting and internal control system, ii) review the Company’s financial statements, iii) Review and appraise the performance of the Company’s
+                                                external auditors, iv) Provide an open avenue of communication between the Company’s auditors, financial and senior management and the Board of Directors
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 d-lg-flex">
+                                <div class="col-2 d-none d-flex"></div>
+
+                                <div class="col-lg-4 col-12 mt-5  mt-5-4k">
+                                    <div class="col-12">
+                                        <div class="text-center my-2"><img src="@($"/assets/governance/Group 336.png")"></div>
+                                        <div class="paragraph-title font-size-20 paragraph-title-20 bold text-center py-4">COMMITTMENT TO RESOURCING</div>
+                                        <div>
+                                            <div class="paragraph-content text-center">
+                                                A commitment to Sustainability and best in class ESG protocols requires a commitment to hiring experienced people, delivering training and supporting external research.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4 col-12 mt-5  mt-5-4k">
+                                    <div class="col-12">
+                                        <div class="text-center my-2"><img src="@($"/assets/governance/Group 337.png")"></div>
+                                        <div class="paragraph-title font-size-20 paragraph-title-20 bold text-center py-4">BOARD OF DIRECTORS</div>
+                                        <div>
+                                            <div class="paragraph-content text-center">
+                                                Andean’s Board of Directors has considerable experience in building mining companies. The Board has endorsed the Companies Sustainability Framework and acknowledges its responsibility and duties towards Sustainability and ESG.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2 d-none d-flex"></div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 p-0 py-4 mt-5-4k">
+                            <div class="col-12 p-0 py-4">
+                                <div class="col-12">
+                                    <div class="paragraph-title bold text-center py-4">
+                                        BOARD OVERSIGHT AND MANAGEMENT RESPONSIBILITIES
+                                    </div>
+                                    <div class="col-12 text-center d-flex justify-content-center">
+                                        <div class="col-12 col-lg-10 paragraph-content text-center pb-4">
+                                            The framework defines board and management activities that support effective governance. It helps differentiate between the primary areas of board oversight and the areas that management is responsible for.
+                                        </div>
+                                    </div>
+                                    <div class="text-center my-2">
+                                        <figure class="pb-md-5 d-none d-md-block">
+                                            <img class="g-triangle " src="@($"/assets/governance/TRIANGLE.jpg")">
+                                            <figcaption class="footer-graph bold">Based on Deloitte governance model</figcaption>
+                                        </figure>
+
+                                        <figure class="pb-md-5 d-block d-md-none">
+                                            <div class="text-right mt-4 d-lg-none d-block font-size-12 font-assistant" data-toggle="modal" data-target="#gallery">
+                                                <u>Click image to see in fullscreen</u>
+                                            </div>
+                                            <img class="g-triangle " src="@($"/assets/governance/TRIANGLE.jpg")" data-toggle="modal" data-target="#gallery">
+                                            <figcaption class="footer-graph bold">Based on Deloitte governance model</figcaption>
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal fade" id="gallery" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="carousel-close" data-dismiss="modal" aria-label="Close">
+                            </div>
+                            <div class="modal-dialog zoom" role="document">
+                                <div class="modal-content py-2">
+                                    <div class="scroll-container">
+                                        <img class="image-no-scroll-y" src="img">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 p-0 mt-md-5 mb-2 justify-content-center  pb-5 d-none d-md-flex">
+                            <img class="g-square pb-2 safari-img" src="@($"/assets/governance/diagram.jpg")">
+                        </div>
+                        <div class="col-12 p-0">
+                            <div class=" text-right mt-4 d-md-none d-block font-size-12 font-assistant pb-4" data-toggle="modal" data-target="#gallery">
+                                <u>Click image to see in fullscreen</u>
+                            </div>
+                            <div class="col-12 p-0 mt-md-5 mb-2 justify-content-center  pb-5 d-flex d-md-none">
+                                <img class="g-square pb-2 safari-img" src="@($"/assets/governance/diagram.jpg")" data-toggle="modal" data-target="#gallery">
+                            </div>
+                        </div>
+
+                        @if (corporateResponsabilityDetail)
+                        {
+                            <div class="row mt-5 mt-5-4k card-gray-txt">
+                                <div class="col-lg-12">
+                                    <div class="col-12 p-0 mt-4 d-flex pb-4">
+                                        <div class="col-lg-1 col-3 button-gray d-flex justify-content-center align-items-center" @onclick=" () => ShowDetail(1)">
+                                            <img src="@($"/assets/governance/arrow-left.svg")" class="arrow" />
+                                        </div>
+                                        <div class="col-lg-6 col-9 button-gold button-gold-back font-size-18">
+                                            Our Commitment to Corporate Responsibility
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-lg-12 list">
+
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">1</a>
+                                                    <a class="content-li">
+                                                        Improving our health and safety management and
+                                                        philosophy to provide a safe working environment;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">2</a>
+                                                    <a class="content-li white-background">
+                                                        Ensuring good working conditions and fair treatment for
+                                                        our employees;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">3</a>
+                                                    <a class="content-li">Promoting respect and protection of human rights;</a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">4</a>
+                                                    <a class="content-li white-background">
+                                                        Acting professionally, fairly and with integrity in
+                                                        business dealings and relationships wherever we
+                                                        operate;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">5</a>
+                                                    <a class="content-li">
+                                                        Implementing and enforcing effective systems to counter
+                                                        bribery and corruption;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">6</a>
+                                                    <a class="content-li white-background">
+                                                        Supporting and enhancing local communities and the
+                                                        economy;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">7</a>
+                                                    <a class="content-li">
+                                                        Enabling local communities to meet basic needs of
+                                                        health, water and sanitation, food, shelter, education,
+                                                        and equal opportunities.
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">8</a>
+                                                    <a class="content-li white-background">Promoting gender equality in our operations;</a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">9</a>
+                                                    <a class="content-li">Limiting our environmental impact;</a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">10</a>
+                                                    <a class="content-li white-background">
+                                                        Strengthening municipal environmental management and
+                                                        rural development, especially in areas degraded by
+                                                        historic mining activity;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">11</a>
+                                                    <a class="content-li">
+                                                        As a minimum complying with, and ideally, surpassing
+                                                        applicable and relevant legal and regulatory
+                                                        requirements, to achieve standards of international best
+                                                        practice;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">12</a>
+                                                    <a class="content-li white-background">
+                                                        Identifying, assessing and managing risks associated
+                                                        with our operation to employees, contractors, the
+                                                        environment and communities;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">13</a>
+                                                    <a class="content-li">
+                                                        Continually improving environmental management and
+                                                        performance;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">14</a>
+                                                    <a class="content-li white-background">
+                                                        Engaging with employees, contractors and all
+                                                        stakeholders to foster relationships of transparency,
+                                                        trust and mutual involvement, sharing responsibility for
+                                                        meeting these corporate aims;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">15</a>
+                                                    <a class="content-li">
+                                                        Strengthening local economies by maximizing the
+                                                        purchase of supplies and services locally;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">16</a>
+                                                    <a class="content-li white-background">
+                                                        Entering into tripartite agreements between Andean
+                                                        Precious Metals, the government, and communities to
+                                                        create mutual benefit;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">17</a>
+                                                    <a class="content-li">
+                                                        Embedding sustainable development into investment
+                                                        decision-making;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">18</a>
+                                                    <a class="content-li white-background">
+                                                        Using our position in the marketplace to lead by
+                                                        example and raise awareness of CSR with clients and the
+                                                        market;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">19</a>
+                                                    <a class="content-li">
+                                                        Conducting regular internal and external audits to
+                                                        assure compliance with our business principles, policies
+                                                        and standards;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">20</a>
+                                                    <a class="content-li white-background">
+                                                        Regularly reviewing and reporting publicly on progress
+                                                        and ensure these goals remain relevant to the needs of
+                                                        our stakeholders;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">21</a>
+                                                    <a class="content-li">
+                                                        Annually reviewing Company policy to ensure relevance
+                                                        and compliance with legislation and best practice in
+                                                        achieving environmental and social objectives.
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">22</a>
+                                                    <a class="content-li white-background">Practicing and promoting good corporate governance;</a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (!corporateResponsabilityDetail)
+                        {
+                            <div class="col-12 p-0 mt-6 card-gray d-lg-flex justify-content-center align-items-center text-center-md">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12 pt-6">
+                                        <!--style="padding:3rem!important;">-->
+                                        <div class="row d-flex align-items-center h-100">
+                                            <div class="col-md-12">
+                                                <p class="title-card text-center">Corporate Responsibility</p>
+
+                                                <div class="card-content py-4 text-center">
+                                                    Andean Precious Metals considers Corporate Responsibility to be essential and commits to prioritising and evaluating health, safety, social, and environmental considerations in our business, to achieve sustainable development as a core
+                                                    objective. We seek to balance social, environmental, legislative and economic concerns in our business strategy, by focusing on the four elements of local governance, environmental development, social development and economic development.
+                                                </div><br />
+                                                <div class="col-12 p-0 mt-4 d-flex pb-4">
+                                                    <div class="col-lg-10 col-8 button-gold">
+                                                        Andean's Corporate Responsibility Strategy
+                                                    </div>
+                                                    <div class="col-lg-2 col-3 button-gray d-flex justify-content-center align-items-center" @onclick=" () => ShowDetail(1)">
+                                                        <img src="@($"/assets/governance/arrow.svg")" class="arrow" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12 justify-content-center align-items-center">
+                                        <img src="@($"/assets/governance/GALLERY.jpg")" class="w-100" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if(healthSafetyDetail)
+                        {
+                        <div class="row mt-6 card-gray-txt" >
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-12 p-0 mt-4 d-flex pb-4">
+                                            <div class="col-lg-1 col-3 button-gray d-flex justify-content-center align-items-center" @onclick=" () => ShowDetail(2)">
+                                                <img src="@($"/assets/governance/arrow-left.svg")" class="arrow" />
+                                            </div>
+                                            <div class="col-lg-6 col-9 button-gold button-gold-back font-size-18">
+                                                Our Commitment to Health and Safety
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-lg-12">
+
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">1</a>
+                                                    <a class="content-li">
+                                                        Identifying, assessing and eliminating potential risks associated with our
+                                                        operation to employees, contractors, the environment and communities;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">2</a>
+                                                    <a class="content-li white-background">
+                                                        Using sound engineering principles in the design and
+                                                        operation of our facilities;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">3</a>
+                                                    <a class="content-li">
+                                                        Providing leadership and appropriate health and safety induction and
+                                                        training, and ensuring that all employees, contractors and partners receive ongoing training and
+                                                        understand our health and safety requirements;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">4</a>
+                                                    <a class="content-li white-background">
+                                                        Ensuring the health and safety of communities affected by
+                                                        our operations;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">5</a>
+                                                    <a class="content-li">
+                                                        Complying with relevant legislation and exceeding community expectations,
+                                                        and working in line with best practice;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">6</a>
+                                                    <a class="content-li white-background">
+                                                        Preparing for, and responding quickly to any incidents or
+                                                        emergencies, and improving and upgrading our health and safety management system in response to
+                                                        these;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">7</a>
+                                                    <a class="content-li">
+                                                        Ensuring that appropriate resources and personal protective equipment are
+                                                        provided to improve occupational health and safety;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">8</a>
+                                                    <a class="content-li white-background">
+                                                        Fostering and maintaining a positive safety culture,
+                                                        behaviour, and awareness;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">9</a>
+                                                    <a class="content-li">
+                                                        Regularly setting and reviewing objectives and targets for improved Health
+                                                        and Safety performance;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">10</a>
+                                                    <a class="content-li white-background">
+                                                        Encouraging and supporting participation in programmes
+                                                        which enhance health, safety and well-being;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">11</a>
+                                                    <a class="content-li">
+                                                        Communicating relevant information to the public, emergency services or
+                                                        concerned public authorities;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">12</a>
+                                                    <a class="content-li white-background">
+                                                        Maintaining records of Occupational Health and Safety
+                                                        statistics and reviewing these periodically;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">13</a>
+                                                    <a class="content-li">
+                                                        Making this strategy available to employees, contractors, visitors and other
+                                                        stakeholders.
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row mt-4">
+                                                <hr>
+                                            </div>
+                                            <div class="row ml-4">
+                                                <div class="col-lg-12">
+                                                    <span class="col-lg-12">
+                                                        <a class="content-li">
+                                                            Taking ownership of occupational health and safety management and
+                                                            employing H&S standards and procedures in day-to-day tasks;
+                                                            and Maintaining a safe working environment and withdrawing from and reporting any unsafe
+                                                            situations.
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (!healthSafetyDetail)
+                        {
+                            <div id="healthSafetyDetail" class="col-12 p-0 mt-6 card-gray d-lg-flex justify-content-center align-items-center text-center-md">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12 pt-6">
+                                        <div class="row d-flex align-items-center h-100">
+                                            <div class="col-md-12">
+                                                <p class="title-card">Health and Safety</p><br />
+
+                                                <div class="card-content py-4 text-center">
+                                                    Andean Precious Metals values health and safety of our employees, contractors and local communities at the highest level. We aim to create a safe and healthy working environment for our employees, contractors,
+                                                    consultants and visitors, and zero harm in the
+                                                </div><br />
+                                                <div class="col-12 p-0 mt-4 d-flex pb-4">
+                                                    <div class="col-lg-10 col-8 button-gold">
+                                                        Andean's Health and Safety Strategy
+                                                    </div>
+                                                    <div class="col-lg-2 col-3 button-gray d-flex justify-content-center align-items-center" @onclick=" () => ShowDetail(2)">
+                                                        <img src="@($"/assets/governance/arrow.svg")" class="arrow" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12 justify-content-center align-items-center">
+                                        <img src="@($"/assets/governance/GALLERY-2.jpg")" class="w-100" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if(peopleAndDiversityDetail)
+                        {
+                        <div class="row mt-6 mb-6 card-gray-txt">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-12 p-0 mt-4 d-flex pb-4">
+                                            <div class="col-lg-1 col-3 button-gray d-flex justify-content-center align-items-center" @onclick=" () => ShowDetail(3)">
+                                                <img src="@($"/assets/governance/arrow-left.svg")" class="arrow" />
+                                            </div>
+                                            <div class="col-lg-6 col-9 button-gold button-gold-back font-size-18">
+                                                Our Commitment to People and Diversity
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-lg-12">
+
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">1</a>
+                                                    <a class="content-li">
+                                                        Our strategic priority is to create a business where everyone is included,
+                                                        valued and equipped for today and the future.
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">2</a>
+                                                    <a class="content-li white-background">
+                                                        Supporting a safe, healthy and engaged workforce is
+                                                        foundational to our business.
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">3</a>
+                                                    <a class="content-li">
+                                                        Globalization and technological improvements have a great impact on society
+                                                        and labour markets worldwide. New jobs will emerge, and others disappear, The OECD predicts 15%
+                                                        of jobs will disappear as a result of automation. Andean will monitor trends by investing in the
+                                                        development of employee skills, implementing internal policies and working to attract and retain
+                                                        a more diverse workforce.
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">4</a>
+                                                    <a class="content-li white-background">
+                                                        Enhanced safety, a reduced environmental footprint and a
+                                                        reduction of mining operating costs are all direct benefits of technology in mining. In Bolivia
+                                                        we will assess applicability and opportunities mindful of our relationships with co-operatives
+                                                        and indigenous contractors.
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">5</a>
+                                                    <a class="content-li">
+                                                        Diversity is significant priority for the mining industry, where women,
+                                                        Indigenous Peoples and other minorities are under-represented. Andean will promote a diverse
+                                                        workforce that integrates a wider range of people, backgrounds and perspectives which will
+                                                        enhance corporate performance and make local economies more resilient.
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">6</a>
+                                                    <a class="content-li white-background">
+                                                        Our common HR strategies will foster a team culture where
+                                                        our workforce and contractors will pull together for the good of our business and our
+                                                        stakeholders.
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">7</a>
+                                                    <a class="content-li">
+                                                        Our recruitment strategies will attract, develop and retain talented and
+                                                        engaged employees who will enhance our culture.
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">8</a>
+                                                    <a class="content-li white-background">
+                                                        Andean will invest in people to develop their careers and
+                                                        offer a diverse and inclusive workforce.
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-lg-12">
+                                                    <a class="circle bold">9</a>
+                                                    <a class="content-li">
+                                                        Andean’s strategy on diversity and inclusion is a commitment to equality and
+                                                        the treatment of all individuals with respect. Diversity to us considers age, religious beliefs,
+                                                        cultural diversity, nationality, ethnicity, gender, sexual orientation, disabilities,
+                                                        socio-economic background and perspectives and experience.
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row mt-4">
+                                                <hr>
+                                            </div>
+                                            <div class="row ml-4">
+                                                <div class="col-lg-12">
+                                                    <div class="row">
+                                                        <div class="col-lg-3 d-lg-flex my-5 d-flex justify-content-center align-items-center">
+                                                            <img class="image-regular" src="@($"/assets/index/SDG_2 1.png")">
+                                                        </div>
+                                                        <span class="col-lg-9 d-flex align-items-center">
+                                                            <a class="sdg">
+                                                                Our commitment to environmental management is aligned with the following
+                                                                UN Sustainable Development Goals:<br>
+                                                                <span class="bold">SDG 5</span>: diversity, <span class="bold">SDG 8</span>: Full and productive employment,
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if(!peopleAndDiversityDetail)
+                        {
+                        <div id="peopleAndDiversityDetail" class="col-12 p-0 mt-6 card-gray d-lg-flex justify-content-center align-items-center text-center-md">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12 pt-6">
+                                    <div class="row d-flex align-items-center h-100">
+                                        <div class="col-md-12">
+                                            <p class="title-card">People and Diversity</p>
+
+                                            <div class="card-content py-4 text-center">
+                                                    Andean recognizes that an inclusive workplace is a hallmark of a future-ready organization. Our people are our most valuable and essential to our success. Establishing the Andean culture will allow us to do more and be aligned which will enhance
+                                            </div><br />
+                                            <div class="col-12 p-0 mt-4 d-flex pb-4">
+                                                <div class="col-lg-10 col-8 button-gold">
+                                                    Andean's People and Diversity Strategy
+                                                </div>
+                                                <div class="col-lg-2 col-3 button-gray d-flex justify-content-center align-items-center" @onclick=" () => ShowDetail(3)">
+                                                    <img src="@($"/assets/governance/arrow.svg")" class="arrow" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12 justify-content-center align-items-center">
+                                    <img src="@($"/assets/governance/GALLERY-3.jpg")" class="w-100" />
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        @if (enviromentalStrategy)
+                        {
+                        <div class="row mt-6 card-gray-txt">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-12 p-0 mt-4 d-flex pb-4">
+                                        <div class="col-lg-1 col-3 button-gray d-flex justify-content-center align-items-center" @onclick=" () => ShowDetail(4)">
+                                            <img src="@($"/assets/governance/arrow-left.svg")" class="arrow" />
+                                        </div>
+                                        <div class="col-lg-6 col-9 button-gold button-gold-back font-size-18">
+                                            Our Commitment to the Environment
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-lg-12 list">
+
+                                        <div class="row py-4">
+                                            <span class="col-12 ">
+                                                <a class="circle bold">1</a>
+                                                <a class="content-li">
+                                                    Meet or exceed the requirements of all applicable national environmental laws
+                                                    and regulations and, whenever possible apply best available techniques and international best
+                                                    practice management to environmental safeguarding and worker and community health;
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <div class="row">
+                                            <span class="col-12 ">
+                                                <a class="circle bold">2</a>
+                                                <a class="content-li white-background">
+                                                    Minimise resource use, and waste generation, and responsibly manage
+                                                    all waste streams;
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <div class="row py-4">
+                                            <span class="col-12 ">
+                                                <a class="circle bold">3</a>
+                                                <a class="content-li">Implement technical innovations to reduce environmental impacts;</a>
+                                            </span>
+                                        </div>
+                                        <div class="row">
+                                            <span class="col-12 ">
+                                                <a class="circle bold">4</a>
+                                                <a class="content-li white-background">
+                                                    Contribute to biodiversity conservation and ecosystem protection,
+                                                    and aim for ecological enhancement wherever possible to maintain high quality ecosystem
+                                                    function;
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <div class="row py-4">
+                                            <span class="col-12 ">
+                                                <a class="circle bold">5</a>
+                                                <a class="content-li">
+                                                    Manage environmental risks and work in a transparent and participatory manner
+                                                    with local stakeholders to create a culture of trust and cooperation;
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <div class="row">
+                                            <span class="col-12 ">
+                                                <a class="circle bold">6</a>
+                                                <a class="content-li white-background">Implement effective management systems and action plans;</a>
+                                            </span>
+                                        </div>
+                                        <div class="row py-4">
+                                            <span class="col-12 ">
+                                                <a class="circle bold">7</a>
+                                                <a class="content-li">
+                                                    Conduct regular environmental reviews and act on the results, to establish a
+                                                    cycle of continuous improvement for the project lifetime and beyond;
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <div class="row">
+                                            <span class="col-12 ">
+                                                <a class="circle bold">8</a>
+                                                <a class="content-li white-background">
+                                                    Promote a culture of responsible environmental management both at
+                                                    the mining operations and in the wider community;
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <div class="row py-4">
+                                            <span class="col-12 ">
+                                                <a class="circle bold">9</a>
+                                                <a class="content-li">
+                                                    Provide adequate resources and build requisite capabilities so that employees
+                                                    at all levels are able to understand and fulfil their environmental and community
+                                                    responsibilities.
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <div class="row">
+                                            <span class="col-12 ">
+                                                <a class="circle bold">10</a>
+                                                <a class="content-li white-background">
+                                                    Develop, design and operate facilities with sustainability in mind,
+                                                    and conduct activities taking into consideration the efficient use of energy, water and other
+                                                    natural resources and materials, including their recycling and reuse, the minimisation of waste
+                                                    and the responsible management of residual materials;
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <div class="row py-4">
+                                            <span class="col-12 ">
+                                                <a class="circle bold">11</a>
+                                                <a class="content-li">
+                                                    Reduce our direct and indirect greenhouse gas emissions and work with the
+                                                    government and other groups to address climate change;
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <div class="row">
+                                            <span class="col-12 ">
+                                                <a class="circle bold">12</a>
+                                                <a class="content-li white-background">
+                                                    Act as responsible stewards of our assets and operate to leading
+                                                    practice environmental standards;
+                                                </a>
+                                            </span>
+                                        </div>
+                                        <div class="row py-4">
+                                            <span class="col-12 ">
+                                                <a class="circle bold">13</a>
+                                                <a class="content-li">
+                                                    Produce annual sustainability reports reporting on progress, and use Key
+                                                    Performance Indicators to measure environmental improvement;
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        @if (!enviromentalStrategy)
+                        {
+                            <div id="enviromentalStrategy" class="col-12 p-0 mt-6 card-gray d-lg-flex justify-content-center align-items-center text-center-md">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-12 pt-6">
+                                        <div class="row d-flex align-items-center h-100">
+                                            <div class="col-md-12">
+                                                <p class="title-card">Environmental</p><br />
+
+                                                <div class="card-content py-4 text-center">
+                                                    Andean is committed to sustainable use of resources, biodiversity safeguarding, and environmental protection. The company undertakes its activities in a manner that aims to reduce, manage, and rectify adverse
+                                                    impacts, and maximises positive environmental, economic and social benefits. We commit to a strategy of good environmental management for present and future generations.
+                                                </div><br />
+                                                <div class="col-12 p-0 mt-4 d-flex pb-4">
+                                                    <div class="col-lg-10 col-8 button-gold">
+                                                        Andean's Environmental Strategy
+                                                    </div>
+                                                    <div class="col-lg-2 col-3 button-gray d-flex justify-content-center align-items-center" @onclick=" () => ShowDetail(4)">
+                                                        <img src="@($"/assets/governance/arrow.svg")" class="arrow" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-12 justify-content-center align-items-center">
+                                        <img src="@($"/assets/governance/GALLERY-4.jpg")" class="w-100" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (communityEngagement)
+                        {
+
+                            <div class="row mt-6 card-gray-txt">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-12 p-0 mt-4 d-flex pb-4">
+                                            <div class="col-lg-1 col-3 button-gray d-flex justify-content-center align-items-center" @onclick=" () => ShowDetail(5)">
+                                                <img src="@($"/assets/governance/arrow-left.svg")" class="arrow" />
+                                            </div>
+                                            <div class="col-lg-6 col-9 button-gold button-gold-back font-size-18">
+                                                Our Commitment to Community Engagement
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-lg-12 list">
+
+                                            <div class="row py-4">
+                                                <span class="col-12 ">
+                                                    <a class="circle bold">1</a>
+                                                    <a class="content-li">
+                                                        Earmarking the communities and other stakeholders associated with our operations
+                                                        and engaging with them in a culturally appropriate and transparent
+                                                        manner at an early stage, and throughout the life cycle of our operations to facilitate mutual
+                                                        benefit and active participation;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-12 ">
+                                                    <a class="circle bold">2</a>
+                                                    <a class="content-li white-background">
+                                                        Respecting rights, local traditions, interests and cultures of
+                                                        local communities including minority groups and indigenous peoples (as defined
+                                                        by the UN);
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-12 ">
+                                                    <a class="circle bold">3</a>
+                                                    <a class="content-li">
+                                                        Prioritising local recruitment, and providing training and skills development to
+                                                        enable local community members to work at our operations
+                                                        and allow the economy in the local community to improve;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-12 ">
+                                                    <a class="circle bold">4</a>
+                                                    <a class="content-li white-background">
+                                                        Promoting gender equality wherever possible in our operations,
+                                                        and provide the necessary training and skills to enable this;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-12 ">
+                                                    <a class="circle bold">5</a>
+                                                    <a class="content-li">
+                                                        Implementing workforce and community-led environmental and social risk
+                                                        management plans;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-12 ">
+                                                    <a class="circle bold">6</a>
+                                                    <a class="content-li white-background">
+                                                        Funding initiatives that provide sustainable benefit to
+                                                        communities associated with our projects;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-12 ">
+                                                    <a class="circle bold">7</a>
+                                                    <a class="content-li">
+                                                        Working to reduce adverse community impacts, and avoiding or reducing sole
+                                                        dependence on our operations, to provide lasting benefits
+                                                        and promotion of sustainable livelihoods;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-12 ">
+                                                    <a class="circle bold">8</a>
+                                                    <a class="content-li white-background">
+                                                        Supporting local communities and their sustainability through
+                                                        measures such as community development programmes, and local sourcing
+                                                        of goods;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-12 ">
+                                                    <a class="circle bold">9</a>
+                                                    <a class="content-li">
+                                                        Ensuring that stakeholder engagement is conducted in a free, open, transparent
+                                                        and culturally appropriate manner;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-12 ">
+                                                    <a class="circle bold">10</a>
+                                                    <a class="content-li white-background">
+                                                        Acknowledging and recording grievances and complaints of
+                                                        stakeholders and acting to rectify those over which we have control or influence;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-12 ">
+                                                    <a class="circle bold">11</a>
+                                                    <a class="content-li">
+                                                        Preserving, and where possible enhancing, cultural and historical heritage sites
+                                                        in the areas in which we operate;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row">
+                                                <span class="col-12 ">
+                                                    <a class="circle bold">12</a>
+                                                    <a class="content-li white-background">
+                                                        Setting aside funds for social development initiatives to
+                                                        benefit communities associated with our projects;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="row py-4">
+                                                <span class="col-12 ">
+                                                    <a class="circle bold">13</a>
+                                                    <a class="content-li">
+                                                        Ensuring any activities, taking place on private or indigenous lands, take place
+                                                        with the Free, Prior, Informed Consent of the landowner;
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (!communityEngagement)
+                        {
+
+                        <div id="communityEngagement" class="col-12 p-0 mt-6 card-gray d-lg-flex justify-content-center align-items-center text-center-md" >
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12 pt-6">
+                                    <div class="row d-flex align-items-center h-100">
+                                        <div class="col-md-12">
+                                            <p class="title-card">Community Engagement</p><br />
+
+                                            <div class="card-content py-4 text-center">
+                                                    Andean Precious Metals knows that human resources are the key company asset, and that our social responsibilities are a basic priority of the business. We commit to the social and economic development of sustainable
+                                                communities associated with Our Community Engagement Strategy
+                                            </div><br />
+                                            <div class="col-12 p-0 mt-4 d-flex pb-4">
+                                                <div class="col-lg-10 col-8 button-gold">
+                                                    Andean's Community Engagement Strategy
+                                                </div>
+                                                <div class="col-lg-2 col-3 button-gray d-flex justify-content-center align-items-center" @onclick=" () => ShowDetail(5)">
+                                                    <img src="@($"/assets/governance/arrow.svg")" class="arrow" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12 justify-content-center align-items-center">
+                                    <img src="@($"/assets/governance/GALLERY-5.jpg")" class="w-100" />
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    private bool corporateResponsabilityDetail = false;
+    
+    private bool healthSafetyDetail = false;
+    
+    private bool peopleAndDiversityDetail = false;
+    
+    private bool enviromentalStrategy = false;
+    
+    private bool communityEngagement = false;
+
+    private Banner banner { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        banner = await BannerService.GetBanner("Governance");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if(isMenu)  return "pause";
+        return "";
+    }
+
+    private string ActiveFragment(string fragment)
+    {
+        return this.fragment == fragment ? "yellow" : "";
+    }
+
+    private void ShowDetail(int id) {
+
+        switch (id) {
+            case 1:
+                this.corporateResponsabilityDetail = !this.corporateResponsabilityDetail;
+                break;
+            case 2:
+                this.healthSafetyDetail = !this.healthSafetyDetail;
+                break;
+            case 3:
+                this.peopleAndDiversityDetail = !this.peopleAndDiversityDetail;
+                break;
+            case 4:
+                this.enviromentalStrategy = !this.enviromentalStrategy;
+                break;
+            case 5:
+                this.communityEngagement = !this.communityEngagement;
+                break;
+        }
+    }
+}

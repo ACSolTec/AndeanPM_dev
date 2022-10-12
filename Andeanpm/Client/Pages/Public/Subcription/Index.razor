@@ -1,0 +1,97 @@
+﻿@page "/subscriber/{email}/{status}"
+@inject IFormService FormService
+@inject HttpClient HttpClient;
+
+<div class="container-fluid p-0 d-flex d-lg-flex">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent" />
+    <div class="w-100 background-gray @ContentClass()" style="padding-top: 80px;">
+        <div class="row m-0 new-contact-banner d-flex justify-content-center align-items-center ">
+
+            <div class="col-lg-8 col-10 new-contact-form-container-mul">
+                <div class="pseudo-white">
+                    <div class="" style="width: 100%;">
+                        <div class="p-5">
+                            <div class="row">
+                                <div class="col-12"></div>
+                                <div class="col-12 pseudo-white d-flex flex-column align-items-center">
+                                    <div class="col-lg-6 col-10 text-center justify-content-center">
+                                        <img src="assets/ANDEAN_PM.jpg" alt="" class="w-50">
+                                        <div class="paragraph-title bold text-center pb-4 mt-3">@title</div>
+                                        <div class="paragraph-content font-size-18 text-center pb-2">
+                                            @msg
+                                        </div>
+                                        <div class="col-12 pt-4">
+                                            <hr>
+                                        </div>
+                                        <div class="paragraph-content text-center bold">
+                                            Questions?
+                                        </div>
+                                        <div class="paragraph-content text-center bold">
+                                            Please write to us at: <a href="mailto:info@andeanpm.com" class="yellow-hover text-decoration-none a-remover">info@andeanpm.com</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <Andeanpm.Client.Components.Public.Footer isHome="@isHome" />
+    </div>
+</div>
+
+@code {
+    [Parameter] public string email { get; set; } = string.Empty;
+
+    [Parameter] public string status { get; set; }
+
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private bool isHome = false;
+
+    private Subscriber subscriber { get; set; } = new();
+
+    private string title { get; set; } = string.Empty;
+
+    private string msg { get; set; } = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+       subscriber.Email = email;
+       subscriber.IsSubscriber = int.Parse(status);
+
+        if (int.Parse(status) == 1)
+       {
+            title = "Thank you for joining us!";
+
+            msg = "You have subscribed to receive information and news about our Company.";
+
+       }
+        if (int.Parse(status) == 2)
+       {
+            title = "You have succesfully unsuscribed from our newsletter.";
+
+            msg = "Thank you for being a part of our community! Please consider staying in contact with us.";
+       }
+
+        await FormService.UpdateSubscription(subscriber);
+
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if (isMenu) return "pause";
+        return "";
+    }
+
+}

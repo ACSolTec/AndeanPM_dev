@@ -1,0 +1,35 @@
+﻿@page "/"
+
+<link href="css/index.css" rel="stylesheet" />
+
+@if(!showVideo){
+<div>
+    <Andeanpm.Client.Components.Public.Loader />
+</div> 
+}
+
+
+
+<div class="d-none @(showVideo ? "d-block" : string.Empty)">
+  <Andeanpm.Client.Pages.Public.Home.Index isMenu="@isMenu" @bind-ShowVideo="showVideo" OnMenuEvent="menuEvent"/>
+
+  <Andeanpm.Client.Components.Public.Cookies/>
+</div>
+
+@code
+{
+    private bool showVideo { get; set; }
+
+    private bool isMenu = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        showVideo = false;
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        isMenu = eventMenu;
+    }
+
+}

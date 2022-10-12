@@ -1,0 +1,231 @@
+﻿@page "/NewContact"
+
+@inject IJSRuntime JSRuntime
+@inject IFormService FormService
+@inject IBannerService BannerService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/newcontact.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<div class="container-fluid p-0">
+    <Andeanpm.Client.Components.Public.Navbar OnMenuEvent="menuEvent"/>
+    <div class="@ContentClass()">
+        <div class="d-block row m-0">
+            <div class="perspective-100">
+                <img id="com-01" class="banner  z-index-m-2 paragraph-image-half" src="@banner.Url" />
+            </div>
+            <div class="centered d-none d-lg-block">
+                <h1 class="paragraph-title align-end py-2">CONTACT</h1>
+            </div>
+        </div>
+        <div class="row centered d-block d-lg-none">
+            <h1 class="paragraph-title align-end py-2">CONTACT</h1>
+        </div>
+        <div class="row m-0 d-flex justify-content-center align-items-center">
+            @if (success)
+            {
+                <div class="col-8 new-contact-form-container new-contact-form-container-mul">
+                    <div class="w-100 pseudo-white">
+                    <div>
+                        <div class="p-5">
+                            <div class="row">
+                                <div class="col-12"></div>
+                                <div class="col-12 pseudo-white d-flex flex-column align-items-center">
+                                    <img src="assets/new-contact/hand.png" alt="" class="py-4">
+                                    <div class="paragraph-content font-size-18 text-center py-4">
+                                        Thank you for your message.
+                                        <br />
+                                        Our team will get back to you as soon as possible.
+                                    </div>
+                                    <button class="andean-button-yellow" @onclick="(() => Return())">
+                                        BACK
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+            @if (!success)
+            {
+                <div class="col-sm-12 col-md-12 col-lg-8 ">
+                    <!--EL TRUCO DE DUPLICAR-->
+                <div class="w-100 pseudo-white new-contact-form-container-mul">
+                    <div class="new-contact-form-container">
+                        <div class="p-5">
+                                <div class="row">
+                                    <div class="col-12 b-border py-4 d-md-none d-block ">
+                                        <div class="paragraph-title bold mb-1 text-center">
+                                            CANADA
+                                        </div>
+                                        <div class="font-assistant paragraph-content text-center">
+                                            777 Hornby Street
+                                            Suite 600<br />
+                                            Vancouver BC
+                                            V6Z 1S4
+                                        </div>
+                                    </div>
+                                    <div class="col-12 b-border py-4 d-md-none d-block">
+                                        <div class="paragraph-title bold mb-1 text-center">
+                                            MEXICO
+                                        </div>
+                                        <div class="font-assistant paragraph-content text-center">
+                                            Ignacio L. Vallarta
+                                            No. 811 Sur
+                                            Col. El Mirador <br />
+                                            Centro
+                                            Monterrey, N.L.
+                                            64070 Mexico
+                                        </div>
+                                    </div>
+                                    <div class="col-12 py-4 d-md-none d-block">
+                                        <div class="paragraph-title bold mb-1 text-center">
+                                            BOLIVIA
+                                        </div>
+                                        <div class="font-assistant paragraph-content text-center">
+                                            Calle 14 de Calacoto
+                                            y Sanchez Bustamante<br />
+                                            Edif. Metrobol, Piso 1
+                                            La Paz, Bolivia
+                                        </div>
+                                    </div>
+                                </div>
+                                <EditForm Model="contact" OnValidSubmit="SendContact">
+                                    <DataAnnotationsValidator />
+                                    <div class="row">
+                                        <div class="paragraph-title bold col-12 pseudo-white">
+                                            CONNECTING WITH US
+                                        </div>
+                                        <div class="col-sm-12 col-md-12 col-lg-6 my-2">
+                                            <InputText @bind-Value="contact.Name" class="paragraph-content andean-input new-contact-input w-100 p-2 pseudo-white" placeholder="Name" />
+                                            <ValidationMessage class="error" For="@(() => contact.Name)" />
+                                        </div>
+                                        <div class="col-sm-12 col-md-12 col-lg-6 my-2">
+                                            <InputText @bind-Value="contact.Email" class="paragraph-content andean-input new-contact-input w-100 p-2 pseudo-white" placeholder="Email"/>
+                                            <ValidationMessage class="error" For="@(() => contact.Email)" />
+                                        </div>
+                                        <div class="col-sm-12 my-2">
+                                            <InputText @bind-Value="contact.Subject" class="paragraph-content andean-input new-contact-input w-100 p-2 pseudo-white" placeholder="Subject"/>
+                                            <ValidationMessage class="error" For="@(() => contact.Subject)" />
+                                        </div>
+                                        <div class="col-sm-12 my-2">
+                                            <InputTextArea @bind-Value="contact.Msg" class="paragraph-content andean-input new-contact-input w-100 p-2 pseudo-white" placeholder="Your message" style="height: 15vh"></InputTextArea>
+                                            <ValidationMessage class="error" For="@(() => contact.Msg)" />
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-end mt-2 mb-5">
+                                            <button type="submit" class="andean-button-gray-blue btnSend">
+                                                @if (submited)
+                                                {
+                                                    <div class="spinner-border">
+                                                        <span class="sr-only">Loading...</span>
+                                                    </div>
+                                                }
+                                                SEND MESSAGE
+                                            </button>
+                                        </div>
+                                        <div class="col-4 border-right-pseudo-white d-none d-md-block">
+                                        <div class="font-assistant font-size-20 bold my-4 text-center">
+                                            CANADA
+                                        </div>
+                                        <div class="font-assistant font-size-16 text-center ">
+                                            1500 Royal Centre<br />
+                                            1055 West Georgia Street<br />
+                                            PO Box 11117<br />
+                                            Vancouver BC V6E 4N7
+                                        </div>
+                                    </div>
+                                    <div class="col-4 border-right-pseudo-white d-none d-md-block">
+                                        <div class="font-assistant font-size-20 bold my-4 text-center ">
+                                            MEXICO
+                                        </div>
+                                        <div class="font-assistant font-size-16 text-center">
+                                            Ignacio L. Vallarta<br />
+                                            No. 811 Sur<br />
+                                            Col. El Mirador Centro<br />
+                                            Monterrey, N.L.<br />
+                                            64070 Mexico
+                                        </div>
+                                    </div>
+                                    <div class="col-4 d-none d-md-block">
+                                        <div class="font-assistant font-size-20 bold my-4 text-center">
+                                            BOLIVIA
+                                        </div>
+                                        <div class="font-assistant font-size-16 text-center">
+                                            Calle 14 de Calacoto<br />
+                                            y Sanchez Bustamante<br />
+                                            Edif. Metrobol, Piso 1<br />
+                                            La Paz, Bolivia
+                                        </div>
+                                    </div>
+                                </div>
+                            </EditForm>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        <Andeanpm.Client.Components.Public.Footer isHome="@isHome"/>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public bool isMenu { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> OnMenuEvent { get; set; }
+
+    private bool isHome = false;
+
+    private string fragment = string.Empty;
+
+    private bool success = false;
+
+    private bool submited = false;
+
+    private Contact contact = new();
+
+    private Banner banner { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        banner = await BannerService.GetBanner("Contact");
+
+        if (!string.IsNullOrEmpty(NavigationManager.Uri))
+            fragment = UtilityFunctions.GetFragment(NavigationManager.Uri);
+    }
+
+    private async Task SendContact()
+    {
+        submited = true;
+        var response = await FormService.Contact(contact);
+        if(response)
+        {
+            success = true;
+            contact = new();
+           
+        }else{
+
+        }
+        submited = false;
+    }
+
+    private void Return()
+    {
+        success = !success;
+    }
+
+    protected void menuEvent(bool eventMenu)
+    {
+        OnMenuEvent.InvokeAsync(eventMenu);
+    }
+
+    private string ContentClass()
+    {
+        if(isMenu)  return "pause";
+        return "";
+    }
+}

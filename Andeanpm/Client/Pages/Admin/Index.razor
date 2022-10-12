@@ -1,0 +1,45 @@
+﻿@page "/Admin"
+
+<link href="css/admin.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<AuthorizeView Roles="Admin">
+	<Authorized Context="Auth">
+		<div id="wrapper" class="@(isClosed ? "toggled" : "")">
+			<div class="overlay"></div>
+
+			<Andeanpm.Client.Components.Admin.Sidebar />
+
+			<div id="page-content-wrapper">
+				<button type="button" class="hamburger animated fadeInLeft @(isClosed ? "is-open" : "is-closed")" @onclick="OpenMenu" data-toggle="offcanvas">
+					<span class="hamb-top"></span>
+					<span class="hamb-middle"></span>
+					<span class="hamb-bottom"></span>
+				</button>
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12 d-flex justify-content-center">
+							<h1>Content Management System</h1>
+						</div>
+						<div class="col-lg-12 d-flex justify-content-center">
+							<img src="/assets/ANDEAN_PM.jpg" width="50%s"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</Authorized>
+	<NotAuthorized>
+		<Andeanpm.Client.Components.Admin.SignIn />
+	</NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+	private bool isClosed { get; set; } = true;
+
+	private void OpenMenu()
+	{
+		isClosed = !isClosed;
+	}
+
+}

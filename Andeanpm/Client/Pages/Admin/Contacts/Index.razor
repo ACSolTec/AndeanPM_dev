@@ -1,0 +1,138 @@
+﻿@page "/Admin/Contact/"
+
+@inject IFormService FormService
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/admin.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<AuthorizeView Roles="Admin">
+	<Authorized Context="Auth">
+		<div id="wrapper" class="@(isClosed ? "toggled" : "")">
+			<div class="overlay"></div>
+
+			<Andeanpm.Client.Components.Admin.Sidebar />
+
+			<div id="page-content-wrapper">
+				<button type="button" class="hamburger animated fadeInLeft @(isClosed ? "is-open" : "is-closed")" @onclick="OpenMenu" data-toggle="offcanvas">
+					<span class="hamb-top"></span>
+					<span class="hamb-middle"></span>
+					<span class="hamb-bottom"></span>
+				</button>
+				<div class="container">
+					<div class="row justify-content-end">
+						<div class="col-sm-12 col-lg-6">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="/Admin">Admin</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Careers</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-lg-12">
+							<div class="card">
+								<h5 class="card-header">contact List</h5>
+
+							</div>
+							<div class="card-body">
+								@if (contact.Count > 0)
+								{
+									<div class="table-responsive-sm">
+										<table class="table table-striped">
+											<thead>
+												<tr>
+													<th scope="col">Name</th>
+													<th scope="col">Email</th>
+													<th scope="col">Subject</th>
+													<th scope="col">Message</th>
+													@*<th scope="col">Checked</th>*@
+												</tr>
+											</thead>
+											<tbody>
+												@foreach (var item in contact)
+												{
+													<tr>
+														<td>@item.Name</td>
+														<td>@item.Email</td>
+														<td>@item.Subject</td>
+														<td>@item.Msg</td>
+														@*<td>
+														<button type="button" class="btn btn-sm btn-outline-danger" @onclick="(() => Delete(item.Id))"><i class="fa-solid fa-eraser"></i> Delete</button>
+														</td>*@
+													</tr>
+												}
+											</tbody>
+										</table>
+									</div>
+									<div class="row justify-content-end">
+										<div class="col-sm-12">
+											<Andeanpm.Client.Components.Admin.Pagination MetaData="MetaData" Spread="2" SelectedPage="SelectedPage" />
+										</div>
+									</div>
+								}
+								else
+								{
+									<span>
+										Loading products...
+									</span>
+								}
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Authorized>
+	<NotAuthorized>
+		<Andeanpm.Client.Components.Admin.SignIn />
+	</NotAuthorized>
+</AuthorizeView>
+
+@code {
+	private bool isClosed { get; set; } = true;
+
+	private List<Contact> contact { get; set; } = new();
+
+	private MetaData MetaData { get; set; } = new();
+
+	private PaginationParameters paginationParameters = new();
+
+	protected override async Task OnInitializedAsync()
+	{
+		await GetList();
+	}
+
+	protected override async Task OnAfterRenderAsync(bool firstRender)
+	{
+		if (!firstRender)
+		{
+			await GetList();
+			StateHasChanged();
+		}
+
+		await base.OnAfterRenderAsync(firstRender);
+	}
+
+	private async Task SelectedPage(int page)
+	{
+		paginationParameters.PageNumber = page;
+		await GetList();
+	}
+
+	private async Task GetList()
+	{
+		var pagingResponse = await FormService.GetContact(paginationParameters);
+		contact = pagingResponse.Items;
+		MetaData = pagingResponse.MetaData;
+	}
+
+	private void OpenMenu()
+	{
+		isClosed = !isClosed;
+	}
+
+}

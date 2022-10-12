@@ -1,0 +1,154 @@
+﻿@page "/Admin/User/"
+
+@inject IUserService UserService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/admin.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<AuthorizeView Roles="Admin">
+	<Authorized Context="Auth">
+		<div id="wrapper" class="@(isClosed ? "toggled" : "")">
+			<div class="overlay"></div>
+
+			<Andeanpm.Client.Components.Admin.Sidebar />
+
+			<div id="page-content-wrapper">
+				<button type="button" class="hamburger animated fadeInLeft @(isClosed ? "is-open" : "is-closed")" @onclick="OpenMenu" data-toggle="offcanvas">
+					<span class="hamb-top"></span>
+					<span class="hamb-middle"></span>
+					<span class="hamb-bottom"></span>
+				</button>
+				<div class="container">
+					<div class="row justify-content-end">
+						<div class="col-sm-12 col-lg-6">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="/Admin">Admin</a></li>
+									<li class="breadcrumb-item active" aria-current="page">User</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-lg-12">
+							<div class="card">
+								<h5 class="card-header">List Users</h5>
+
+							</div>
+							<div class="card-body">
+								<div class="row">
+									<div class="col-sm-12 col-lg-6">
+										<button type="button" class="btn btn-sm btn-outline-info" @onclick="Create"><i class="fa-solid fa-plus"></i> Add</button>
+									</div>
+									<br />s
+									<br />
+									<div class="col-sm-12">
+										@if (user.Count > 0)
+										{
+											<div class="table-responsive-sm">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">#</th>
+															<th scope="col">User</th>
+															<th scope="col">Role</th>
+															<th scope="col">Actions</th>
+														</tr>
+													</thead>
+													<tbody>
+														@foreach (var item in user)
+														{
+															<tr>
+																<th scope="row">@item.Id</th>
+																<td>@item.Email</td>
+																<td>@item.Role</td>
+																<td>
+																	<button type="button" class="btn btn-sm btn-outline-primary" @onclick="(() => Edit(item.Id))"><i class="fa-solid fa-pen-to-square"></i> Update</button>
+																	<button type="button" class="btn btn-sm btn-outline-danger" @onclick="(() => Delete(item.Id))"><i class="fa-solid fa-eraser"></i> Delete</button>
+																</td>
+															</tr>
+														}
+													</tbody>
+												</table>
+											</div>
+											<div class="row justify-content-end">
+												<div class="col-sm-12">
+													<Andeanpm.Client.Components.Admin.Pagination MetaData="MetaData" Spread="2" SelectedPage="SelectedPage" />
+												</div>
+											</div>
+										}
+										else
+										{
+											<span>
+												Loading products...
+											</span>
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Authorized>
+	<NotAuthorized>
+		<Andeanpm.Client.Components.Admin.SignIn />
+	</NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+	[Parameter] public string Team { get; set; } = string.Empty;
+
+	private bool isClosed { get; set; } = true;
+
+	private List<User> user { get; set; } = new();
+
+	private MetaData MetaData { get; set; } = new();
+
+	private PaginationParameters paginationParameters = new();
+
+	protected override async Task OnInitializedAsync()
+	{
+		await GetUser();
+	}
+
+	private async Task SelectedPage(int page)
+	{
+		paginationParameters.PageNumber = page;
+		await GetUser();
+	}
+
+	private async Task GetUser()
+	{
+		var pagingResponse = await UserService.Get(paginationParameters);
+		user = pagingResponse.Items;
+		MetaData = pagingResponse.MetaData;
+	}
+
+	private void OpenMenu()
+	{
+		isClosed = !isClosed;
+	}
+
+
+	private void Edit(int id)
+	{
+		NavigationManager.NavigateTo($"/Admin/User/Update/{id}");
+	}
+
+	private void Create()
+	{
+		NavigationManager.NavigateTo($"/Admin/User/Update");
+	}
+
+	private async Task Delete(int id)
+	{
+		await UserService.Delete(id);
+
+		await GetUser();
+	}
+
+}

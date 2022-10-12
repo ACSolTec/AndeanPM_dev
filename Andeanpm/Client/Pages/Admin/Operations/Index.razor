@@ -1,0 +1,169 @@
+﻿@page "/Admin/Operations"
+
+@inject IOperationsService OperationsService
+@inject NavigationManager NavigationManager
+@inherits FragmentNavigationBase
+
+<link href="css/admin.css?v=@(DateTime.Now.ToString("MMddyyyyHHmmss"))" rel="stylesheet" />
+
+<AuthorizeView Roles="Admin">
+	<Authorized Context="Auth">
+		<div id="wrapper" class="@(isClosed ? "toggled" : "")">
+			<div class="overlay"></div>
+
+			<Andeanpm.Client.Components.Admin.Sidebar />
+
+			<div id="page-content-wrapper">
+				<button type="button" class="hamburger animated fadeInLeft @(isClosed ? "is-open" : "is-closed")" @onclick="OpenMenu" data-toggle="offcanvas">
+					<span class="hamb-top"></span>
+					<span class="hamb-middle"></span>
+					<span class="hamb-bottom"></span>
+				</button>
+				<div class="container">
+					<div class="row justify-content-end">
+						<div class="col-sm-12 col-lg-6">
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="/Admin">Admin</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Operations</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12 col-lg-12">
+							<div class="card">
+								<h5 class="card-header">@Module</h5>
+
+							</div>
+							<div class="card-body">
+								<div class="row">
+
+									<div class="col-sm-10">
+										<select @onchange="SelectedInput">
+											<option value="">Select Operation</option>
+											<option value="CachiLaguna">Cachi Laguna</option>
+											<option value="CerroRicoDeposits">Cerro Rico Deposits</option>
+											<option value="ElAsiento">El Asiento</option>
+											<option value="TatasiPortugalete">Tatasi Portugalete</option>
+											<option value="Monserrat">Monserrat</option>
+											<option value="SanPablo">San Pablo</option>
+											<option value="RioBlanco">Rio Blanco</option>
+										</select>
+									</div>
+									<br />
+									<br />
+									<div class="col-sm-12">
+										@if (operations.Count > 0)
+										{
+											<div class="table-responsive-sm">
+												<table class="table table-striped">
+													<thead>
+														<tr>
+															<th scope="col">Image</th>
+															<th scope="col">Module</th>
+															<th scope="col">Actions</th>
+														</tr>
+													</thead>
+													<tbody>
+														@foreach (var item in operations)
+														{
+															<tr>
+																<td>
+																	<img src="@item.ImageLink" alt="" style="width:70px;" />
+																</td>
+																<td>@item.Module</td>
+																<td>
+																	<button type="button" class="btn btn-sm btn-outline-primary" @onclick="(() => Edit(item.Id))"><i class="fa-solid fa-pen-to-square"></i> Update</button>
+																</td>
+															</tr>
+														}
+													</tbody>
+												</table>
+											</div>
+											<div class="row justify-content-end">
+												<div class="col-sm-12">
+													<Andeanpm.Client.Components.Admin.Pagination MetaData="MetaData" Spread="2" SelectedPage="SelectedPage" />
+												</div>
+											</div>
+										}
+										else
+										{
+											<span>
+												Loading products...
+											</span>
+										}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Authorized>
+	<NotAuthorized>
+		<Andeanpm.Client.Components.Admin.SignIn />
+	</NotAuthorized>
+</AuthorizeView>
+
+@code {
+
+	[Parameter] public string Module { get; set; } = string.Empty;
+
+	private bool isClosed { get; set; } = true;
+
+	private List<Operation> operations { get; set; } = new();
+
+	private MetaData MetaData { get; set; } = new();
+
+	private PaginationParameters paginationParameters = new();
+
+	private int numeroPalabras = 15;
+
+	private string aux { get; set; } = string.Empty;
+
+	private bool cumpleCondicion = true;
+
+	protected override async Task OnInitializedAsync()
+	{
+		await Get();
+	}
+
+	private async Task SelectedPage(int page)
+	{
+		paginationParameters.PageNumber = page;
+		await Get();
+	}
+
+	private async Task Get()
+	{
+		var pagingResponse = await OperationsService.Get(paginationParameters, Module);
+		operations = pagingResponse.Items;
+		MetaData = pagingResponse.MetaData;
+	}
+
+	private void OpenMenu()
+	{
+		isClosed = !isClosed;
+	}
+
+	private async Task SelectedInput(ChangeEventArgs e)
+	{
+		if (!string.IsNullOrEmpty(e.Value.ToString()))
+		{
+			Module = e.Value.ToString();
+			await Get();
+		}
+		else
+		{
+			operations = new();
+		}
+	}
+
+	private void Edit(int id)
+	{
+
+		NavigationManager.NavigateTo($"/Admin/Operation/Form/{Module}/{id}");
+	}
+}
